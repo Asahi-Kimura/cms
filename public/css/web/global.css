@@ -1,0 +1,484 @@
+@charset "UTF-8";
+/*========================================
+Re:vite
+Date : 20210310
+URL :
+Style : global
+Filename : global.css
+========================================*/
+
+/*========================================
+Google Font
+========================================*/
+
+
+/*========================================
+Font Designation
+========================================*/
+html {
+	height: auto;
+	font-size: 16px;
+}
+body {
+	width: 100%;
+	height: auto;
+	font-family:-apple-system, BlinkMacSystemFont,"Yu Gothic","Helvetica Neue", "Segoe UI","Noto Sans Japanese","ヒラギノ角ゴ Pro", Meiryo, sans-serif;
+	background-color: #FFF;
+	overflow-x: hidden;
+	position: relative;
+}
+
+
+
+/*========================================
+Font Size
+========================================*/
+h1,h2,h3,h4,h5,h6 {
+	font-weight: 400;
+}
+h1 {}
+h2 {}
+h3 {}
+h4 {}
+h5 {}
+h6 {}
+
+.f-let_1 {
+	letter-spacing: .1em;
+}
+.f-let_2 {
+	letter-spacing: .2em;
+}
+
+/*========================================
+Fonts Color
+========================================*/
+.f-base {
+	color: #d41919;
+}
+.f-sub {
+	color: #000;
+}
+.f-locher {
+	color: #9c968e;
+}
+.f-bk {
+	color: #000;
+}
+.f-red {
+	color: #f00;
+}
+.f-white {
+	color: #fff;
+}
+.f-lgray {
+	color: #f1f1f1;
+}
+.f-yellow {
+	color: #ff0;
+}
+.f-og {
+	color: #e8b646!important;
+}
+
+
+/*========================================
+Font Decoration
+========================================*/
+.f-fam_g {
+	font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI","Noto Sans Japanese","ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+}
+.f-fam_m {
+	font-family: "ＭＳ Ｐ明朝", "MS PMincho","ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "serif";
+}
+.f-fam_nam {
+	font-family: 'Times New Roman';
+}
+.f-g_osw {
+	font-family: 'Oswald', sans-serif;
+}
+
+.f-overline {
+	text-decoration: line-through;
+}
+.f-underline {
+	text-decoration: underline;
+}
+.f-none {
+	text-decoration: none!important;
+}
+
+.f-bold {
+	font-weight: 700!important;
+}
+.f-normal {
+	font-weight: 400!important;
+}
+
+.txt-indent_05 {
+	padding-left: .5em!important;
+	text-indent: -.5em!important;
+}
+.txt-indent_1 {
+	padding-left: 1em!important;
+	text-indent: -1em!important;
+}
+.txt-indent_2 {
+	padding-left: 2em!important;
+	text-indent: -2em!important;
+}
+
+.txt-shadow_1 {
+	text-shadow: 0px 0px 6px #454545;
+}
+.txt-gradation {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	background-color: #f4f4f4;
+	background-image: linear-gradient(to bottom, rgba(244,244,244,1) 0%,rgba(215,215,215,1) 100%);
+}
+
+.txt-letsp_01 {
+	letter-spacing: .1em;
+}
+.txt-linehi_2 {
+	line-height: 2!important;
+}
+
+.txt-wide {
+	width: 90%!important;
+}
+
+.txt-italic {
+	font-style: italic;
+}
+
+
+/*========================================
+Contents Color
+========================================*/
+.cont-main_bg {
+	background-color: #247d57;
+}
+.cont-sub_bg {
+	background-color: #4c4c4c;
+}
+
+.bg-base {
+	background-color: #d41919;
+}
+.bg-sub {
+	background-color: #000;
+}
+.bg-white {
+	background-color: #FFF;
+}
+.bg-lgray {
+	background-color: #f2f2f2;
+}
+.bg-y {
+	background-color: #e8b646!important;
+}
+
+/*========================================
+Border
+========================================*/
+.cont-tb_line01 {
+	border-top: 6px solid #ededed;
+	box-shadow: 0px 4px 3px 0px #b5b5b5 inset;
+}
+.cont-tb_line02 {
+	border-top: 6px solid #00695a;
+	box-shadow: 0px 4px 3px 0px #1b5e41 inset;
+}
+.cont-f_line {
+	border-bottom: 4px solid #fff;
+	box-shadow: 0px -10px 80px -10px #e2e2e2 inset;
+}
+
+.ft-t_line {
+	border-top: 1px solid #777;
+}
+
+.bd-base {
+	border: 1px solid #503d12;
+}
+.bd-sub {
+	border: 1px solid #998051;
+}
+.bd-redbrown {
+	border: 1px solid #8b0204;
+}
+
+
+.bd-t_base {
+	border-top: 1px solid #503d12;
+}
+.bd-t_gray {
+	border-top: 2px solid #7e7e7e;
+}
+.bd-t_lgray {
+	border-top: 1px solid #c4c4c4;
+}
+.bd-b_bsse {
+	border-bottom: 1px solid #503d12;
+}
+
+.cont-l_line {
+	border-left: 1px solid #503d12;
+}
+
+
+/*========================================
+Content Float
+========================================*/
+.cont-float-l {
+	float: left!important;
+}
+.cont-float-r {
+	float: right!important;
+}
+.cont-float-none {
+	float: none!important;
+}
+.cont-cleatr {
+	clear: both;
+}
+
+.tx-center {
+	text-align: center!important;
+}
+.tx-left {
+	text-align: left!important;
+}
+.tx-right {
+	text-align: right!important;
+}
+
+.dp-fx {
+	display: flex;
+}
+.fx-align_b {
+	align-items: baseline;
+}
+.fx-align_s {
+	align-items: flex-start;
+}
+.fx-align_c {
+	align-items: center;
+}
+.fx-justify_c {
+	justify-content: center;
+}
+.fx-justify_b {
+	justify-content: space-between;
+}
+
+
+/*========================================
+Content Switching
+========================================*/
+.sp-content_hidden {
+	display: none!important;
+}
+.sp-content_hidden-f {
+	display: none!important;
+}
+.tab-content_hidden {
+	display: block!important;
+}
+.tab-content_hidden-f {
+	display: flex!important;
+}
+.pc-content_hidden {
+	display: block!important;
+}
+.pc-content_hidden-f {
+	display: flex!important;
+}
+.mob-content_hidden {
+	display: none!important;
+}
+
+/* SP */
+@media screen and (max-width: 767px) {
+	.sp-content_hidden {
+		display: block!important;
+	}
+	.sp-content_hidden-f {
+		display: flex!important;
+	}
+	.tab-content_hidden {
+		display: none!important;
+	}
+	.tab-content_hidden-f {
+		display: none!important;
+	}
+	.pc-content_hidden {
+		display: none!important;
+	}
+	.pc-content_hidden-f {
+		display: none!important;
+	}
+
+	.mob-content_hidden {
+		display: block!important;
+	}
+}
+/* TABLET */
+@media screen and (min-width: 768px) and (max-width: 960px) {
+	.sp-content_hidden {
+		display: none!important;
+	}
+	.sp-content_hidden-f {
+		display: none!important;
+	}
+	.tab-content_hidden {
+		display: block!important;
+	}
+	.tab-content_hidden-f {
+		display: flex!important;
+	}
+	.pc-content_hidden {
+		display: none!important;
+	}
+	.pc-content_hidden-f {
+		display: none!important;
+	}
+
+	.mob-content_hidden {
+		display: block!important;
+	}
+}
+
+
+/*========================================
+Contents Margin & Padding
+========================================*/
+/* Margin Top */
+.mg-t_10 {
+	margin-top: 10px!important;
+}
+.mg-t_20 {
+	margin-top: 20px!important;
+}
+.mg-t_30 {
+	margin-top: 30px!important;
+}
+.mg-t_40 {
+	margin-top: 40px!important;
+}
+.mg-t_50 {
+	margin-top: 50px!important;
+}
+.mg-t_60 {
+	margin-top: 60px!important;
+}
+.mg-t_70 {
+	margin-top: 70px!important;
+}
+/* Margin Bottom */
+.mg-b_10 {
+	margin-bottom: 10px!important;
+}
+.mg-b_20 {
+	margin-bottom: 20px!important;
+}
+.mg-b_30 {
+	margin-bottom: 30px!important;
+}
+.mg-b_40 {
+	margin-bottom: 40px!important;
+}
+.mg-b_50 {
+	margin-bottom: 50px!important;
+}
+/* Margin Left */
+.mg-l_10 {
+	margin-left: 10px!important;
+}
+.mg-l_20 {
+	margin-left: 20px!important;
+}
+.mg-l_30 {
+	margin-left: 30px!important;
+}
+/* Margin Right */
+.mg-r_10 {
+	margin-right: 10px!important;
+}
+.mg-r_20 {
+	margin-right: 20px!important;
+}
+.mg-r_30 {
+	margin-right: 30px!important;
+}
+
+/* Padding Top */
+.pd-t_50 {
+	padding-top: 50px;
+}
+.pd-t_70 {
+	padding-top: 70px;
+}
+
+/* Padding Bottom */
+.pd-b_50 {
+	padding-bottom: 50px;
+}
+
+/* Padding Top & Bottom */
+.pd-tb_3em {
+	padding-top: 3em;
+	padding-bottom: 3em;
+}
+.pd-tb_70 {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+/* Padding Left & right */
+.pd-lr_10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* Margin & Padding None */
+.mg-none {
+	margin: 0!important;
+}
+.pd_none {
+	padding: 0!important;
+}
+
+
+/*========================================
+Clear Fix
+========================================*/
+.clearfix {
+	display: flow-root;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+/*========================================
+Scrollbar
+========================================*/
+div::-webkit-scrollbar{
+    width: 12px;
+}
+div::-webkit-scrollbar-track{
+    background: #fff;
+    border: none;
+    border-radius: 0px;
+    box-shadow: inset 0 0 2px #fff;
+}
+div::-webkit-scrollbar-thumb{
+    background: #c6c6c6;
+    border-radius: 8px;
+    box-shadow: none;
+}

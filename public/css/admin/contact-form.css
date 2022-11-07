@@ -1,0 +1,353 @@
+@charset "UTF-8";
+/*========================================
+Re:vite
+Date :
+URL :
+Style : Contact CSS
+Filename : contact-form.css
+========================================*/
+
+/*========================================
+Contents
+========================================*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+}
+/*========================================
+Form Setting
+========================================*/
+form {
+    display: block;
+    width: 100%;
+}
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+input,
+textarea,
+select {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+input[type="color"] {
+    cursor: pointer;
+    max-width: 100px;
+    padding: 0;
+}
+input:focus:not(input[type="submit"]):not(input[type="button"]),
+textarea:focus,
+select:focus {
+    background-color: #fafafa;
+    box-shadow: 0 0 10px #eee;
+}
+input {
+    padding: 4px 10px;
+    box-sizing: border-box;
+}
+.Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    background: #5bc8ac;
+    color: #fff;
+    font-size: 14px;
+}
+textarea {
+    width: 100%;
+    height: 100px;
+    margin: 0 0 0 0;
+    padding: 4px 10px;
+    box-sizing: border-box;
+    line-height: 1.8;
+}
+select {
+    width: 100%;
+    padding: 4px 25px 4px 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: url("../../images/admin/pulldown.png") center right 5px no-repeat,
+        #f7f7f7;
+    background-size: 10px, 100%;
+    line-height: 1.5;
+}
+select {
+    -webkit-appearance: none; /* ベンダープレフィックス(Google Chrome、Safari用) */
+    -moz-appearance: none; /* ベンダープレフィックス(Firefox用) */
+    appearance: none; /* 標準のスタイルを無効にする */
+}
+::-ms-expand {
+    /* select要素のデザインを無効にする（IE用） */
+    display: none;
+}
+select:hover {
+    cursor: pointer;
+}
+label {
+    display: block;
+    width: auto;
+    padding-right: 100px;
+}
+.radio_ar {
+    padding: 16px 0;
+}
+.check-wrapper {
+    display: inline-block;
+    margin: 8px 0 5px;
+}
+.check-cont_ar {
+    margin: 8px 0 5px;
+}
+.check-cont_ar label {
+    margin: 0 0 10px;
+}
+/*radio01 css*/
+input[type="radio"]:hover,
+.radio01-parts:hover,
+.radio02-parts:hover,
+.radio03-parts:hover {
+    cursor: pointer;
+}
+.radio01-input {
+    display: none;
+}
+.radio-wrapper {
+    display: inline-block;
+    margin: 8px 0 5px;
+}
+.radio-wrapper .radio01-parts,
+.check-wrapper .checkbox-parts {
+    padding-left: 20px;
+    position: relative;
+    margin: 0 20px 0 0;
+    font-weight: normal;
+}
+.radio01-parts {
+    padding-left: 20px;
+    position: relative;
+    margin-right: 20px;
+}
+.radio01-parts::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+.radio01-input:checked + .radio01-parts {
+    color: #474747;
+}
+.radio01-input:checked + .radio01-parts::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    width: 9px;
+    height: 9px;
+    background: #840000;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+.radio01-parts.label-disabled,
+.radio01-input:disabled + .radio01-parts {
+    color: #ccc;
+}
+.radio01-parts.label-disabled::before,
+.radio01-input:disabled + .radio01-parts::before {
+    background: #eee;
+    border-color: #eee;
+}
+.radio01-input:disabled:checked + .radio01-parts::after {
+    background: #999;
+}
+.radio01-input:disabled:checked + .radio01-parts {
+    color: #999;
+}
+.radio03-parts {
+    display: inline-block;
+    width: 120px;
+}
+/* chack box setting */
+input[type="checkbox"] {
+    display: none;
+}
+.nomal-checkbox {
+    display: block !important;
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+}
+.nomal-checkbox:hover {
+    cursor: pointer;
+}
+.ck-box {
+    position: relative;
+    display: inline-block;
+    min-height: 10px;
+    padding: 0 0 0 22px;
+    color: #000;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.ck-box::before,
+.ck-box::after {
+    position: absolute;
+    content: "";
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.ck-box::before {
+    top: 50%;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #f4f4f4;
+    border: 1px solid #787878;
+    transform: translateY(-50%);
+}
+.ck-box::after {
+    opacity: 0;
+    top: 50%;
+    left: 3px;
+    width: 8px;
+    height: 4px;
+    margin-top: -4px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    -webkit-transform: rotate(-45deg) scale(0.5);
+    transform: rotate(-45deg) scale(0.5) translateY(-50%);
+}
+.checkbox-single:hover {
+    cursor: pointer;
+}
+.checbox-single:hover .checkbox-parts:before {
+    background: #b69351;
+}
+.checkbox-parts {
+    padding-left: 20px;
+    position: relative;
+    margin-right: 20px;
+}
+.checkbox-parts:hover {
+    cursor: pointer;
+}
+.checkbox-parts::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 10px;
+    height: 10px;
+    background: #f4f4f4;
+    border: 1px solid #787878;
+    transform: translateY(-50%);
+}
+.checkbox-input:checked + .checkbox-parts {
+    color: #000;
+}
+.checkbox-input:checked + .checkbox-parts:before {
+    background: #5f95b2;
+    border: 1px solid #5f95b2;
+}
+.checkbox-input:checked + .checkbox-parts::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 1px;
+    width: 8px;
+    height: 4px;
+    margin-top: -4px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) scale(1);
+}
+.checkbox-input:disabled + .checkbox-parts {
+    color: #aaa;
+}
+.checkbox-input:disabled + .checkbox-parts:before {
+    background: #bbb;
+    border-color: #bbb;
+}
+.check-single {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.check-single .checkbox-parts {
+    margin: 0;
+    padding: 0;
+}
+.check-single .checkbox-parts::before{
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.check-single .checkbox-input:checked + .checkbox-parts::after {
+    left: -5px;
+}
+/*タブレット以上*/
+@media (min-width: 960px) {
+    .ck-box:hover::before {
+        background: #840000;
+    }
+    .checkAllTh:hover,
+    .checkChildTd:hover {
+        cursor: pointer;
+    }
+    .checkAllTh:hover .checkbox-parts::before,
+    .checkChildTd:hover .checkbox-parts::before {
+        background: #5f95b2;
+    }
+}
+input[type="checkbox"]:checked + .ck-box::before {
+    background: #840000;
+    border: 1px solid #840000;
+}
+input[type="checkbox"]:checked + .ck-box::after {
+    opacity: 1;
+    -webkit-transform: rotate(-45deg) scale(1);
+    transform: rotate(-45deg) scale(1);
+}
+
+/* Chrome */
+::-webkit-input-placeholder {
+    color: #cdcdcd;
+}
+/* Firefox */
+::-moz-placeholder {
+    color: #cdcdcd;
+}
+/* IE */
+:-ms-input-placeholder {
+    color: #cdcdcd;
+}
+/* Edge */
+::-ms-input-placeholder {
+    color: #cdcdcd;
+}
+.alert-danger{
+    padding-bottom: 2%;
+    font-size: 160%;
+    color: red;
+
+}

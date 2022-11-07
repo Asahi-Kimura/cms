@@ -1,0 +1,923 @@
+@charset "UTF-8";
+/*========================================
+Re:vite
+Date : 20210323
+URL :
+Style : Contact CSS
+Filename : contact-form.css
+========================================*/
+
+/*========================================
+  Inquiry
+========================================*/
+
+
+/* .form_ar_wrap input,
+.form_ar_wrap button,
+.form_ar_wrap select,
+.form_ar_wrap textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+    outline: none;
+}
+
+.form_ar_wrap textarea {
+    resize: vertical;
+}
+
+.form_ar_wrap input[type='checkbox'],
+.form_ar_wrap input[type='radio'] {
+    display: none;
+}
+
+.form_ar_wrap input[type='submit'],
+.form_ar_wrap input[type='button'],
+.form_ar_wrap label,
+.form_ar_wrap button,
+.form_ar_wrap select {
+    cursor: pointer;
+}
+
+.form_ar_wrap select::-ms-expand {
+    display: none;
+} */
+
+.inquiry_ar {
+    position: relative;
+    width: 980px;
+    margin: 0 auto;
+    padding: 80px 0 0;
+    font-family: "ヒラギノ角ゴ Pro", sans-serif;
+}
+
+.inquiry_ar .main-wrapper {
+    width: 100%;
+}
+
+.inquiry_inner_ar .main-wrapper {
+    width: 100%;
+}
+
+
+
+.inquiry_ar h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.inquiry_ar h1 p:nth-of-type(2) {
+    margin-top: 20px;
+}
+
+.underlayer_ttl_logo {
+    width: 60px;
+}
+
+.underlayer_ttl_txt {
+    width: 110px;
+}
+
+.inquiry_ar .intro_txt {
+    margin-top: 40px;
+    text-align: center;
+}
+
+
+.inquiry_inner_ar {
+    width: 100%;
+    margin: 30px auto 120px;
+    padding: 80px 8% 85px;
+    border: 2px solid #93471c;
+    border-radius: 10px;
+}
+
+.inquiry_ar h2 {
+    display: inline-block;
+    border-bottom: 1px solid #93471c;
+    font-size: 1.5rem;
+    color: #93471c;
+    line-height: 1.8;
+}
+
+.inquiry_tel_cont {
+    width: 70%;
+    margin: 0 auto;
+    padding: 33px 0 24px;
+    border-radius: 10px;
+    background: #f7f2e5;
+    text-align: center;
+}
+
+.inquiry_tel_cont .tel {
+    line-height: 2;
+    font-weight: bold;
+    letter-spacing: .1rem;
+}
+
+.inquiry_tel_cont .tel .pc_block {
+    font-size: 2rem;
+    color: #93471c;
+}
+
+.inquiry_tel_cont a.sp_block {
+    display: none;
+    background: #93471c;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.inquiry_tel_cont br.sp_block {
+    display: none;
+}
+
+.inquiry_tel_cont .b-hour {
+    font-size: 0.875rem;
+}
+
+.inquiry_tel_cont .b-hour span {
+    margin-right: 16px;
+    padding: 5px 8px 4px;
+    background: #af9d82;
+    color: #fff;
+}
+
+.inquiry_tel_cont p:nth-of-type(3) {
+    font-size: 0.875rem;
+    line-height: 3;
+    font-weight: 600;
+}
+
+.inquiry_web_cont {
+    margin-top: 65px;
+    text-align: center;
+}
+
+.inquiry_web_cont p {
+    margin-top: 30px;
+    text-align: left;
+    line-height: 1.8;
+    color: #333;
+}
+
+.inquiry_web_cont p a {
+    font-size: 1rem;
+    color: #333;
+    text-decoration: underline;
+    display: inline-flex;
+    align-items: center;
+}
+
+.inquiry_heading_ar {
+    width: 100%;
+    margin: 35px auto 0;
+    padding: 9px 0;
+    background: #f7f2e5;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inquiry_heading_ar p {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    color: #696666;
+    font-weight: bold;
+}
+
+.inquiry_heading_ar p:first-of-type {
+    color: #93471c;
+}
+
+.inquiry_heading_ar img {
+    width: 32px;
+    margin-right: 10px;
+}
+
+
+.inquiry_ar form {
+    margin-top: 43px;
+}
+
+.form_h_txt {
+    font-weight: bold;
+    letter-spacing: .05rem;
+    color: #333;
+    font-size: 1.125rem;
+}
+
+.form_h_txt::before {
+
+    content: "";
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    padding-right: 1em;
+    background: #93471c;
+    border-radius: 50%;
+}
+
+@media all and (-ms-high-contrast: none) {
+    .form_h_txt::before {
+        display: inline-block;
+    }
+}
+
+/* Edge(Chromium) */
+_:lang(x)::-ms-, .form_h_txt::before {
+    display: inline-block;
+}
+
+
+.form_h_txt span {
+    color: #e72b2b;
+}
+
+.form_h_txt_inner {
+    margin-left: 26px;
+}
+
+
+.radio_ar {
+    color: #333;
+}
+
+.radio-input {
+    display: none;
+}
+
+.radio_ar label {
+    display: block;
+    margin: 30px 0 0 26px;
+    font-size: 1.125rem;
+}
+
+.radio_ar label>span {
+    font-size: 1rem;
+}
+
+.radio-parts {
+    padding: 0 0 0 30px;
+    position: relative;
+}
+
+
+.radio-parts:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #93471c;
+    border-radius: 50%;
+}
+
+.radio-input:checked+.radio-parts:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    background: #93471c;
+    border-radius: 50%;
+}
+
+
+.inquiry_opinion_ar,
+.inquiry_record_ar {
+    margin-top: 40px;
+}
+
+.inquiry_opinion_ar textarea {
+    display: block;
+    width: calc(100% - 26px);
+    height: 240px;
+    margin: 26px 0 0 26px;
+    padding: 34px 28px;
+    background: #f1f1f1;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.inquiry_opinion_ar textarea::placeholder {
+    font-size: 1rem;
+    color: #999;
+}
+
+.inquiry_record_ar label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+}
+
+.inquiry_record_ar label>span {
+    padding-left: 20px;
+    color: #333;
+    font-weight: normal;
+}
+
+.inquiry_record_ar input[type="text"],
+.inquiry_record_ar input[type="email"] {
+    background: #f1f1f1;
+    width: 100%;
+    height: 50px;
+    margin-top: 14px;
+    padding: 20px 28px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.inquiry_name_cont,
+.inquiry_mail_cont {
+    margin-top: 25px;
+}
+
+.inquiry_under_ar {
+    margin: 65px 0 0 26px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-btn-submit {
+    width: 220px;
+    cursor: pointer;
+
+}
+
+.contact-form_btn_cont button {
+    padding: 10px;
+    border: 1px solid #93471c;
+    border-radius: 30px;
+    transition: .3s;
+}
+
+.contact-form_btn_cont button svg {
+    margin-left: 5px;
+    transform: translateX(0);
+    transition: .3s;
+}
+
+
+.contact-form_btn_cont button:hover {
+    background-color: #93471c;
+    transition: .3s;
+
+}
+
+.contact-form_btn_cont button:hover span {
+    color: #fff;
+}
+
+.contact-form_btn_cont button:hover svg {
+    transform: translateX(10px);
+}
+
+.contact-form_btn_cont span {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.25rem;
+    color: #93471c;
+}
+
+.inquiry-privacy_cont {
+    text-align: right;
+}
+
+.inquiry-privacy_cont p {
+    font-size: 0.875rem;
+    line-height: 2;
+    color: #333;
+}
+
+.inquiry-privacy_cont p>a {
+    text-decoration: underline;
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+}
+
+.required_txt {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 10px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #e72b2b;
+    position: relative;
+}
+
+.required_txt:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    width: 0px;
+    height: 0px;
+    margin: auto;
+    border-style: solid;
+    border-color: transparent transparent #e72b2b transparent;
+    border-width: 10px 10px 15px 10px;
+}
+
+
+.inquiry_opinion_ar .required_txt {
+    margin-left: 26px;
+}
+
+
+@media screen and (max-width:1200px) {
+    .inquiry_ar {
+        width: 81%;
+    }
+}
+
+@media screen and (max-width:1023px) {
+
+    .inquiry_ar {
+        width: 100%;
+    }
+
+    .inquiry_tel_cont {
+        width: 100%;
+    }
+
+    .inquiry_heading_ar span {
+        display: none;
+    }
+
+    .inquiry_inner_ar {
+        width: 90%;
+        padding: 80px 5% 85px;
+    }
+
+    .inquiry_heading_ar {
+        justify-content: space-evenly;
+    }
+
+    .inquiry_heading_ar p {
+        width: auto;
+    }
+}
+
+
+@media screen and (max-width:767px) {
+
+
+    .underlayer_ttl_txt {
+        width: 94px;
+    }
+
+    .inquiry_ar .main-wrapper {
+        width: 90%;
+    }
+
+    .inquiry_ar .intro_txt {
+        text-align: left;
+    }
+
+    .inquiry_inner_ar {
+        width: 100%;
+        margin: 35px auto 120px;
+        border: none;
+        padding: 0;
+    }
+
+    .form_h_txt::before {
+        margin-right: 1%;
+    }
+
+    .inquiry_inner_ar .main-wrapper {
+        width: 100%;
+    }
+
+    .inquiry_ar h3 {
+        font-size: 1.25rem;
+    }
+
+    .inquiry_tel_cont {
+        padding: 33px 18px 24px;
+        border-radius: 0;
+    }
+
+    .inquiry_tel_cont .tel {
+        margin: 20px auto;
+    }
+
+    .inquiry_tel_cont .pc_block {
+        display: none;
+    }
+
+    .inquiry_tel_cont a.sp_block {
+        display: block;
+    }
+
+    .inquiry_tel_cont .b-hour .sp_block {
+        display: block;
+    }
+
+    .inquiry_tel_cont .b-hour {
+        line-height: 1.8;
+    }
+
+    .inquiry_tel_cont p:nth-of-type(3) {
+        margin-top: 5px;
+        text-align: left;
+        line-height: 1.5;
+    }
+
+    .inquiry_web_cont {
+        margin-top: 50px;
+    }
+
+    .inquiry_web_cont .main-wrapper {
+        width: 95%;
+    }
+
+    .inquiry_web_cont p {
+        font-size: 0.875rem;
+    }
+
+    .inquiry_web_cont p a {
+        font-size: 0.875rem;
+    }
+
+    .inquiry_heading_ar {
+        margin: 30px auto 0;
+        border-radius: 0;
+    }
+
+    /* .inquiry_heading_ar {
+        border-radius: 0;
+    } */
+
+    .inquiry_ar form {
+        margin-top: 25px;
+    }
+
+    .inquiry_ar form .main-wrapper {
+        width: 93%;
+    }
+
+    .form_h_txt {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .radio_ar label {
+        margin: 20px 0 0 10px;
+    }
+
+    .radio_ar label>span {
+        font-size: 0.875rem;
+    }
+
+    .form_h_txt span {
+        display: block;
+        text-indent: 1.5rem;
+    }
+
+    .inquiry_opinion_ar textarea {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .form_h_txt_inner {
+        margin-left: 0;
+    }
+
+    .inquiry_opinion_ar,
+    .inquiry_record_ar {
+        margin-top: 30px;
+    }
+
+    .inquiry_record_ar label {
+        font-size: 0.875rem;
+    }
+
+    .inquiry_under_ar {
+        margin: 40px 0 0 0;
+        flex-direction: column;
+    }
+
+    .form-btn-submit {
+        width: 100%;
+    }
+
+    .inquiry-privacy_cont {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .inquiry-privacy_cont p:nth-of-type(2) {
+        text-align: right;
+    }
+
+    .inquiry_opinion_ar .required_txt {
+        margin-left: 0;
+    }
+
+}
+
+
+@media screen and (max-width: 375px) {
+    .form_h_txt span {
+        text-indent: 0;
+        display: inline;
+    }
+}
+
+
+@media screen and (max-width: 374px) {
+
+    .inquiry_ar form .main-wrapper {
+        width: 95%;
+    }
+
+    .radio_ar label {
+        margin: 20px 0 0 10px;
+    }
+
+    .radio-parts {
+        padding: 0px 0 0 23px;
+        line-height: 1.5;
+    }
+
+}
+
+/*========================================
+    Confirm
+========================================*/
+
+.confirm .inquiry_web_cont {
+    margin-top: 0;
+}
+
+.inquiry_heading_ar.inquiry p:first-of-type {
+    color: #696666;
+}
+
+.inquiry_heading_ar.inquiry p:nth-of-type(2) {
+    color: #93471c;
+}
+
+.confirm_txt_ar div {
+    margin-top: 40px;
+}
+
+.confirm_txt_ar div:last-of-type {
+    margin-top: 60px;
+    padding-left: 30px;
+}
+
+
+.confirm_txt_ar h4 {
+    font-size: 1.125rem;
+    color: #93471c;
+    font-weight: 600;
+}
+
+.confirm_txt_ar div p {
+    padding-left: 30px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.confirm_txt_ar div p:first-of-type {
+    margin-top: 25px;
+}
+
+.confirm_retouch_btn {
+    margin-top: 20px;
+    padding-left: 30px;
+    font-size: 0.875rem;
+}
+
+.confirm_retouch_btn a {
+    text-decoration: underline;
+    color: #333;
+}
+
+.FormBox .caution01 {
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+.FormBox .caution01 {
+    color: #ff8483;
+    line-height: 1.8;
+}
+
+.FormBox .privacy {
+    margin-bottom: 20px;
+}
+
+.FormBox h3 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.FormBox .privacy .scrollBox01 {
+    height: 80px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 1px solid #777;
+    line-height: 1.8;
+    overflow-y: auto;
+}
+
+.FormBox .privacy .scrollBox01 a {
+    color: #000;
+    border-bottom: 1px solid #000;
+    transition: .7s;
+}
+
+.FormBox .privacy .scrollBox01 a:hover {
+    color: #f75454;
+    border-bottom: 1px solid #f75454;
+}
+
+.privacyPage .txtBox01 .text01, .FormBox .privacy .scrollBox01 .text01, #Regulation .text01 {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.privacyPage .txtBox01 .title01, .FormBox .privacy .scrollBox01 .title01, #Regulation .title01 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.privacyPage .txtBox01 dl, .FormBox .privacy .scrollBox01 dl, #Regulation dl {
+    margin-left: 20px;
+}
+
+.privacyPage .txtBox01 dd, .FormBox .privacy .scrollBox01 dd, #Regulation dd {
+    margin-bottom: 20px;
+}
+
+.scrollBox01 ol {
+    list-style: none;
+}
+
+.privacyPage .txtBox01 .box01, .FormBox .privacy .scrollBox01 .box01, #Regulation .box01 {
+    width: 360px;
+    margin-left: auto;
+    padding: 10px;
+    border: 1px solid #777;
+    font-size: 12px;
+}
+
+.FormBox .anotherWindow {
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.FormBox .anotherWindow a {
+    padding-left: 10px;
+    color: #000;
+    border-bottom: 1px solid #000;
+    background: url(https://image.peppynet.com/img/web/pc/pmem/images/shp_mem_arrow.gif) no-repeat scroll 0 4px rgba(0, 0, 0, 0);
+    transition: .7s;
+}
+
+.FormBox .anotherWindow a:hover {
+    color: #f75454;
+    border-bottom: 1px solid #f75454;
+    text-decoration: none;
+    outline: 0;
+}
+
+.MypageExp {
+    width: 100%;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    background: #f4f4f4 none repeat scroll 0 0;
+    font-size: 12px;
+    font-weight: lighter;
+    line-height: 22px;
+}
+
+.FormBox .agreement01 {
+    text-align: center;
+    width: 275px;
+    margin: 0 auto;
+    font-size: 0.7rem;
+}
+
+.privacy-check-ar {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-form_btn_cont .form-btn-submit.submit-off {
+    border: 1px solid #cccccc;
+    pointer-events: none;
+}
+
+.contact-form_btn_cont .form-btn-submit.submit-off span {
+    color: #cccccc;
+}
+
+@media screen and (max-width:767px) {
+    .confirm_txt_ar {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .confirm_txt_ar div p {
+        padding-left: 15px;
+    }
+
+    .confirm_txt_ar div:last-of-type {
+        margin-top: 40px;
+        padding-left: 0;
+    }
+
+    .confirm_retouch_btn {
+        padding-left: 0;
+    }
+
+}
+
+/*========================================
+    thanks
+========================================*/
+
+.inquiry_ar.thanks {
+    width: 665px;
+}
+
+.inquiry_inner_ar.thanks {
+    padding: 0 0 85px;
+    border: none;
+}
+
+.inquiry_web_cont.thanks {
+    margin-top: 40px;
+}
+
+.inquiry_web_cont.thanks p:first-of-type {
+    margin-top: 35px;
+}
+
+
+.thanks_img_ar {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.thanks_img_ar p {
+    width: 28%;
+}
+
+.thanks_img_ar p:nth-of-type(2) {
+    margin: 0 20px;
+}
+
+.thanks_img_ar p img {
+    border-radius: 50%;
+}
+
+.inquiry_ar.thanks .ac_btn {
+    width: 222px;
+    margin: 60px auto 0;
+    padding: 15px 0;
+    border: 1px solid #93471c;
+    border-radius: 30px;
+    font-size: 1.125rem;
+    color: #93471c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.inquiry_ar.thanks .ac_btn:hover {
+    color: #fff;
+    background-color: #93471c;
+    transition: .5s;
+}
+
+@media screen and (max-width:767px) {
+    .inquiry_ar.thanks {
+        width: 100%;
+    }
+
+    .inquiry_inner_ar.thanks {
+        padding: 0;
+    }
+}

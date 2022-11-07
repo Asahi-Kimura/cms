@@ -1,0 +1,485 @@
+@charset "UTF-8";
+/*========================================
+Re:vite
+Date :
+URL :
+Style : global
+Filename : global.css
+========================================*/
+
+/*========================================
+Wrapper
+========================================*/
+.wide-wrapper {
+  width: 100%;
+}
+.main-wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/*========================================
+Font Designation
+========================================*/
+html {
+  height: 100%;
+  color: #767676;
+  font-size: 14px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴシック", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  /*font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI","Noto Sans Japanese","ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;*/
+  /*font-family: "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", "HiraMinProN-W3", "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	background-color: #FFF;*/
+}
+
+/*========================================
+Font Size
+========================================*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+/* h1 {
+}
+h2 {
+}
+h3 {
+}
+h4 {
+}
+h5 {
+}
+h6 {
+} */
+
+/*========================================
+Fonts Color
+========================================*/
+.f-base {
+  color: #8e618a;
+}
+.f-sub {
+  color: #da6a8e;
+}
+.f-bk {
+  color: #474747;
+}
+.f-red {
+  color: #f00 !important;
+}
+.f-white {
+  color: #fff !important;
+}
+.f-lgray {
+  color: #f1f1f1 !important;
+}
+.f-lgray_2 {
+  color: #aaa !important;
+}
+.f-yellow {
+  color: #ff0;
+}
+.f-vermilion {
+  color: #964041;
+}
+.f-lpink {
+  color: #d08886;
+}
+.f-lpurple {
+  color: #e9dbec;
+}
+.f-rpurple {
+  color: #a51269;
+}
+
+/*========================================
+Font Decoration
+========================================*/
+.f-fam_g {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI",
+    "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+}
+.f-fam_m {
+  font-family: "ＭＳ Ｐ明朝", "MS PMincho", "ヒラギノ明朝 Pro W3",
+    "Hiragino Mincho Pro", "serif";
+}
+.f-fam_num {
+  font-family: "Times New Roman";
+}
+
+.f-overline {
+  text-decoration: line-through;
+}
+.f-underline {
+  text-decoration: underline;
+}
+.f-none {
+  text-decoration: none !important;
+}
+
+.f-bold {
+  font-weight: 700 !important;
+}
+.f-normal {
+  font-weight: 400 !important;
+}
+
+.txt-indent_1 {
+  padding-left: 1em !important;
+  text-indent: -1em !important;
+}
+.txt-indent_2 {
+  padding-left: 2em !important;
+  text-indent: -2em !important;
+}
+
+.txt-shadow_1 {
+  text-shadow: 0px 0px 6px #454545;
+}
+.txt-gradation {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #f4f4f4;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(244, 244, 244, 1) 0%,
+    rgba(215, 215, 215, 1) 100%
+  );
+}
+
+.txt-letsp_01 {
+  letter-spacing: 0.1em;
+}
+.txt-linehi_2 {
+  line-height: 2 !important;
+}
+
+.txt-wide {
+  width: 90% !important;
+}
+
+/*========================================
+Contents Color
+========================================*/
+.bg-base {
+  background-color: #8e618a;
+}
+.bg-sub {
+  background-color: #65a489;
+}
+.bg-white {
+  background-color: #fff !important;
+}
+.bg-gray {
+  background-color: #eee !important;
+}
+.bg-lgray {
+  background-color: #f5f5f5;
+}
+.bg-lgray_2 {
+  background-color: #f1f1f1;
+}
+.bg-bk {
+  background-color: #211815;
+}
+.bg-lpink {
+  background-color: #f5dbcb;
+}
+.bg-lpurple {
+  background-color: #e9dbec;
+}
+
+/*========================================
+Border
+========================================*/
+.ft-t_line {
+  border-top: 6px solid #e2e2e2;
+}
+.cont-t_line-1 {
+  border-top: 2px solid #8e618a;
+}
+.cont-t_line-2 {
+  border-top: 1px solid #a3a3a1;
+}
+.cont-b_line-1 {
+  border-bottom: 2px solid #8e618a;
+}
+.cont-tb_line-1 {
+  border-top: 2px solid #8e618a;
+  border-bottom: 2px solid #8e618a;
+}
+
+.cont-t_line-none {
+  border-top: none !important;
+}
+
+/*========================================
+Box Shadow
+========================================*/
+.box-shadow_l {
+  box-shadow: 3px 0px 3px 0px #d6d6d6;
+}
+.box-shadow_l-in {
+  box-shadow: 3px 0px 3px 0px #d6d6d6 inset;
+}
+
+/*========================================
+Content Float
+========================================*/
+.cont-float-l {
+  float: left !important;
+}
+.cont-float-r {
+    float: right !important;
+}
+.cont-float-none {
+    float: none !important;
+}
+.cont-cleatr {
+  clear: both;
+}
+
+.tx-center {
+  text-align: center !important;
+}
+.tx-left {
+  text-align: left !important;
+}
+.tx-right {
+  text-align: right !important;
+}
+
+/*========================================
+Content Float
+========================================*/
+.dp-fx {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*========================================
+Content Switching
+========================================*/
+.sp-content_hidden {
+  display: none !important;
+}
+.tab-content_hidden {
+  display: block !important;
+}
+.pc-content_hidden {
+  display: block !important;
+}
+.mob-content_hidden {
+  display: none !important;
+}
+
+.main-fixed {
+  position: fixed !important;
+  width: 100% !important;
+}
+
+/* SP */
+@media screen and (max-width: 767px) {
+  .sp-content_hidden {
+    display: block !important;
+  }
+  .tab-content_hidden {
+    display: none !important;
+  }
+  .pc-content_hidden {
+    display: none !important;
+  }
+
+  .mob-content_hidden {
+    display: block !important;
+  }
+}
+/* TABLET */
+@media screen and (min-width: 768px) and (max-width: 960px) {
+  .sp-content_hidden {
+    display: none !important;
+  }
+  .tab-content_hidden {
+    display: block !important;
+  }
+  .pc-content_hidden {
+    display: none !important;
+  }
+
+  .mob-content_hidden {
+    display: block !important;
+  }
+}
+
+/*========================================
+Contents Margin & Padding
+========================================*/
+/* Margin Top */
+.mg-t_10 {
+  margin-top: 10px !important;
+}
+.mg-t_20 {
+  margin-top: 20px !important;
+}
+.mg-t_30 {
+  margin-top: 30px !important;
+}
+.mg-t_40 {
+  margin-top: 40px !important;
+}
+.mg-t_50 {
+  margin-top: 50px !important;
+}
+.mg-t_60 {
+  margin-top: 60px !important;
+}
+.mg-t_70 {
+  margin-top: 70px !important;
+}
+/* Margin Bottom */
+.mg-b_10 {
+  margin-bottom: 10px !important;
+}
+.mg-b_20 {
+  margin-bottom: 20px !important;
+}
+.mg-b_30 {
+  margin-bottom: 30px !important;
+}
+.mg-b_40 {
+  margin-bottom: 40px !important;
+}
+.mg-b_50 {
+  margin-bottom: 50px !important;
+}
+/* Margin Left */
+.mg-l_10 {
+  margin-left: 10px !important;
+}
+.mg-l_20 {
+  margin-left: 20px !important;
+}
+.mg-l_30 {
+  margin-left: 30px !important;
+}
+/* Margin Right */
+.mg-r_5 {
+  margin-right: 5px !important;
+}
+.mg-r_10 {
+  margin-right: 10px !important;
+}
+.mg-r_20 {
+  margin-right: 20px !important;
+}
+.mg-r_30 {
+  margin-right: 30px !important;
+}
+
+/* Padding Top */
+.pd-t_10 {
+  padding-top: 10px;
+}
+.pd-t_20 {
+  padding-top: 20px;
+}
+.pd-t_30 {
+  padding-top: 30px;
+}
+.pd-t_40 {
+  padding-top: 40px;
+}
+.pd-t_50 {
+  padding-top: 50px;
+}
+
+/* Padding Bottom */
+.pd-b_50 {
+  padding-bottom: 50px;
+}
+
+/* Padding Top & Bottom */
+.pd-tb_1em {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.pd-tb_2em {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.pd-tb_3em {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+.pd-tb_30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.pd-tb_40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.pd-tb_70 {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+/* Padding Left & right */
+.pd-lr_10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Padding */
+.pd-20 {
+  padding: 20px;
+}
+.pd-30 {
+  padding: 30px;
+}
+
+/* Margin & Padding None */
+.mg-none {
+  margin: 0 !important;
+}
+.pd_none {
+  padding: 0 !important;
+}
+
+/*========================================
+Clear Fix
+========================================*/
+.clearfix {
+  display: flow-root;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*========================================
+Scrollbar
+========================================*/
+div::-webkit-scrollbar {
+  width: 12px;
+}
+div::-webkit-scrollbar-track {
+  background: #fff;
+  border: none;
+  border-radius: 0px;
+  box-shadow: inset 0 0 2px #fff;
+}
+div::-webkit-scrollbar-thumb {
+  background: #c6c6c6;
+  border-radius: 8px;
+  box-shadow: none;
+}
