@@ -16,9 +16,17 @@
                 <span class="Form-Item-Label-Required">必須</span>お問い合わせ種別
             </p>
 
+            {{-- {{dump(request())}} --}}
             <div>
-                <div>
-                    
+                <input type="checkbox" name="inquiry_type[]" id="hoge" value="aaa" class="form-check-input" {{ is_array(old("checkbox")) && in_array("aaa", old("checkbox"), true)? ' checked' : '' }}>
+                <label for="hoge" class="ck-box check-wrapper" >aaa</label>
+                <input type="checkbox" name="inquiry_type[]" id="hoge" value="bbb" class="form-check-input" {{ is_array(old("checkbox")) && in_array("bbb", old("checkbox"), true)? ' checked' : '' }}>
+                <label for="hoge" class="ck-box check-wrapper" >bbb</label>
+                <input type="checkbox" name="inquiry_type[]" id="hoge" value="aaa" class="form-check-input" {{ is_array(old("checkbox")) && in_array("ccc", old("checkbox"), true)? ' checked' : '' }}>
+                <label for="hoge" class="ck-box check-wrapper" >ccc</label>
+                <input type="checkbox" name="inquiry_type[]" id="hoge" value="aaa" class="form-check-input" {{ is_array(old("checkbox")) && in_array("ddd", old("checkbox"), true)? ' checked' : '' }}>
+                <label for="hoge" class="ck-box check-wrapper" >ddd</label>
+                {{-- <div>
                     @foreach( $inquiry_types as $key => $value )
                         <input type="checkbox" name="inquiry_type[]" id="hoge" value="" class="form-check-input" >
                         <label for="hoge" class="ck-box check-wrapper" >{{ $value }}</label>
@@ -26,7 +34,7 @@
                             <li>{{ $errors->first('inquiry_type') }}</li>
                         @endif
                     @endforeach
-                </div>
+                </div> --}}
                 <div class="Form-Item-Error"> 
                 </div>
             </div>
