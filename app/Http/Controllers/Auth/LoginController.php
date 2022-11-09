@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Symfony\Component\HttpFoundation\Cookie;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,8 +42,28 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    public function storeLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string'
+        ]);
+
+        $email = $request->email;
+        $password = $request->password;
+        $remember = $request->remember;
+        if(auth()->attempt(['email' => $email,'password' => $password],$remember))
+        {
+            $user = auth()->user();
+            return redirect()->route('home',compact('user'));
+        } else {
+            return back();
+        }
+    }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+    
 }

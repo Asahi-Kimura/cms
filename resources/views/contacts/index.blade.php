@@ -15,7 +15,7 @@
             <p class="Form-Item-Label">
                 <span class="Form-Item-Label-Required">必須</span>お問い合わせ種別
             </p>
-
+            
             {{-- {{dump(request())}} --}}
             <div>
                 <input type="checkbox" name="inquiry_type[]" id="hoge" value="aaa" class="form-check-input" {{ is_array(old("checkbox")) && in_array("aaa", old("checkbox"), true)? ' checked' : '' }}>

@@ -17,7 +17,7 @@
         <div class="login-title">
         </div>
         <section class="login-box">
-            <form class="login-form" method="POST" action="{{ route('login') }}">
+            <form class="login-form" method="POST" action="{{ route('storeLogin') }}">
                 @csrf
                 <h2>管理画面</h2>
                 <div class="login-id">
