@@ -15,30 +15,18 @@
             <p class="Form-Item-Label">
                 <span class="Form-Item-Label-Required">必須</span>お問い合わせ種別
             </p>
-            
-            {{-- {{dump(request())}} --}}
             <div>
-                <input type="checkbox" name="inquiry_type[]" id="hoge" value="aaa" class="form-check-input" {{ is_array(old("checkbox")) && in_array("aaa", old("checkbox"), true)? ' checked' : '' }}>
-                <label for="hoge" class="ck-box check-wrapper" >aaa</label>
-                <input type="checkbox" name="inquiry_type[]" id="hoge" value="bbb" class="form-check-input" {{ is_array(old("checkbox")) && in_array("bbb", old("checkbox"), true)? ' checked' : '' }}>
-                <label for="hoge" class="ck-box check-wrapper" >bbb</label>
-                <input type="checkbox" name="inquiry_type[]" id="hoge" value="aaa" class="form-check-input" {{ is_array(old("checkbox")) && in_array("ccc", old("checkbox"), true)? ' checked' : '' }}>
-                <label for="hoge" class="ck-box check-wrapper" >ccc</label>
-                <input type="checkbox" name="inquiry_type[]" id="hoge" value="aaa" class="form-check-input" {{ is_array(old("checkbox")) && in_array("ddd", old("checkbox"), true)? ' checked' : '' }}>
-                <label for="hoge" class="ck-box check-wrapper" >ddd</label>
-                {{-- <div>
+                <div>
                     @foreach( $inquiry_types as $key => $value )
-                        <input type="checkbox" name="inquiry_type[]" id="hoge" value="" class="form-check-input" >
+                        <input type="checkbox" class="form-check-input" name="inquiry_type[]" id="hoge" value="{{$value}}"  {{ is_array(old("inquiry_type")) && in_array($value, old("inquiry_type"), true) ? 'checked' : ''}}>
                         <label for="hoge" class="ck-box check-wrapper" >{{ $value }}</label>
-                        @if( $errors->has( 'inpuiry_type' ) )
-                            <li>{{ $errors->first('inquiry_type') }}</li>
-                        @endif
                     @endforeach
-                </div> --}}
-                <div class="Form-Item-Error"> 
+                </div> 
+                <div class="Form-Item-Error">@if( $errors->has( 'inquiry_type' ) )
+                    <li> お問い合わせ種別は必須項目です</li>
+                @endif 
                 </div>
             </div>
-
         </div>
         <div class="Form-Item">
             <p class="Form-Item-Label">
@@ -163,12 +151,12 @@
                     <textarea name="content" class="Form-Item-Textarea" rows="20">{{ old('content') }}</textarea>
                 </div>
                 <div class="Form-Item-Error">
+                    @if($errors->has('content'))
+                        <li>{{ $errors->first('content') }}</li>
+                    @endif
                 </div>
             </div>
         </div>
-            @if($errors->has('content'))
-                <li>{{ $errors->first('content') }}</li>
-            @endif
         <input type="submit" class="Form-Btn" value="確認する">
     </div>
 </form>

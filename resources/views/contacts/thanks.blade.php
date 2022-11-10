@@ -18,6 +18,10 @@
     </div>
     @php $birthday = explode('/',$inputs['birthday'] ) @endphp
     <div class="Form-Item">
+        @php 
+            $birthday = explode("/",$string_birthday,3);
+            // dd($birthday);
+        @endphp
         <p class="Item-Input">生年月日: {{ $birthday[0] }}/{{ $birthday[1] }}/{{ $birthday[2] }}</p>
     </div>
     <div class="Form-Item">

@@ -19,7 +19,7 @@ return [
 
     'inquiry_type'  => 
     [
-        'questionnaire' => ' アンケート',
+        'questionnaire' => 'アンケート',
         'company_business' =>'会社事業',
         'contact' => 'お問い合わせ',
         'job_offer' => '求人',

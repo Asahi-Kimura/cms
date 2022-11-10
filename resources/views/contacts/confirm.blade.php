@@ -1,18 +1,29 @@
 @extends('layouts.contact')
 @section('title','確認画面')
 @section('content')
-<form method="POST" action="{{ route('contact_send') }}">
+<form method="POST" action="{{ route('contact_send') }}"> 
     @csrf
+    <input type="hidden" name="status" value="1">
+    @foreach( $inquiry_types as $key => $value )
+        <input type="hidden" name="inquiry_type[]" value="{{$key}}" >
+    @endforeach
+    <input name="company_name" value ="{{ $attributes['company_name'] }}" type="hidden" >
+    <input name="user_name" value ="{{ $attributes['user_name'] }}" type="hidden">
+    <input name="tele_num" value ="{{ $attributes['tele_num'] }}" type="hidden">
+    <input name="email" value ="{{ $attributes['email'] }}" type="hidden" >
+    <input name="birthday" value ="{{ $attributes['birthday'] }}" type="hidden">
+    <input name="sex" value ="{{ $attributes['sex'] }}" type="hidden">   
+    <input name="job" value ="{{ $attributes['job'] }}" type="hidden">          
+    <input name="content" value ="{!! nl2br($attributes['content']) !!}" type="hidden">
+    
     <div class="Form">
         <div class="Form-Item">
-            <p class="Item-Input">種別:<br>
-                アンケート
-                会社事業
+            <p class="Item-Input">種別:
+                @foreach($attributes['inquiry_type'] as $key => $value)
+                    ・{{$value}}
+                @endforeach
             </p>
         </div>
-        
-        <div class="Form-Item">
-            <p class="Item-Input">会社名: {{ $attributes['company_name'] }}</p>
         <div class="Form-Item">
             <p class="Item-Input">会社名: {{ $attributes['company_name'] }}</p>
         </div>
@@ -27,10 +38,6 @@
         </div>
         <div class="Form-Item">
             <p class="Item-Input">生年月日: {{ $attributes['birthday'] }}</p>
-
-            @foreach($attributes as $key => $value)
-                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-            @endforeach
         </div>
         <div class="Form-Item">
             <p class="Item-Input">性別: {{ $sex[ $attributes['sex'] ] }}</p>

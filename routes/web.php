@@ -27,6 +27,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/contact/confirm', [ContactsController::class,'confirm'])->name('contact_confirm');
     //送信フォーム
     Route::post('/contact/send', [ContactsController::class,'send'])->name('contact_send');
+    
     Route::get('/notice', function () {
         return view('news.index');
     })->name('news');

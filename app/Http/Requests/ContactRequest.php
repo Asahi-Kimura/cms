@@ -37,7 +37,7 @@ class ContactRequest extends FormRequest
         }
         // バリデーションルール
         return [
-            'inquiry_types' => 'required' ,
+            'inquiry_type' => 'required' ,
             'company_name' => 'required|max:20',
             'user_name' => 'required|max:20',
             'tele_num'  => 'required|regex:/^[0-9-]+$/',
