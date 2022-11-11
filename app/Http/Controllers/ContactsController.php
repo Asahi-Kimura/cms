@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Category;
 use App\Models\Contact;
-
+use Illuminate\Support\Facades\Auth;
 
 class ContactsController extends Controller
 {
@@ -35,10 +35,10 @@ class ContactsController extends Controller
 
     public function send(ContactRequest $request,Contact $contact)
     {
-        // if(session()->has('reset'))
-        // {
-        //     return redirect()->route('contact_index');
-        // }
+        if(session()->has('reset'))
+        {
+            return redirect()->route('contact_index');
+        }
         $string_birthday = $request->birthday;
         $inputs = $request->all();
         $inputs['inquiry_type'] = http_build_query($request->inquiry_type);

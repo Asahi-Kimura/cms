@@ -11,10 +11,10 @@
             </div>
         </div>
         <div class="user-info">
-            <p class="user-name">ログイン者の名前が入ります :  <a href="{{Auth::logout()}}">ログアウト</a></p>
+            <p class="user-name">ログイン者の名前が入ります :  <a  href="#logout">ログアウト</a></p>
         </div>
         
-        <div class="plofile_ar">
+        <div id="logout" class="plofile_ar">
             <form class="" method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="logout-btn">
