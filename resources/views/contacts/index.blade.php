@@ -4,9 +4,6 @@
 
 <form method="POST" action="{{ route('contact_confirm') }}">
     @csrf
-    @dump(old(('inquiry_type')))
-    @dump(old(('inquiry_type[]')))
-    {{-- {{ $value == old() ? 'checked' : ''}} --}}
     <input type="hidden" name="status" value="1">
     <div class="Form">
         @if($errors->any())
@@ -19,20 +16,15 @@
             </p>
             <div>
                 <div>
-                    {{-- チェックする項目が少ない場合は保存するDBのカラムを増やせばいいが、ボックス数が多くなりすぎると管理しづらいため、別テーブルと紐づけて管理する。 --}}
-                    {{-- @foreach( $inquiry_types as $key => $value )
+                    @foreach( $inquiry_type as $key => $value )
                         <input type="checkbox" class="form-check-input" name="inquiry_type[]" id="{{$key}}" value="{{$value}}"  {{ is_array(old("inquiry_type")) && in_array($value, old("inquiry_type"), true) ? 'checked' : ''}}>
                         <label for="{{$key}}" class="ck-box check-wrapper" >{{ $value }}</label>
-                    @endforeach --}}
-                    @foreach( $inquiry_types as $key => $value )
-                        <input type="checkbox" class="form-check-input" name="inquiry_type[]" id="{{ $value }}" value="{{ $value }}"  >
-                        <label for="{{$value}}" class="ck-box check-wrapper" >{{ $value }}</label>
                     @endforeach
-                    
                 </div> 
-                <div class="Form-Item-Error">@if( $errors->has( 'inquiry_type' ) )
-                    <li> お問い合わせ種別は必須項目です</li>
-                @endif 
+                <div class="Form-Item-Error">
+                    @if( $errors->has( 'inquiry_type' ) )
+                        <li> お問い合わせ種別は必須項目です</li>
+                    @endif 
                 </div>
             </div>
         </div>
@@ -45,8 +37,8 @@
                     <input name="company_name" value ="{{ old('company_name') }}" type="text" class="Form-Item-Input" placeholder="例）株式会社〇〇">
                 </div>
                 <div class="Form-Item-Error">
-                    @if( $errors->has('inpuiry_type') )
-                        <li>{{ $errors->first('company') }}</li>
+                    @if( $errors->has('company_name') )
+                        <li>{{ $errors->first('company_name') }}</li>
                     @endif
                 </div>
             </div>

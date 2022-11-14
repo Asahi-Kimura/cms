@@ -4,8 +4,8 @@
 <form method="POST" action="{{ route('contact_send') }}"> 
     @csrf
     <input type="hidden" name="status" value="1">
-    @foreach( $inquiry_types as $key => $value )
-        <input type="hidden" name="inquiry_type[]" value="{{$key}}" >
+    @foreach( $attributes['inquiry_type'] as $key => $value )
+        <input type="hidden" name="inquiry_type[]" value="{{$value}}" >
     @endforeach
     <input name="company_name" value ="{{ $attributes['company_name'] }}" type="hidden" >
     <input name="user_name" value ="{{ $attributes['user_name'] }}" type="hidden">
