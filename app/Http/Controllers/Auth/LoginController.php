@@ -48,14 +48,13 @@ class LoginController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string'
         ]);
-
         $email = $request->email;
         $password = $request->password;
         $remember = $request->remember;
         if(auth()->attempt(['email' => $email,'password' => $password],$remember))
         {
             $user = auth()->user();
-            return redirect()->route('home',compact('user'));
+            return redirect()->route('home','user');
         } else {
             return back();
         }

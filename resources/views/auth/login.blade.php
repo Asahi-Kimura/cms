@@ -32,7 +32,7 @@
                         <span class="invalid-feedback" role="alert">
                             <strong>
                                 @if($errors->any())
-                                    <div class="alert-danger">エラーがあります</div>
+                                    <div class="alert-danger">メールとパスワードが違います</div>
                                 @endif  
                             </strong>
                         </span>

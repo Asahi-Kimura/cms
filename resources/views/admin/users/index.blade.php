@@ -70,36 +70,39 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- @dd($user) --}}
+                    @foreach($user as $user )
                     <tr>
                         <td class="edit-icon">
-                            <p><a class="tooltip" title="編集する" href="" ><i class="fas fa-edit"></i></a></p>
+                            <p><a class="tooltip" title="編集する" href="{{route('user_edit',$user)}}" ><i class="fas fa-edit"></i></a></p>
                         </td>
                         <td class ="edit-icon">
                             {{-- 管理者ユーザー以外削除可能 --}}
                             <p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{$user->authority}}</p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{$user->name}}</p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{$user->email}}</p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{$user->phone_number}}</p>
                         </td>
                         <td>
-                            <p></p>
+                            {{-- <p>{{$user->prefecture}}</p> --}}
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{$user->city}}</p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{$user->address}}</p>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

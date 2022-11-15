@@ -13,8 +13,11 @@
 	</div>
     <div class="container">
         <div class="row justify-content-center">
-            <form method="POST" action="{{route('admin_store')}}">
+            <form method="POST" action="{{route('admin_store',$user)}}">
                 @csrf
+                @if($user->id != null)
+                    <input type="hidden" value="{{$user->id}}">
+                @endif
                 <div class="form-group">
                     <label for="exampleInputUserName"><span class="Form-Item-Label-Required">必須</span>権限
                         <small>
@@ -37,33 +40,34 @@
                 <div class="form-group">
                     <label for="exampleInputUserName"><span class="Form-Item-Label-Required">必須</span>会員名
                         <small>
-                            @if( $errors->has('authority') )
-                                <li>{{ $errors->first('authority') }}</li>
-                            @endif
-                        </small>
-                    </label>
-                    <input type="name" name="name" value="" class="form-control" id="exampleInputEmail1" placeholder="山田">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>フリガナ
-                        <small>
                             @if( $errors->has('name') )
                                 <li>{{ $errors->first('name') }}</li>
                             @endif
                         </small>
                     </label>
-                    <input type="text" name="kana" value="" placeholder="タロウ">
+                    <input type="name" name="name" value="{{old('name',$user->name)}}" class="form-control" id="exampleInputEmail1" placeholder="山田">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>メールアドレス
+                    <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>フリガナ
                         <small>
                             @if( $errors->has('kana') )
                                 <li>{{ $errors->first('kana') }}</li>
                             @endif
                         </small>
                     </label>
-                    <input type="email" name="email"  value="" class="form-control" id="exampleInputEmail" placeholder="example@hoge.com">
+                    <input type="text" name="kana" value="{{old('kana',$user->kana)}}" placeholder="タロウ">
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>メールアドレス
+                        <small>
+                            @if( $errors->has('email') )
+                                <li>{{ $errors->first('email') }}</li>
+                            @endif
+                        </small>
+                    </label>
+                    <input type="email" name="email"  value="{{old('email',$user->email)}}" class="form-control" id="exampleInputEmail" placeholder="example@hoge.com">
+                </div>
+
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>パスワード
                         <small>
@@ -72,8 +76,13 @@
                             @endif
                         </small>
                     </label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        
+
+                            <input type="password" name="password" value="{{old('password',$user->password)}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+
                 </div>
+
                 <div class="form-group">
                     <label for="exampleInputPhone_Number"><span class="Form-Item-Label-Required">必須</span>電話番号
                         <small>
@@ -83,58 +92,62 @@
                         </small>
                     </label>
                 <div class="col">
-                    <input type="tel" name="phone_number['0']"  value="" class="form-control"  placeholder="000">
+                    @php $phone_number = explode('-',$user->phone_number) @endphp
+                    <input type="tel" name="phone_number[0]"  value="{{old('phone_number[0]',$phone_number[0])}}" class="form-control"  placeholder="000">
                 </div>
                 <div class="col">
-                    <input type="tel" name="phone_number['1']"  value="" class="form-control"  placeholder="000">
+                    <input type="tel" name="phone_number[1]"  value="{{old('phone_number[1]',$phone_number[1])}}" class="form-control"  placeholder="000">
                 </div>
                 <div class="col">
-                    <input type="tel" name="phone_number['2']"  value="" class="form-control"  placeholder="000">
+                    <input type="tel" name="phone_number[2]"  value="{{old('phone_number[2]',$phone_number[2])}}" class="form-control"  placeholder="000">
                 </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>郵便番号
                         <small>
-                            @if( $errors->has('kana') )
-                                <li>{{ $errors->first('kana') }}</li>
+                            @if( $errors->has('post_code') )
+                                <li>{{ $errors->first('post_code') }}</li>
                             @endif
                         </small>
                     </label>
                     <div class="col">
-                        <input type="tel" name="post_code" value="" class="form-control" placeholder="000">
+                        @php $post_code = explode('-',$user->post_code) @endphp
+                        <input type="tel" name="post_code[0]" value="{{old('post_code[0]',$post_code[0])}}" class="form-control" placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="post_code" value="" class="form-control" placeholder="000">
+                        <input type="tel" name="post_code[1]" value="{{old('post_code[1]',$post_code[1])}}" class="form-control" placeholder="0000">
                     </div>
                 </div>
                 <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         <label class="input-group" for="inputGroupSelect01"><span class="Form-Item-Label-Required">必須</span>都道府県
                             <small>
-                                @if( $errors->has('post_code') )
-                                <li>{{ $errors->first('post_code') }}</li>
+                                @if( $errors->has('prefecture') )
+                                <li>{{ $errors->first('prefecture') }}</li>
                             @endif
                             </small>
                         </label>
                     </div>
-                    <select name="prefecture_id"class="custom-select" id="inputGroupSelect01">
-                        <option value="" selected>選択してください</option>
-                        <option value="">都道府県を表示してください</option>
+                    <select name="prefecture"class="custom-select" id="inputGroupSelect01">
+                            @foreach ($pref as $key => $value)
+                                <option value="{{$key}}" selected>{{$value}}</option>
+                            @endforeach
+                            <option value="" selected>選択してください</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>市区町村
                         <small>
-                            @if( $errors->has('prefecture_id') )
-                                <li>{{ $errors->first('prefecture_id') }}</li>
+                            @if( $errors->has('city') )
+                                <li>{{ $errors->first('city') }}</li>
                             @endif
                         </small>
                     </label>
-                    <input type="text" name="city" value="">
+                    <input type="text" name="city" value="{{old('city',$user->city)}}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputKana">番地・アパート名</label>
-                    <input type="text" name="address" value="">
+                    <input type="text" name="address" value="{{old('address',$user->address)}}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">備考欄
@@ -144,7 +157,7 @@
                             @endif
                         </small>
                     </label>
-                    <textarea name="remark"  class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    <textarea name="remark"  class="form-control" id="exampleFormControlTextarea1" rows="4">{{old('remark',$user->remark)}}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">登録する</button>
             </form>

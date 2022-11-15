@@ -20,10 +20,10 @@ class ContactsController extends Controller
 
     public function index()
     {
-        // if(session()->has('reset'))
-        // {
-        //     session()->forget('reset');
-        // }
+        if(session()->has('reset'))
+        {
+            session()->forget('reset');
+        }
         $inquiry_type = config('const.inquiry_type');
         $sex = config('const.sex');
         $job = config('const.job');
@@ -33,10 +33,10 @@ class ContactsController extends Controller
 
     public function confirm(ContactRequest $request,Contact $contact)
     {
-        // if(session()->has('reset'))
-        // {
-        //     return redirect()->route('contact_index');
-        // }
+        if(session()->has('reset'))
+        {
+            return redirect()->route('contact_index');
+        }
         $inquiry_type = config('const.inquiry_type');
         $sex = config('const.sex');
         $job = config('const.job');
@@ -46,10 +46,10 @@ class ContactsController extends Controller
 
     public function send(ContactRequest $request,Contact $contact)
     {
-        // if(session()->has('reset'))
-        // {
-        //     return redirect()->route('contact_index');
-        // }
+        if(session()->has('reset'))
+        {
+            return redirect()->route('contact_index');
+        }
         
         $string_birthday = $request->birthday;
         $inputs = $request->all();
@@ -62,7 +62,7 @@ class ContactsController extends Controller
         $inputs = array_merge($inputs,$inquiry_type_array);
         $inputs['birthday'] = date('Y-m-d',strtotime($inputs['birthday']));
         unset($inputs['inquiry_type']);
-        // session()->put('reset','リセット');
+        session()->put('reset','リセット');
         $contact->fill($inputs)->save();
         return view('contacts.thanks',compact('inputs','string_birthday'));
     }

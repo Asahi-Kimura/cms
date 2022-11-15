@@ -38,6 +38,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             // \App\Http\Middleware\RegenerateToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'remember_me_handler',
+
         ],
 
         'api' => [
@@ -63,5 +65,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'remember_me_handler' => \App\Http\Middleware\RememberMeHandler::class,
     ];
 }

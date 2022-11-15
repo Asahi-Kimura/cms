@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="user-info">
-            <p class="user-name">ログイン者の名前が入ります :  <a  href="#logout">ログアウト</a></p>
+            <p class="user-name">{{Auth::user()->name}}:  <a  href="#logout">ログアウト</a></p>
         </div>
         
         <div id="logout" class="plofile_ar">

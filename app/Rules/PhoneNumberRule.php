@@ -42,7 +42,7 @@ class PhoneNumberRule implements Rule
                 $num = $i+1;
                 $limit_min = self::LIMIT_MIN[$i];
                 $this->message = $num.'番目の入力欄は'.$limit_min.'文字以上4文字以下で入力してください。';
-                return false;
+                return false; 
             }
         }
         // implode --配列要素を文字列により連結する

@@ -9,4 +9,9 @@ class Prefecture extends Model
 {
     use HasFactory;
     protected $guarderd = ['id'];
+    
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

@@ -21,10 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('kana')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone_number1')->nullable();
-            $table->string('phone_number2')->nullable();
-            $table->string('phone_number3')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('post_code')->nullable();
+            // $table->integer('prefecture_id')->unsigned();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('password')->nullable();
