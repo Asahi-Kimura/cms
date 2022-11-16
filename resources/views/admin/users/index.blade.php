@@ -77,8 +77,9 @@
                         </td>
                         <td class ="edit-icon">
                             {{-- 管理者ユーザー以外削除可能 --}}
-                            @if($user->authority == 'guest')
-                                <p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p>
+                            @if($user->authority == 'admin')
+                                <p class="delete-btn tooltip" title="削除する"  data-id=""><i class="fas fa-trash"></i></p>
+                                {{-- <a href="{{ route('delete',$user) }}"></a> --}}
                             @endif
                         </td>
                         <td>

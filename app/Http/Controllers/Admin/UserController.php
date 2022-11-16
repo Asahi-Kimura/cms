@@ -20,6 +20,7 @@ class UserController extends Controller
         return view('admin.users.index',compact('user'));
     }
 
+    
     // 作成画面.編集画面
     public function create(User $user)
     {
@@ -34,7 +35,7 @@ class UserController extends Controller
     public function store(UserRequest $request ,User $user)
     {
         $attributes = $request->all();
-        if($user->password != null){
+        if($attributes['password'] != null){
             $user->password = Hash::make($attributes['password']);        
         } else {
             unset($attributes['password']);
@@ -42,9 +43,10 @@ class UserController extends Controller
         $user->fill($attributes)->save();
         return redirect()->route('user');
     }
-    // //削除処理//
-    // public function delete(User $user)
-    // {
-
-    // }
+    //削除処理//
+    public function delete(User $user)
+    {
+        $user->delete();
+        return redirect()->route('user');
+    }
 }
