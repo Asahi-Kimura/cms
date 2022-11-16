@@ -23,28 +23,24 @@ class UserController extends Controller
     // 作成画面.編集画面
     public function create(User $user)
     {
-        // dd($user->id);
         if($user->id != null){
             $user = User::find($user->id);
         } 
+        $auth = config('const.authority');
         $pref = config('const.pref');
-        return view('admin.users.edit',compact('user','pref'));
+        return view('admin.users.edit',compact('user','pref','auth'));
     }
     //編集処理
-    public function store(UserRequest $request ,User $user,Prefecture $prefecture)
+    public function store(UserRequest $request ,User $user)
     {
         $attributes = $request->all();
-        if($user->id == null ){
-            $user->password = Hash::make($$attributes['password']);
-        } else { 
-            if($user->password != null){
-                $user->password = Hash::make($$attributes['password']);
-            } else {
-                unset($attributes['password']);
-            };
+        if($user->password != null){
+            $user->password = Hash::make($attributes['password']);        
+        } else {
+            unset($attributes['password']);
         }
         $user->fill($attributes)->save();
-        return view('admin.users.index');
+        return redirect()->route('user');
     }
     // //削除処理//
     // public function delete(User $user)

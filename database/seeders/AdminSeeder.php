@@ -19,9 +19,10 @@ class AdminSeeder extends Seeder
 
             'authority' => 'admin',
             'name' => 'yamada',
-            'kana' => '山田',
+            'kana' => 'ヤマダ',
             'email' => 'admin@gmail.com',
-            'phone_number' => '09012345678',
+            'phone_number' => '090-1234-5678',
+            'post_code' => '222-2222',
             'city' => '4',
             'address' => '4',
             'password' => Hash::make('password'),

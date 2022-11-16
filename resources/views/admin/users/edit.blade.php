@@ -16,7 +16,7 @@
             <form method="POST" action="{{route('admin_store',$user)}}">
                 @csrf
                 @if($user->id != null)
-                    <input type="hidden" value="{{$user->id}}">
+                    <input type="hidden" name="id" value="{{$user->id}}">
                 @endif
                 <div class="form-group">
                     <label for="exampleInputUserName"><span class="Form-Item-Label-Required">必須</span>権限
@@ -27,14 +27,12 @@
                         </small>
                     </label>
                     <div class="">
-                        <div class="radio-wrapper" >
-                            <input class="radio01-input" id="1" checked="checked" name="authority" type="radio" value="auth">
-                            <label for="1" class="radio01-parts">管理者</label>
-                        </div>
-                        <div class="radio-wrapper">
-                            <input class="radio01-input" id="2" name="authority" type="radio" value="guest">
-                            <label for="2" class="radio01-parts">一般</label>
-                        </div>
+                        @foreach($auth as $key => $value)
+                            <div class="radio-wrapper">
+                                <input class="radio01-input" id="{{$key}}" name="authority" type="radio" value="{{$key}}" {{ $user->authority == $key ? 'checked' : '' }}>
+                                <label for="{{$key}}" class="radio01-parts">{{$value}}</label>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="form-group">
@@ -67,22 +65,16 @@
                     </label>
                     <input type="email" name="email"  value="{{old('email',$user->email)}}" class="form-control" id="exampleInputEmail" placeholder="example@hoge.com">
                 </div>
-
                 <div class="form-group">
-                    <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>パスワード
+                    <label for="exampleInputPassword1">@if($user->password == null)<span class="Form-Item-Label-Required">必須 @endif</span>パスワード
                         <small>
                             @if( $errors->has('password') )
                                 <li>{{ $errors->first('password') }}</li>
                             @endif
                         </small>
                     </label>
-                        
-
-                            <input type="password" name="password" value="{{old('password',$user->password)}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
-
-
+                    <input type="password" name="password" value="{{old('password')}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
-
                 <div class="form-group">
                     <label for="exampleInputPhone_Number"><span class="Form-Item-Label-Required">必須</span>電話番号
                         <small>
@@ -91,16 +83,16 @@
                             @endif
                         </small>
                     </label>
-                <div class="col">
-                    @php $phone_number = explode('-',$user->phone_number) @endphp
-                    <input type="tel" name="phone_number[0]"  value="{{old('phone_number[0]',$phone_number[0])}}" class="form-control"  placeholder="000">
-                </div>
-                <div class="col">
-                    <input type="tel" name="phone_number[1]"  value="{{old('phone_number[1]',$phone_number[1])}}" class="form-control"  placeholder="000">
-                </div>
-                <div class="col">
-                    <input type="tel" name="phone_number[2]"  value="{{old('phone_number[2]',$phone_number[2])}}" class="form-control"  placeholder="000">
-                </div>
+                    <div class="col">
+                        @php $phone_number = explode('-',$user->phone_number) @endphp
+                        <input type="tel" name="phone_number[0]"  value="{{old('phone_number[0]',$phone_number[0])}}" class="form-control"  placeholder="000">
+                    </div>
+                    <div class="col">
+                        <input type="tel" name="phone_number[1]"  value="{{old('phone_number[1]',$phone_number[1])}}" class="form-control"  placeholder="000">
+                    </div>
+                    <div class="col">
+                        <input type="tel" name="phone_number[2]"  value="{{old('phone_number[2]',$phone_number[2])}}" class="form-control"  placeholder="000">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>郵便番号
@@ -118,7 +110,7 @@
                         <input type="tel" name="post_code[1]" value="{{old('post_code[1]',$post_code[1])}}" class="form-control" placeholder="0000">
                     </div>
                 </div>
-                <div class="input-group pb-3">
+                {{-- <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         <label class="input-group" for="inputGroupSelect01"><span class="Form-Item-Label-Required">必須</span>都道府県
                             <small>
@@ -134,7 +126,7 @@
                             @endforeach
                             <option value="" selected>選択してください</option>
                     </select>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>市区町村
                         <small>
