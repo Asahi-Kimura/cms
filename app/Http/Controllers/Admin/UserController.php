@@ -19,7 +19,6 @@ class UserController extends Controller
         }
         return view('admin.users.index',compact('user'));
     }
-
     
     // 作成画面.編集画面
     public function create(User $user)
@@ -36,7 +35,7 @@ class UserController extends Controller
     {
         $attributes = $request->all();
         if($attributes['password'] != null){
-            $user->password = Hash::make($attributes['password']);        
+            $attributes['password'] = Hash::make($attributes['password']);        
         } else {
             unset($attributes['password']);
         }

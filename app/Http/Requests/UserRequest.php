@@ -28,6 +28,7 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        // dd(request()->all());
         // 正規表現
         $phone_regex = '/^[0-9]{2,4}-[0-9]{1,4}-[0-9]{3,4}$/';
         $post_code_regex = '/^[0-9]{3}-[0-9]{4}$/';
@@ -67,7 +68,7 @@ class UserRequest extends FormRequest
     {
 
         return [
-        'required_if:id,null' => 'パスワードは必ず入力してください',
+            'required_if' => 'パスワードは必須入力です。'
         ];
     }
 }

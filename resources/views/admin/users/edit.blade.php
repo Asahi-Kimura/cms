@@ -17,6 +17,8 @@
                 @csrf
                 @if($user->id != null)
                     <input type="hidden" name="id" value="{{$user->id}}">
+                @else
+                    <input type="hidden" name="id" value="">
                 @endif
                 <div class="form-group">
                     <label for="exampleInputUserName"><span class="Form-Item-Label-Required">必須</span>権限
@@ -76,6 +78,7 @@
                     <input type="password" name="password" value="{{old('password')}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 <div class="form-group">
+                    @php $phone_number = explode('-',$user->phone_number) @endphp
                     <label for="exampleInputPhone_Number"><span class="Form-Item-Label-Required">必須</span>電話番号
                         <small>
                             @if( $errors->has('phone_number') )
@@ -84,17 +87,18 @@
                         </small>
                     </label>
                     <div class="col">
-                        @php $phone_number = explode('-',$user->phone_number) @endphp
-                        <input type="tel" name="phone_number[0]"  value="{{old('phone_number[0]',$phone_number[0])}}" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{old('phone_number[0]',$phone_number[0])}} @else {{old('phone_number[0]')}} @endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[1]"  value="{{old('phone_number[1]',$phone_number[1])}}" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[1]"  value="@if($user->id != null){{old('phone_number[1]',$phone_number[1])}} @else {{old('phone_number[1]')}} @endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[2]"  value="{{old('phone_number[2]',$phone_number[2])}}" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[2]"  value="@if($user->id != null){{old('phone_number[2]',$phone_number[2])}} @else {{old('phone_number[2]')}} @endif" class="form-control"  placeholder="000">
                     </div>
                 </div>
+
                 <div class="form-group">
+                    @php $post_code = explode('-',$user->post_code) @endphp
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>郵便番号
                         <small>
                             @if( $errors->has('post_code') )
@@ -103,13 +107,13 @@
                         </small>
                     </label>
                     <div class="col">
-                        @php $post_code = explode('-',$user->post_code) @endphp
-                        <input type="tel" name="post_code[0]" value="{{old('post_code[0]',$post_code[0])}}" class="form-control" placeholder="000">
+                        <input type="tel" name="post_code[0]" value="@if($user->id != null){{old('post_code[0]',$post_code[0])}} @else {{old('post_code[0]')}} @endif" class="form-control" placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="post_code[1]" value="{{old('post_code[1]',$post_code[1])}}" class="form-control" placeholder="0000">
+                        <input type="tel" name="post_code[1]" value="@if($user->id != null){{old('post_code[1]',$post_code[1])}} @else {{old('post_code[1]')}} @endif" class="form-control" placeholder="0000">
                     </div>
                 </div>
+                
                 {{-- <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         <label class="input-group" for="inputGroupSelect01"><span class="Form-Item-Label-Required">必須</span>都道府県

@@ -54,12 +54,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', [LoginController::class,'logout'])->name('logout');
     //会員一覧
     Route::get('/users/{user?}', [UserController::class,'show'])->name('user');
-    //ユーザー新規作成、編集画面
+    //ユーザー編集画面
     Route::get('/users/edit/{user?}', [UserController::class,'create'])->name('user_edit');
+    //ユーザー新規作成、編集画面
+    Route::get('/new', [UserController::class,'create'])->name('new');
     //ユーザー新規作成、編集画面処理
     Route::post('/users/edit/store/{user?}', [UserController::class,'store'])->name('admin_store');
     //論理削除
-    Route::post('/delete/{user}', [UserController::class,'delete'])->name('delete');
+    Route::get('/delete/{user}', [UserController::class,'delete'])->name('delete');
     Route::get('/received', [ContactController::class,'show'])->name('admin_contact');
     Route::get('/received/edit/', [ContactController::class,'edit'])->name('admin_contact_edit');
     Route::get('/news', [NewsController::class,'index'])->name('admin_news');

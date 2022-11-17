@@ -10,7 +10,7 @@
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">会員一覧</h1>
-        <p><a class="new-btn" href="{{ route('user_edit') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
+        <p><a class="new-btn" href="{{ route('new') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
@@ -77,9 +77,8 @@
                         </td>
                         <td class ="edit-icon">
                             {{-- 管理者ユーザー以外削除可能 --}}
-                            @if($user->authority == 'admin')
-                                <p class="delete-btn tooltip" title="削除する"  data-id=""><i class="fas fa-trash"></i></p>
-                                {{-- <a href="{{ route('delete',$user) }}"></a> --}}
+                            @if($user->authority == 'guest')
+                            <a href="{{ route('delete',$user) }}"><p class="delete-btn tooltip"  title="削除する" data-id=""><i class="fas fa-trash"></i></p></a>
                             @endif
                         </td>
                         <td>
@@ -124,7 +123,7 @@
     <p>削除しますか？</p>
         <div class="modal-btn_ar">
         <button type="button" class="no">いいえ</button>
-            <form method="POST" action="">
+            <form method="POST" action="" id="delete">
                 <input type="hidden" value="" name="id" id="deleteInput">
                 <button type="submit" class="yes">はい</button>
             </form>
