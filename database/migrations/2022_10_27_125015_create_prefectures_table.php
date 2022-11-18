@@ -16,7 +16,7 @@ class CreatePrefecturesTable extends Migration
         Schema::create('prefectures', function (Blueprint $table) {
             $table->id();
             $table->string('prefecture_name');
-            $table->string('prefecture_chinese_name');
+            $table->string('prefecture_chinese_name')->nullable();
             //外部キー設定
             $table->timestamps();
         });

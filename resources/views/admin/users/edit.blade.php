@@ -58,7 +58,6 @@
                     </label>
                     <input type="text" name="kana" value="{{old('kana',$user->kana)}}" placeholder="タロウ">
                 </div>
-                @dump($user->prefecture->prefecture_name)
                 <div class="form-group">
                     <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>メールアドレス
                         <small>
@@ -127,10 +126,11 @@
                         </label>
                     </div>
                     <select name="prefecture_id"class="custom-select" id="inputGroupSelect01">
+                            <option value="" >選択してください</option>
                             @foreach ($pref as $key => $value)
-                                <option value="{{ $key }}" @if($user->id != null){{ $key == $user->prefecture->prefecture_id ? 'selected' : ''}}@endif>{{ $value }}</option>
+                                <option value="{{ $key }}" @if($user->id != null) {{ $value == $user->prefecture->prefecture_chinese_name ? 'selected' : '' }} @else {{ old('prefecture_id') == $key ? 'selected':'' }} @endif>{{ $value }}</option>
                             @endforeach
-                            <option value="" selected>選択してください</option>
+                            
                     </select>
                 </div>
                 <div class="form-group">

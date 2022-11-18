@@ -58,9 +58,9 @@
                         <th style="width: 70px">
                             <p>電話番号</p>
                         </th>
-                        {{-- <th style="width: 30px">
+                        <th style="width: 30px">
                             <p>都道府県</p>
-                        </th> --}}
+                        </th>
                         <th style="width: 70px">
                             <p>市町村</p>
                         </th>
