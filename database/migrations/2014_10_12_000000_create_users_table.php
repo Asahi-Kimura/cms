@@ -17,18 +17,18 @@ class CreateUsersTable extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->integer('prefecture_id');
             $table->string('authority')->nullable();
             $table->string('name')->nullable();
             $table->string('kana')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('post_code')->nullable();
-            // $table->integer('prefecture_id')->unsigned();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('password')->nullable();
             $table->string('remark')->nullable();
-            $table->softDeletes()->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

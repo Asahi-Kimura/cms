@@ -37,6 +37,7 @@
                         @endforeach
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="exampleInputUserName"><span class="Form-Item-Label-Required">必須</span>会員名
                         <small>
@@ -57,6 +58,7 @@
                     </label>
                     <input type="text" name="kana" value="{{old('kana',$user->kana)}}" placeholder="タロウ">
                 </div>
+                @dump($user->prefecture->prefecture_name)
                 <div class="form-group">
                     <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>メールアドレス
                         <small>
@@ -114,7 +116,7 @@
                     </div>
                 </div>
                 
-                {{-- <div class="input-group pb-3">
+                <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         <label class="input-group" for="inputGroupSelect01"><span class="Form-Item-Label-Required">必須</span>都道府県
                             <small>
@@ -124,13 +126,13 @@
                             </small>
                         </label>
                     </div>
-                    <select name="prefecture"class="custom-select" id="inputGroupSelect01">
+                    <select name="prefecture_id"class="custom-select" id="inputGroupSelect01">
                             @foreach ($pref as $key => $value)
-                                <option value="{{$key}}" selected>{{$value}}</option>
+                                <option value="{{ $key }}" @if($user->id != null){{ $key == $user->prefecture->prefecture_id ? 'selected' : ''}}@endif>{{ $value }}</option>
                             @endforeach
                             <option value="" selected>選択してください</option>
                     </select>
-                </div> --}}
+                </div>
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>市区町村
                         <small>

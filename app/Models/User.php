@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function prefecture()
     {
-        return $this->hasOne(Prefecture::class);
+        return $this->belongsTo(Prefecture::class);
     }
 
 

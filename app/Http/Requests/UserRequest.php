@@ -28,12 +28,12 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        // dd(request()->all());
         // 正規表現
         $phone_regex = '/^[0-9]{2,4}-[0-9]{1,4}-[0-9]{3,4}$/';
         $post_code_regex = '/^[0-9]{3}-[0-9]{4}$/';
         // バリデーションルール
         return [
+            'prefecture_id' => 'required',
             'authority' => 'required',
             'name' => 'required|string|max:30',
             'kana' => 'required|max:30|regex:/^[\t\sァ-ヾ]+$/u',

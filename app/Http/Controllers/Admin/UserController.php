@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\Prefecture;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -25,21 +26,23 @@ class UserController extends Controller
     {
         if($user->id != null){
             $user = User::find($user->id);
-        } 
+        }
         $auth = config('const.authority');
         $pref = config('const.pref');
         return view('admin.users.edit',compact('user','pref','auth'));
     }
     //編集処理
-    public function store(UserRequest $request ,User $user)
+    public function store(UserRequest $request ,User $user,Prefecture $prefecture)
     {
         $attributes = $request->all();
         if($attributes['password'] != null){
-            $attributes['password'] = Hash::make($attributes['password']);        
+            $attributes['password'] = Hash::make($attributes['password']);     
         } else {
             unset($attributes['password']);
         }
+        //users
         $user->fill($attributes)->save();
+        //prefecutures
         return redirect()->route('user');
     }
     //削除処理//

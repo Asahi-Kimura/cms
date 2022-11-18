@@ -93,9 +93,9 @@
                         <td>
                             <p>{{$user->phone_number}}</p>
                         </td>
-                        {{-- <td>
-                            <p>{{$user->prefecture}}</p>
-                        </td> --}}
+                        <td>
+                            <p>{{ $user->prefecture->prefecture_chinese_name }}</p>
+                        </td>
                         <td>
                             <p>{{$user->city}}</p>
                         </td>
@@ -119,6 +119,7 @@
     <h4>削除</h4>
         <p class="modal-close"></p>
     </div>
+
     <div class="modal-inner">
     <p>削除しますか？</p>
         <div class="modal-btn_ar">
