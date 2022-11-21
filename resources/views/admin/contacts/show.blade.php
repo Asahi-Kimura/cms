@@ -17,22 +17,24 @@
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
                     <select class="form-input">
-                        <option>選択してください</option>
-                        <option>未対応</option>
-                        <option>対応中</option>
-                        <option>対応済</option>
+                        <option value="">選択してください</option>
+                        @foreach ($status as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">対応者</label>
                     <select class="form-input">
-                        <option>選択してください</option>
-                        <option>会員一覧を表示してください</option>
+                        <option value="">選択してください</option>
+                        @foreach($user as $user)
+                            <option value="{{ $user->name }}">{{ $user->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">会社名</label>
-                    <input class="form-input">
+                    <input type="text" class="form-input" name="company">
                 </div>
 
                 <div class="search-cont search-btn">
@@ -68,27 +70,32 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($contact as $contact )
                     <tr>
                         <td class="edit-icon">
-                            <p><a class="tooltip" title="編集する" href="" ><i class="fas fa-edit"></i></a></p>
+                            <p><a class="tooltip" title="編集する" href="{{ route('admin_contact_edit',$contact) }}" ><i class="fas fa-edit"></i></a></p>
                         </td>
                         <td class ="edit-icon">
                         {{-- 管理者ユーザー以外削除可能 --}}
-                        <p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p>
+                        <a href="{{ route('delete',$contact) }}"><p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p><a>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{ $contact->status }}</p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{ $user->name}}</p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{ $contact->company_name }}</p>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{ $contact->user_name }}</p>
+                        </td>
+                        <td>
+                            <p>{{ $contact->tele_num }}</p>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

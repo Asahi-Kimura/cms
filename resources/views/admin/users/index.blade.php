@@ -14,20 +14,22 @@
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
-            <form>
+            <form method="GET" action="{{ route('search') }}">
                 <div class="search-cont">
                     <label class="label-ttl">名前</label>
-                    <input class="form-input">
+                    <input type="text" class="form-input" name="name" value="{{ old('name') }}">
                 </div>
                 <div class="search-cont">
-                    <label class="label-ttl">電話番号</label>
-                    <input class="form-input">
+                    <label class="label-ttl" >電話番号</label>
+                    <input type="text" class="form-input" name="phone_number" value="{{ old('phone_number') }}">
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">都道府県</label>
-                    <select class="form-input">
-                        <option>選択してください</option>
-                        <option>都道府県一覧を表示してください</option>
+                    <select class="form-input" name="prefecture_id">
+                        <option value="">選択してください</option>
+                        @foreach ($pref as $key => $value)
+                                <option value="{{ $key }}" >{{ $value }}</option>
+                            @endforeach
                     </select>
                 </div>
                 <div class="search-cont search-btn">
@@ -93,7 +95,7 @@
                         <td>
                             <p>{{$user->phone_number}}</p>
                         </td>
-                        <td>
+                        <td> 
                             <p>{{ $user->prefecture->prefecture_chinese_name }}</p>
                         </td>
                         <td>

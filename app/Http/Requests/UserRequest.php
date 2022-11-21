@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
         $post_code_regex = '/^[0-9]{3}-[0-9]{4}$/';
         // バリデーションルール
         return [
-            'prefecture_id' => 'required',
+            
             'authority' => 'required',
             'name' => 'required|string|max:30',
             'kana' => 'required|max:30|regex:/^[\t\sァ-ヾ]+$/u',
@@ -43,9 +43,8 @@ class UserRequest extends FormRequest
             'phone_number' => new PhoneNumberRule($phone_regex),
             // 郵便番号独自ルールphone_regex
             'post_code' => new PostcodeRule($post_code_regex),
-            // 'prefecture' => 'required',
+            'prefecture_id' => 'required',
             'city' => 'required|max:30',
-            'address' => 'required|max:50',
             'remark' => 'max:500'
         ];
     }

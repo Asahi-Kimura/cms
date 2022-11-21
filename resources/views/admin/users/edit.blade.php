@@ -114,7 +114,6 @@
                         <input type="tel" name="post_code[1]" value="@if($user->id != null){{old('post_code[1]',$post_code[1])}} @else {{old('post_code[1]')}} @endif" class="form-control" placeholder="0000">
                     </div>
                 </div>
-                
                 <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         <label class="input-group" for="inputGroupSelect01"><span class="Form-Item-Label-Required">必須</span>都道府県
@@ -130,7 +129,6 @@
                             @foreach ($pref as $key => $value)
                                 <option value="{{ $key }}" @if($user->id != null) {{ $value == $user->prefecture->prefecture_chinese_name ? 'selected' : '' }} @else {{ old('prefecture_id') == $key ? 'selected':'' }} @endif>{{ $value }}</option>
                             @endforeach
-                            
                     </select>
                 </div>
                 <div class="form-group">

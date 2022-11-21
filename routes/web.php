@@ -60,10 +60,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/new', [UserController::class,'create'])->name('new');
     //ユーザー新規作成、編集画面処理
     Route::post('/users/edit/store/{user?}', [UserController::class,'store'])->name('admin_store');
+    //検索機能
+    Route::get('/search', [UserController::class,'search'])->name('search');
     //論理削除
     Route::get('/delete/{user}', [UserController::class,'delete'])->name('delete');
+    //論理削除
+    Route::get('/delete/{contact}', [ContactController::class,'delete'])->name('delete');
+    //お問い合わせ一覧
     Route::get('/received', [ContactController::class,'show'])->name('admin_contact');
+    //お問い合わせ編集
     Route::get('/received/edit/', [ContactController::class,'edit'])->name('admin_contact_edit');
+    //お問い合わせ処理
+    Route::get('/received/edit/{contact?}', [ContactController::class,'edit'])->name('admin_contact_store');
     Route::get('/news', [NewsController::class,'index'])->name('admin_news');
     Route::get('/news/edit/', [NewsController::class,'edit'])->name('admin_news_edit');
 });
