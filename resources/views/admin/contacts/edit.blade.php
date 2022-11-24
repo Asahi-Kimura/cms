@@ -13,71 +13,89 @@
 	</div>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="alert-danger">エラーがあります</div>
-            <form method="POST" action="">
+            @if($errors->any())
+                <div class="alert-danger">エラーがあります</div>
+            @endif
+            <form method="POST" action="{{ route('admin_contact_store',$contact) }}">
+                @csrf
+                <input type="hidden" name="id" value="{{ $contact->id }}">
                 <div class="form-group">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">ステータス
                     </div>
                     <select name="status"class="status-select" id="inputGroupSelect01">
-                        <option value="">未対応</option>
-                        <option value="">対応中</option>
-                        <option value="">対応済</option>
+                        <option value="">選択してください</option>
+                        @foreach ($status as $key => $value)
+                            <option value="{{ $key }}" {{ $key == old('status') ? 'selected':'' }}>{{ $value }}</option>
+                        @endforeach
                     </select>
+                    <small>
+                        @if( $errors->has( 'status' ) )
+                            <li>ステータスを選択してください</li>
+                        @endif 
+                    </small>
                 </div>
                 <div class="form-group">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">対応者
-                        <small>
-                            ※エラーを表示してください
-                        </small>
                     </div>
-                    <select name="status"class="status-select" id="inputGroupSelect01">
-                        <option value="">会員一覧が表示されます</option>
+                    <select name="received_name"class="status-select" id="inputGroupSelect01">
+                        <option value="">会員を選択する</option>
+                            @foreach ($user as $user)
+                                <option value="{{ $user->name }}">{{ $user->name }}</option>
+                            @endforeach
                     </select>
+                    <small>
+                        @if( $errors->has( 'received_name' ) )
+                            <li>対応者を選択してください</li>
+                        @endif 
+                    </small>
                 </div>
                 <div class="form-group">
                     <label class="input-group-text" for="inputGroupSelect01">お問い合わせ内容
                     </label>
                     <div>
-                        お問い合わせ内容が入ります
+                        {{ $contact->content }}
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">備考
                         <small>
-                            ※エラーを表示してください
+                            <small>
+                                @if( $errors->has('remark') )
+                                    <li>{{ $errors->first('remark') }}</li>
+                                @endif 
                         </small>
                     </div>
-                    <textarea name="remark" form-control  rows="20"></textarea>
+                    <textarea name="remark" form-control  rows="20">{{ old('remark') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label class="input-group-text" for="inputGroupSelect01">お問い合わせ情報</label>
                     <ul>
                         <li class="contact-list">
-                            種別:アンケート　会社事業
+                            種別: @foreach($inquiry_type as $type)・{{ $type }}@endforeach
                         </li>
                         <li class="contact-list">
-                            会社名:revite
+                            会社名:{{ $contact->company_name }}
                         </li>
                         <li class="contact-list">
-                            氏名:hoge
+                            氏名:{{ $contact->user_name }}
                         </li>
                         <li class="contact-list">
-                            電話番号:000-111-222
+                            電話番号:{{ $contact->tele_num }}
                         </li>
                         <li class="contact-list">
-                            メールアドレス:test@gmail.com
+                            メールアドレス:{{ $contact->email }}
                         </li>
                         <li class="contact-list">
-                            生年月日: 2022/10/01
+                            生年月日: {{ $contact->birthday }}
                         </li>
                         <li class="contact-list">
-                            性別:男
+                            性別:{{ $sex[$contact->sex] }}
                         </li>
                         <li class="contact-list">
-                            職業:エンジニア
+                            職業:{{ $job[$contact->job] }}
                         </li>
                     </ul>
                 </div>

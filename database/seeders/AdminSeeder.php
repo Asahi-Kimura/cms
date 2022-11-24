@@ -16,18 +16,44 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'authority' => 'admin',
-            'prefecture_id' => '1',
-            'name' => 'yamada',
-            'kana' => 'ヤマダ',
-            'email' => 'admin@gmail.com',
-            'phone_number' => '090-1234-5678',
-            'post_code' => '222-2222',
-            'city' => '4',
-            'address' => '4',
-            'password' => Hash::make('password'),
-            // 'remember_token' => Str::random(60)
-        ]);
+            [
+                'authority' => 'admin',
+                'prefecture_id' => '1',
+                'name' => 'yamada',
+                'kana' => 'ヤマダ',
+                'email' => 'admin@gmail.com',
+                'phone_number' => '090-1234-5678',
+                'post_code' => '222-2222',
+                'city' => '4',
+                'address' => '4',
+                'password' => Hash::make('password'),
+            ],
+            [
+                'authority' => 'guest',
+                'prefecture_id' => '3',
+                'name' => 'toyota',
+                'kana' => 'トヨタ',
+                'email' => 'toyota@gmail.com',
+                'phone_number' => '080-1134-5578',
+                'post_code' => '992-2322',
+                'city' => '5',
+                'address' => '6',
+                'password' => Hash::make('password'),
+            ],
+            [
+                'authority' => 'guest',
+                'prefecture_id' => '10',
+                'name' => 'kimura',
+                'kana' => 'キムラ',
+                'email' => 'kimura@gmail.com',
+                'phone_number' => '010-1434-5178',
+                'post_code' => '002-8787',
+                'city' => '1',
+                'address' => '2',
+                'password' => Hash::make('password'),
+            ],
+    ],
+    );
         DB::table('prefectures')->insert([ 
             ['prefecture_name' => 'hokkaido','prefecture_chinese_name' => '北海道'],
             ['prefecture_name' => 'aomori','prefecture_chinese_name' => '青森県'],

@@ -34,20 +34,23 @@ class ContactRequest extends FormRequest
             return [
                 'status' => 'required',
                 'remark' => 'max:500',
+                'received_name' => 'required'
             ];
         }
-        // バリデーションルール
-        return [
-            'inquiry_type' => 'required' ,
-            'company_name' => 'required|max:20',
-            'user_name' => 'required|max:20',
-            'tele_num'  => 'required|regex:/^[0-9-]+$/',
-            'email'  => 'required|email',
-            'birthday' => 'required|before:today',
-            'sex' => 'required',
-            'job'=> 'required',
-            'content'  => 'required|max:500',
-            'status' => 'required',
-        ];
+        else {
+            // バリデーションルール
+            return [
+                'inquiry_type' => 'required' ,
+                'company_name' => 'required|max:20',
+                'user_name' => 'required|max:20',
+                'tele_num'  => 'required|regex:/^[0-9-]+$/',
+                'email'  => 'required|email',
+                'birthday' => 'required|before:today',
+                'sex' => 'required',
+                'job'=> 'required',
+                'content'  => 'required|max:500',
+                'status' => 'required',     
+            ];
+        }
     }
 }

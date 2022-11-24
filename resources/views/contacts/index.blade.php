@@ -17,7 +17,7 @@
             <div>
                 <div>
                     @foreach( $inquiry_type as $key => $value )
-                        <input type="checkbox" class="form-check-input" name="inquiry_type[]" id="{{$key}}" value="{{$value}}"  {{ is_array(old("inquiry_type")) && in_array($value, old("inquiry_type"), true) ? 'checked' : ''}}>
+                        <input type="checkbox" class="form-check-input" name="inquiry_type[]" id="{{ $key }}" value="{{ $value }}"  {{ is_array(old("inquiry_type")) && in_array($value, old("inquiry_type"), true) ? 'checked' : ''}}>
                         <label for="{{$key}}" class="ck-box check-wrapper" >{{ $value }}</label>
                     @endforeach
                 </div> 

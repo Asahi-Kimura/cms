@@ -19,7 +19,7 @@
                     <select class="form-input">
                         <option value="">選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{$key}}">{{$value}}</option>
+                            <option value="{{ $key }}">{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">会社名</label>
-                    <input type="text" class="form-input" name="company">
+                    <input type="text" class="form-input" name="company" >
                 </div>
 
                 <div class="search-cont search-btn">
@@ -76,14 +76,16 @@
                             <p><a class="tooltip" title="編集する" href="{{ route('admin_contact_edit',$contact) }}" ><i class="fas fa-edit"></i></a></p>
                         </td>
                         <td class ="edit-icon">
-                        {{-- 管理者ユーザー以外削除可能 --}}
-                        <a href="{{ route('delete',$contact) }}"><p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p><a>
+                            {{-- 管理者ユーザー以外削除可能 --}}
+                            @if($user->authority == 'guest')
+                                <a href="{{ route('delete',$contact) }}"><p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p><a>
+                            @endif
                         </td>
                         <td>
-                            <p>{{ $contact->status }}</p>
+                            <p>{{ $status[$contact->status] }}</p>
                         </td>
                         <td>
-                            <p>{{ $user->name}}</p>
+                            <p>{{ $contact->received_name}}</p>
                         </td>
                         <td>
                             <p>{{ $contact->company_name }}</p>

@@ -69,13 +69,12 @@ Route::group(['middleware' => 'auth'], function () {
     //お問い合わせ一覧
     Route::get('/received', [ContactController::class,'show'])->name('admin_contact');
     //お問い合わせ編集
-    Route::get('/received/edit/', [ContactController::class,'edit'])->name('admin_contact_edit');
+    Route::get('/received/edit/{contact?}', [ContactController::class,'edit'])->name('admin_contact_edit');
     //お問い合わせ処理
-    Route::get('/received/edit/{contact?}', [ContactController::class,'edit'])->name('admin_contact_store');
+    Route::post('store/{contact}', [ContactController::class,'store'])->name('admin_contact_store');
     Route::get('/news', [NewsController::class,'index'])->name('admin_news');
     Route::get('/news/edit/', [NewsController::class,'edit'])->name('admin_news_edit');
 });
-
 
 
 

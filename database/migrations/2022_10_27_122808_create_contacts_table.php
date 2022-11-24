@@ -32,6 +32,8 @@ class CreateContactsTable extends Migration
             $table->integer('status')->nullable();
             //備考欄
             $table->string('remark')->nullable();
+            //対応者
+            $table->string('received_name')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

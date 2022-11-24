@@ -7,7 +7,7 @@ use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Contact;
 
-class ContactRequest extends FormRequest
+class ContactSearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
