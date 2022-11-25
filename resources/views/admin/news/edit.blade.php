@@ -13,7 +13,7 @@
 	</div>
     <div class="container">
         <div class="row justify-content-center">
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('admin_news_edit') }}">
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>タイトル
                         <small>

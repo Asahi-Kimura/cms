@@ -74,7 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/received/edit/{contact?}', [ContactController::class,'edit'])->name('admin_contact_edit');
     //お問い合わせ処理
     Route::post('store/{contact}', [ContactController::class,'store'])->name('admin_contact_store');
+    
     Route::get('/news', [NewsController::class,'index'])->name('admin_news');
+    //新着情報新規作成、編集
     Route::get('/news/edit/', [NewsController::class,'edit'])->name('admin_news_edit');
 });
 

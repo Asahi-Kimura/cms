@@ -10,7 +10,7 @@
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">新着情報一覧</h1>
-        <p><a class="new-btn" href=""><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
+        <p><a class="new-btn" href="{{ route('admin_news_edit') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
@@ -61,7 +61,7 @@
                 <tbody>
                     <tr>
                         <td class="edit-icon">
-                            <p><a class="tooltip" title="編集する" href="" ><i class="fas fa-edit"></i></a></p>
+                            <p><a class="tooltip" title="編集する" href="{{ route('admin_news_edit') }}" ><i class="fas fa-edit"></i></a></p>
                         </td>
                         <td class ="edit-icon">
                             {{-- 管理者ユーザー以外削除可能 --}}
