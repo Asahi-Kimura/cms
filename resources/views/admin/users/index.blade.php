@@ -14,14 +14,14 @@
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
-            <form method="GET" action="{{ route('search') }}">
+            <form method="GET" action="{{ route('search_user') }}">
                 <div class="search-cont">
                     <label class="label-ttl">名前</label>
-                    <input type="text" class="form-input" name="name" value="{{ old('name') }}">
+                    <input type="text" class="form-input" name="name" value="">
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl" >電話番号</label>
-                    <input type="text" class="form-input" name="phone_number" value="{{ old('phone_number') }}">
+                    <input type="text" class="form-input" name="phone_number" value="">
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">都道府県</label>
@@ -80,7 +80,7 @@
                         <td class ="edit-icon">
                             {{-- 管理者ユーザー以外削除可能 --}}
                             @if($user->authority == 'guest')
-                            <a href="{{ route('delete',$user) }}"><p class="delete-btn tooltip"  title="削除する" data-id=""><i class="fas fa-trash"></i></p></a>
+                            <a href="{{ route('delete_user',$user) }}"><p class="delete-btn tooltip"  title="削除する" data-id=""><i class="fas fa-trash"></i></p></a>
                             @endif
                         </td>
                         <td>

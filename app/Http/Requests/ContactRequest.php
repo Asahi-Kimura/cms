@@ -34,7 +34,7 @@ class ContactRequest extends FormRequest
             return [
                 'status' => 'required',
                 'remark' => 'max:500',
-                'received_name' => 'required'
+                'user_id' => 'required'
             ];
         }
         else {

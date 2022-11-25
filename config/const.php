@@ -3,7 +3,7 @@ return [
     
     'sex' => 
     [
-        'man' => '男',
+        'male' => '男',
         'female' => '女',
         'others' => 'その他'  ,
     ],

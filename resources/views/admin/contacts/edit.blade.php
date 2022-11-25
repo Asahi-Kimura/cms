@@ -39,10 +39,10 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">対応者
                     </div>
-                    <select name="received_name"class="status-select" id="inputGroupSelect01">
+                    <select name="user_id"class="status-select" id="inputGroupSelect01">
                         <option value="">会員を選択する</option>
                             @foreach ($user as $user)
-                                <option value="{{ $user->name }}">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                     </select>
                     <small>

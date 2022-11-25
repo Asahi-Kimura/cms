@@ -11,8 +11,8 @@ class Contact extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = ['id'];
 
-    public function category()
+    public function user()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(User::class);
     }
 }

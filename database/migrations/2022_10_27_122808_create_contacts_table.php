@@ -15,6 +15,7 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('questionnaire')->nullable();
             $table->string('company_business')->nullable();
             $table->string('contact')->nullable();
@@ -32,8 +33,6 @@ class CreateContactsTable extends Migration
             $table->integer('status')->nullable();
             //備考欄
             $table->string('remark')->nullable();
-            //対応者
-            $table->string('received_name')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

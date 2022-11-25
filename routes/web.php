@@ -60,12 +60,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/new', [UserController::class,'create'])->name('new');
     //ユーザー新規作成、編集画面処理
     Route::post('/users/edit/store/{user?}', [UserController::class,'store'])->name('admin_store');
-    //検索機能
-    Route::get('/search', [UserController::class,'search'])->name('search');
+    //会員検索機能
+    Route::get('/search', [UserController::class,'search'])->name('search_user');
+    //お問い合わせ検索機能
+    Route::get('/contacts/search', [ContactController::class,'search'])->name('search_contact');
     //論理削除
-    Route::get('/delete/{user}', [UserController::class,'delete'])->name('delete');
+    Route::get('/du/{user}', [UserController::class,'delete'])->name('delete_user');
     //論理削除
-    Route::get('/delete/{contact}', [ContactController::class,'delete'])->name('delete');
+    Route::get('/dc/{contact}', [ContactController::class,'delete'])->name('delete_contact');
     //お問い合わせ一覧
     Route::get('/received', [ContactController::class,'show'])->name('admin_contact');
     //お問い合わせ編集

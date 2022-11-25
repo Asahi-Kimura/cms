@@ -15,9 +15,10 @@ class ContactController extends Controller
     {
         $contact = Contact::all();
         $user = User::all();
+
         $auth = config('const.authority');
         $status = config('const.status');
-        return view('admin.contacts.show',compact('status','contact','user','auth'));
+        return view('admin.contacts.show',compact('status','contact','user'));
     }
 
     // 管理画面詳細
@@ -49,11 +50,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request,Contact $contact)
     {
-        
         $contact->fill($request->all())->save();
-
-        
-        
         return redirect()->route('admin_contact');
     }
 
@@ -66,25 +63,26 @@ class ContactController extends Controller
         $keyword_authority = $request->authority;
         $keyword_company = $request->company;
 
+        $status = config('const.status');
         $query = Contact::query();
         if(!empty($keyword_status)){
-            $query->where('name','like',"%{$keyword_status}%");
+            $query->where('status','like',"%{$keyword_status}%");
         }
         if(!empty($keyword_authority)){
-            $query->where('keyword_authority','like',"%{$keyword_authority}%");
+            $query->where('received_name','like',"%{$keyword_authority}%");
         }
         if(!empty($keyword_company)){
-            $query->where('keyword_authority','like',"%{$keyword_authority}%");
+            $query->where('company_name','like',"%{$keyword_company}%");
         }
         $contact = $query->get();
 
-        return view('admin_contact',compact('user','contact'));
+        return view('admin.contacts.show',compact('user','contact','status'));
     }
     
     //削除
     public function delete(Contact $contact)
     {
         $contact->delete();
-        return redirect()->route('user');
+        return redirect()->route('admin_contact');
     }
 }

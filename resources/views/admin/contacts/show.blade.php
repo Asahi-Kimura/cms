@@ -6,35 +6,34 @@
 @include('admin.layouts.sub')
 @include('admin.layouts.header')
 @section('content')
-
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">お問い合わせ一覧</h1>
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
-            <form>
+            <form action="{{ route('search_contact') }}" method="GET">
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
-                    <select class="form-input">
+                    <select class="form-input" name="status">
                         <option value="">選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
+                            <option value="{{ $key }}" {{ $status == old('status') ? 'selected':'' }}>{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">対応者</label>
-                    <select class="form-input">
+                    <select class="form-input" name="authority">
                         <option value="">選択してください</option>
                         @foreach($user as $user)
-                            <option value="{{ $user->name }}">{{ $user->name }}</option>
+                            <option value="{{ $user->name }}" {{ $user == old('authority') ? 'selected':'' }}>{{ $user->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">会社名</label>
-                    <input type="text" class="form-input" name="company" >
+                    <input type="text" class="form-input" name="company" value="{{ old('company') }}" >
                 </div>
 
                 <div class="search-cont search-btn">
@@ -77,15 +76,15 @@
                         </td>
                         <td class ="edit-icon">
                             {{-- 管理者ユーザー以外削除可能 --}}
-                            @if($user->authority == 'guest')
-                                <a href="{{ route('delete',$contact) }}"><p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p><a>
+                            @if($contact->user->authority == 'guest')
+                                <a href="{{ route('delete_contact',$contact) }}"><p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p><a>
                             @endif
                         </td>
                         <td>
                             <p>{{ $status[$contact->status] }}</p>
                         </td>
                         <td>
-                            <p>{{ $contact->received_name}}</p>
+                            <p>{{ $contact->user->name }}</p>
                         </td>
                         <td>
                             <p>{{ $contact->company_name }}</p>

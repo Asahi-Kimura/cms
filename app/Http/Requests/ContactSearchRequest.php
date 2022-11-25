@@ -28,5 +28,7 @@ class ContactSearchRequest extends FormRequest
 
     public function rules()
     {
-        }
+        return [
+        ];
+    }
 }

@@ -46,7 +46,7 @@
                             @endif
                         </small>
                     </label>
-                    <input type="name" name="name" value="{{old('name',$user->name)}}" class="form-control" id="exampleInputEmail1" placeholder="山田">
+                    <input type="name" name="name" value="{{ old('name',$user->name) }}" class="form-control" id="exampleInputEmail1" placeholder="山田">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>フリガナ
@@ -56,7 +56,7 @@
                             @endif
                         </small>
                     </label>
-                    <input type="text" name="kana" value="{{old('kana',$user->kana)}}" placeholder="タロウ">
+                    <input type="text" name="kana" value="{{ old('kana',$user->kana) }}" placeholder="タロウ">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>メールアドレス
@@ -66,7 +66,7 @@
                             @endif
                         </small>
                     </label>
-                    <input type="email" name="email"  value="{{old('email',$user->email)}}" class="form-control" id="exampleInputEmail" placeholder="example@hoge.com">
+                    <input type="email" name="email"  value="{{ old('email',$user->email) }}" class="form-control" id="exampleInputEmail" placeholder="example@hoge.com">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">@if($user->password == null)<span class="Form-Item-Label-Required">必須 @endif</span>パスワード
@@ -76,7 +76,7 @@
                             @endif
                         </small>
                     </label>
-                    <input type="password" name="password" value="{{old('password')}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="password" value="{{ old('password') }}" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 <div class="form-group">
                     @php $phone_number = explode('-',$user->phone_number) @endphp
@@ -88,13 +88,13 @@
                         </small>
                     </label>
                     <div class="col">
-                        <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{old('phone_number[0]',$phone_number[0])}} @else {{old('phone_number[0]')}} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{ old('phone_number[0]',$phone_number[0]) }} @else {{old('phone_number[0]')}} @endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[1]"  value="@if($user->id != null){{old('phone_number[1]',$phone_number[1])}} @else {{old('phone_number[1]')}} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[1]"  value="@if($user->id != null){{ old('phone_number[1]',$phone_number[1]) }} @else {{old('phone_number[1]')}} @endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[2]"  value="@if($user->id != null){{old('phone_number[2]',$phone_number[2])}} @else {{old('phone_number[2]')}} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[2]"  value="@if($user->id != null){{ old('phone_number[2]',$phone_number[2]) }} @else {{old('phone_number[2]')}} @endif" class="form-control"  placeholder="000">
                     </div>
                 </div>
 
@@ -108,10 +108,10 @@
                         </small>
                     </label>
                     <div class="col">
-                        <input type="tel" name="post_code[0]" value="@if($user->id != null){{old('post_code[0]',$post_code[0])}} @else {{old('post_code[0]')}} @endif" class="form-control" placeholder="000">
+                        <input type="tel" name="post_code[0]" value="@if($user->id != null){{ old('post_code[0]',$post_code[0]) }} @else {{ old('post_code[0]') }} @endif" class="form-control" placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="post_code[1]" value="@if($user->id != null){{old('post_code[1]',$post_code[1])}} @else {{old('post_code[1]')}} @endif" class="form-control" placeholder="0000">
+                        <input type="tel" name="post_code[1]" value="@if($user->id != null){{ old('post_code[1]',$post_code[1]) }} @else {{ old('post_code[1]') }} @endif" class="form-control" placeholder="0000">
                     </div>
                 </div>
                 <div class="input-group pb-3">
@@ -139,11 +139,11 @@
                             @endif
                         </small>
                     </label>
-                    <input type="text" name="city" value="{{old('city',$user->city)}}">
+                    <input type="text" name="city" value="{{ old('city',$user->city) }}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputKana">番地・アパート名</label>
-                    <input type="text" name="address" value="{{old('address',$user->address)}}">
+                    <input type="text" name="address" value="{{ old('address',$user->address) }}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">備考欄
