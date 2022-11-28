@@ -14,23 +14,23 @@
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
-            <form>
+            <form action="" method="GET">
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
-                    <select class="form-input">
+                    <select name="status" class="form-input">
                         <option>選択してください</option>
-                        <option>未対応</option>
-                        <option>対応中</option>
-                        <option>対応済</option>
+                        @foreach ($status as $key => $value)
+                            <option value="{{ $key }} {{ $key == old('status') ? selected:'' }}">{{$value}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">タイトル</label>
-                    <input class="form-input">
+                    <input class="form-input" name="title">
                 </div>
 
                 <div class="search-cont search-btn">
-                    <button class="form-input" type="submit">検索</button>
+                    <button class="form-input" type="submit">検索{{ route('search_news') }}</button>
                 </div>
             </form>
         </div>
@@ -61,11 +61,13 @@
                 <tbody>
                     <tr>
                         <td class="edit-icon">
-                            <p><a class="tooltip" title="編集する" href="{{ route('admin_news_edit') }}" ><i class="fas fa-edit"></i></a></p>
+                            @if($news->id != null)
+                                <p><a class="tooltip" title="編集する" href="{{ route('admin_news_edit',$news) }}" ><i class="fas fa-edit"></i></a></p>
+                            @endif
                         </td>
                         <td class ="edit-icon">
                             {{-- 管理者ユーザー以外削除可能 --}}
-                            <p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p>
+                            {{-- <p class="delete-btn tooltip" title="削除する" data-id=""><a href="{{ route('delete_news',$news) }}"><i class="fas fa-trash"></i></a></p> --}}
                         </td>
                         <td>
                             <p>公開中</p>

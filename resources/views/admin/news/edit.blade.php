@@ -13,11 +13,20 @@
 	</div>
     <div class="container">
         <div class="row justify-content-center">
-            <form method="POST" action="{{ route('admin_news_edit') }}">
+            <form method="POST" action="{{ route('admin_news_store',$news) }}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="status" value="1">
+                @if($news->id != null)
+                    <input type="hidden" name="id" value="{{ $news->id }}">
+                @else
+                    <input type="hidden" name="id" value="">
+                @endif
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>タイトル
                         <small>
-                            ※エラー文を表示してください
+                            @if( $errors->has('title') )
+                                <li>{{ $errors->first('title') }}</li>
+                            @endif
                         </small>
                     </label>
                     <textarea name="title"  class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
@@ -25,15 +34,19 @@
                 <div class="form-group">
                     <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像
                         <small>
-                            ※エラー文を表示してください
+                            @if( $errors->has('file_image') )
+                                <li>{{ $errors->first('file_image') }}</li>
+                            @endif
                         </small>
                     </label>
-                    <input type="file" name=""  value="" class="form-control">
+                    <input type="file" name="file_image"  value="{{ old('file_image') }}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>本文
                         <small>
-                            ※エラー文を表示してください
+                            @if( $errors->has('content') )
+                                <li>{{ $errors->first('content') }}</li>
+                            @endif 
                         </small>
                     </label>
                     <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
@@ -43,23 +56,39 @@
                     <div class="input-group-prepend">
                         <label class="input-group" for="inputGroupSelect01"><span class="Form-Item-Label-Required">必須</span>公開開始
                             <small>
-                                ※エラー文を表示してください
+                                    @if( $errors->has('start_show') )
+                                        <li>{{ $errors->first('start_show') }}</li>
+                                    @endif 
                             </small>
                         </label>
                     </div>
                     {{-- // datetimepickerを利用してください --}}
-                    <input type="text" name="" value="" class="form-control">
+                    <input type="text" id="start_show" name="start_show" value="" class="form-control">
                 </div>
                 <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         {{-- // datetimepickerを利用してください --}}
                         <label class="input-group" for="inputGroupSelect01">公開終了</label>
                     </div>
-                    <input type="text" name="" value="" class="form-control">
+                    <input type="text" id="end_show" name="end_show" value="" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">登録する</button>
             </form>
         </div>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- jQuery-datetimepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" />
+<script>
+    $(function() {
+        $('#start_show').datetimepicker({
+        });
+        $('#end_show').datetimepicker({
+        });
+    });
+</script>
 @endsection

@@ -64,9 +64,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/search', [UserController::class,'search'])->name('search_user');
     //お問い合わせ検索機能
     Route::get('/contacts/search', [ContactController::class,'search'])->name('search_contact');
-    //論理削除
+    //論理削除（ユーザー）
     Route::get('/du/{user}', [UserController::class,'delete'])->name('delete_user');
-    //論理削除
+    //論理削除（お問い合わせ）
     Route::get('/dc/{contact}', [ContactController::class,'delete'])->name('delete_contact');
     //お問い合わせ一覧
     Route::get('/received', [ContactController::class,'show'])->name('admin_contact');
@@ -74,10 +74,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/received/edit/{contact?}', [ContactController::class,'edit'])->name('admin_contact_edit');
     //お問い合わせ処理
     Route::post('store/{contact}', [ContactController::class,'store'])->name('admin_contact_store');
-    
+
+    //新着情報画面
     Route::get('/news', [NewsController::class,'index'])->name('admin_news');
     //新着情報新規作成、編集
-    Route::get('/news/edit/', [NewsController::class,'edit'])->name('admin_news_edit');
+    Route::get('/news/edit/{news?}', [NewsController::class,'edit'])->name('admin_news_edit');
+    //編集処理
+    Route::post('aa/store/{news?}', [NewsController::class,'store'])->name('admin_news_store');
+    //新着検索機能
+    Route::get('/news/search', [NewsController::class,'search'])->name('search_news');
+    //論理削除（お問い合わせ
+    // Route::get('/dn/{news}', [NewsController::class,'delete'])->name('delete_news');
+
 });
 
 

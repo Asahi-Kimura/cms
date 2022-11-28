@@ -15,7 +15,6 @@ class ContactController extends Controller
     {
         $contact = Contact::all();
         $user = User::all();
-
         $auth = config('const.authority');
         $status = config('const.status');
         return view('admin.contacts.show',compact('status','contact','user'));
