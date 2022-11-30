@@ -30,7 +30,7 @@ class NewsRequest extends FormRequest
             'content' => 'required|max:255',
             'start_show' => 'required',
             'end_show' => 'nullable',
-            'file_image' => 'required'   
+            'file_image' => 'required|image'   
         ];
     }
     public function attributes()

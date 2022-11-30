@@ -81,7 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
     //新着情報新規作成、編集
     Route::get('/news/edit/{news?}', [NewsController::class,'edit'])->name('admin_news_edit');
     //編集処理
-    Route::post('aa/store/{news?}', [NewsController::class,'store'])->name('admin_news_store');
+    Route::post('admin/store/{news?}', [NewsController::class,'store'])->name('admin_news_store');
     //新着検索機能
     Route::get('/news/search', [NewsController::class,'search'])->name('search_news');
     //論理削除（お問い合わせ
