@@ -25,7 +25,7 @@ class NewsRequest extends FormRequest
     {
         return [
             'id' => 'nullable',
-            'status' => 'required',
+            // 'status' => 'required',
             'title' => 'required|max:255',
             'content' => 'required|max:255',
             'start_show' => 'required',

@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class News extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $guarderd = ['id'];
-    
+    // protected $guarderd = ['id'];
+    protected $fillable = [
+        '_token',
+        'user_id',
+        'title',
+        'content',
+        'start_show',
+        'end_show',
+        'file_image',     
+    ];
 }

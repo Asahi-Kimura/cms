@@ -16,6 +16,7 @@ class ContactFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => mt_rand(1,3),
             'questionnaire' => $this->faker->randomElement(['checked','']),
             'company_business' => $this->faker->randomElement(['checked','']),
             'contact' => $this->faker->randomElement(['checked','']),

@@ -15,11 +15,9 @@
         <div class="row justify-content-center">
             <form method="POST" action="{{ route('admin_news_store',$news) }}" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="status" value="1">
+                {{-- <input type="hidden" name="status" value="1"> --}}
                 @if($news->id != null)
                     <input type="hidden" name="id" value="{{ $news->id }}">
-                @else
-                    <input type="hidden" name="id" value="">
                 @endif
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>タイトル

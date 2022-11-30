@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use Attribute;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
@@ -27,10 +28,17 @@ class NewsController extends Controller
     }
     public function store(NewsRequest $request,News $news){
         $attributes = $request->all();
+        // dd($attributes);
+        
         $news_dir = 'news';
         $file_name = $request->file_image->getClientOriginalName();
-        $request->file_image->store('public/'.$news_dir);
-        dd('hogehoge');
+        dump($file_name);
+        $attributes['file_image'] = $request->file_image->storeAs('public/'.$news_dir,$file_name);
+        unset($attributes['_token']);
+        // dd($attributes);
+        $news->fill($attributes)->save();
+
+        // dd('hogehoge');
 
 
         return redirect()->route('admin_news');

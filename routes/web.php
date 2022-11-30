@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactsController;
+// use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -84,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     //新着検索機能
     Route::get('/news/search', [NewsController::class,'search'])->name('search_news');
     //論理削除（お問い合わせ
-    // Route::get('/dn/{news}', [NewsController::class,'delete'])->name('delete_news');
+    Route::get('/dn/{news}', [NewsController::class,'delete'])->name('delete_news');
 
 });
 
