@@ -15,7 +15,9 @@
         <div class="row justify-content-center">
             <form method="POST" action="{{ route('admin_news_store',$news) }}" enctype="multipart/form-data">
                 @csrf
-                {{-- <input type="hidden" name="status" value="1"> --}}
+                {{-- 新規作成者 --}}
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+
                 @if($news->id != null)
                     <input type="hidden" name="id" value="{{ $news->id }}">
                 @endif

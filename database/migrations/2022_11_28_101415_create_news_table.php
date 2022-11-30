@@ -18,8 +18,8 @@ class CreateNewsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('title')->nullable();
             $table->string('content')->nullable();
-            $table->string('start_show')->nullable();
-            $table->string('end_show')->nullable();
+            $table->dateTime('start_show')->nullable();
+            $table->dateTime('end_show')->nullable();
             $table->string('file_image')->nullable();     
             $table->softDeletes();
             $table->timestamps();

@@ -59,29 +59,53 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="edit-icon">
-                            @if($news->id != null)
-                                <p><a class="tooltip" title="編集する" href="{{ route('admin_news_edit',$news) }}" ><i class="fas fa-edit"></i></a></p>
-                            @endif
-                        </td>
-                        <td class ="edit-icon">
-                            {{-- 管理者ユーザー以外削除可能 --}}
-                            {{-- <p class="delete-btn tooltip" title="削除する" data-id=""><a href="{{ route('delete_news',$news) }}"><i class="fas fa-trash"></i></a></p> --}}
-                        </td>
-                        <td>
-                            <p>公開中</p>
-                        </td>
-                        <td>
-                            <p>タイトル</p>
-                        </td>
-                        <td>
-                            <p>2022/10/01 00:00</p>
-                        </td>
-                        <td>
-                            <p>2022/10/01 00:00</p>
-                        </td>
-                    </tr>
+                    @foreach($news as $news)
+                        <tr>
+                            <td class="edit-icon">
+                                @if($news->id != null)
+                                    <p><a class="tooltip" title="編集する" href="{{ route('admin_news_edit',$news) }}" ><i class="fas fa-edit"></i></a></p>
+                                @endif
+                            </td>
+                            <td class ="edit-icon">
+                                {{-- 管理者ユーザー以外削除可能 --}}
+                                @if($news->user->authority != 'guest')
+                                    <p class="delete-btn tooltip" title="削除する" data-id=""><a href="{{ route('delete_news',$news) }}"><i class="fas fa-trash"></i></a></p>
+                                @endif
+                            </td>
+                            <td>
+                                @php
+                                    $start_show = new DateTime($news->start_show);
+                                    $now_time = new DateTime();
+                                    $now_time->format('Y-m-d H:i');
+                                    $end_show = new DateTime($news->end_show);
+                                @endphp
+                                @if($end_show != null)
+                                    @if($now_time < $start_show)
+                                        <p>公開前</p>
+                                    @elseif($start_show < $now_time && $now_time < $end_show)
+                                        <p>公開中</p>
+                                    @elseif( $end_show < $now_time )
+                                        <p>公開終了</p>
+                                    @else
+                                        <p>エラー</p>
+                                @else
+                                    @if($now_time < $start_show)
+                                        <p>公開前</p>
+                                    @elseif($start_show < $now_time)  
+                                        <p>公開中</p>
+                                @endif
+                            </td>
+                            <td>
+                                <p>{{ $news->title }}</p>
+                            </td>
+                            <td>
+                                <p>{{ $news->start_show }}</p>
+                            </td>
+                            <td>
+                                <p>{{ $news->end_show }}</p>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

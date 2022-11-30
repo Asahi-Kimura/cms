@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Prefecture extends Model
 {
     use HasFactory;
-    protected $guarderd = ['id'];
+    protected $guarded = ['id'];
     
     public function user()
-{
-    return $this->hasOne(User::class);
-}
+    {
+        return $this->hasOne(User::class);
+    }
 }

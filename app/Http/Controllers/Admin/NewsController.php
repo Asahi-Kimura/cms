@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Attribute;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,35 +14,30 @@ class NewsController extends Controller
 {
     public function index(News $news)
     {
-        if($news->id != null){
-            $news = News::all();
-        }
-        $status = config('const.status');
+        $news = News::all();
+        $status = config('const.open');
         return view('admin.news.index',compact('status','news'));
     }
 
     public function edit(News $news)
     {
+        $user = Auth::user();
         if($news->id != null){
             $news = News::find($news->id);
         }
-        return view('admin.news.edit',compact('news'));    
+        return view('admin.news.edit',compact('news','user'));    
     }
     public function store(NewsRequest $request,News $news){
         $attributes = $request->all();
-        // dd($attributes);
-        
+        $replace_array = [" ","/",":"]; 
+        $attributes['start_show'] = str_replace($replace_array,'',$attributes['start_show']);
+        $attributes['end_show'] = str_replace($replace_array,'',$attributes['end_show']);
+        $attributes['start_show'] = date('Y-m-d H:i',strtotime($attributes['start_show']));
+        $attributes['end_show'] = date('Y-m-d H:i',strtotime($attributes['end_show']));
         $news_dir = 'news';
         $file_name = $request->file_image->getClientOriginalName();
-        dump($file_name);
         $attributes['file_image'] = $request->file_image->storeAs('public/'.$news_dir,$file_name);
-        unset($attributes['_token']);
-        // dd($attributes);
         $news->fill($attributes)->save();
-
-        // dd('hogehoge');
-
-
         return redirect()->route('admin_news');
     }
     // public function search(UserSearchRequest $request,Prefecture $prefecture)
