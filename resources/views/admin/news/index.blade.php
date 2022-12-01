@@ -14,23 +14,23 @@
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
-            <form action="" method="GET">
+            <form action="{{ route('search_news') }}" method="GET">
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
                     <select name="status" class="form-input">
                         <option>選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{ $key }} {{ $key == old('status') ? selected:'' }}">{{$value}}</option>
+                            <option value="{{ $key }} {{ $key == old('status') ? selected:'' }}">{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">タイトル</label>
-                    <input class="form-input" name="title">
+                    <input class="form-input" name="title" value="{{ old('title') }}">
                 </div>
 
                 <div class="search-cont search-btn">
-                    <button class="form-input" type="submit">検索{{ route('search_news') }}</button>
+                    <button class="form-input" type="submit">検索</button>
                 </div>
             </form>
         </div>
@@ -88,11 +88,13 @@
                                         <p>公開終了</p>
                                     @else
                                         <p>エラー</p>
-                                @else
+                                    @endif
+                                @elseif($end_show == null)
                                     @if($now_time < $start_show)
                                         <p>公開前</p>
                                     @elseif($start_show < $now_time)  
                                         <p>公開中</p>
+                                    @endif
                                 @endif
                             </td>
                             <td>

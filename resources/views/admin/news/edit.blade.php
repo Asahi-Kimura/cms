@@ -29,7 +29,7 @@
                             @endif
                         </small>
                     </label>
-                    <textarea name="title"  class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    <textarea name="title"  class="form-control" id="exampleFormControlTextarea1" rows="4">{{ old('title',$news->title) }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像
@@ -39,7 +39,7 @@
                             @endif
                         </small>
                     </label>
-                    <input type="file" name="file_image"  value="{{ old('file_image') }}" class="form-control">
+                    <input type="file" name="file_image"  value="" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>本文
@@ -49,7 +49,7 @@
                             @endif 
                         </small>
                     </label>
-                    <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="4">{{ old('content',$news->content) }}</textarea>
                 </div>
 
                 <div class="input-group pb-3">
@@ -63,14 +63,14 @@
                         </label>
                     </div>
                     {{-- // datetimepickerを利用してください --}}
-                    <input type="text" id="start_show" name="start_show" value="" class="form-control">
+                    <input type="text" id="start_show" name="start_show" value="{{ old('start_show',$news->start_show) }}" class="form-control">
                 </div>
                 <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         {{-- // datetimepickerを利用してください --}}
                         <label class="input-group" for="inputGroupSelect01">公開終了</label>
                     </div>
-                    <input type="text" id="end_show" name="end_show" value="" class="form-control">
+                    <input type="text" id="end_show" name="end_show" value="{{ old('end_show',$news->end_show) }}" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">登録する</button>
             </form>

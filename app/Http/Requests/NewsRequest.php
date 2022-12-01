@@ -44,5 +44,12 @@ class NewsRequest extends FormRequest
             'file_image' => '画像'   
         ];
     }
+    public function messages()
+    {
+        return [
+            'image' => '画像ファイルはjpg,png,svg拡張子を選択してください。'
+        ];
+    }
+
 
 }
