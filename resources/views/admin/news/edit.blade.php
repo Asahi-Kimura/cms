@@ -63,7 +63,7 @@
                         </label>
                     </div>
                     {{-- // datetimepickerを利用してください --}}
-                    <input type="text" id="start_show" name="start_show" value="{{ old('start_show',$news->start_show) }}" class="form-control">
+                    <input type="date" id="start_show" name="start_show" value="{{ old('start_show',$news->start_show) }}" class="form-control">
                 </div>
                 <div class="input-group pb-3">
                     <div class="input-group-prepend">

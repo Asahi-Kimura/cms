@@ -18,9 +18,9 @@
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
                     <select name="status" class="form-input">
-                        <option>選択してください</option>
+                        <option value=''>選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{ $key }} {{ $key == old('status') ? selected:'' }}">{{ $value }}</option>
+                            <option value="{{ $value }} {{ $key == old('status') ? selected:'' }}">{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -81,7 +81,7 @@
                                 @endphp
                                 @if($end_show != null)
                                     @if($now_time < $start_show)
-                                        <p>公開前</p>
+                                        <p>公開開始前</p>
                                     @elseif($start_show < $now_time && $now_time < $end_show)
                                         <p>公開中</p>
                                     @elseif( $end_show < $now_time )
@@ -91,7 +91,7 @@
                                     @endif
                                 @elseif($end_show == null)
                                     @if($now_time < $start_show)
-                                        <p>公開前</p>
+                                        <p>公開開始前</p>
                                     @elseif($start_show < $now_time)  
                                         <p>公開中</p>
                                     @endif

@@ -55,7 +55,6 @@ class UserController extends Controller
         $keyword_name = $request->name;
         $keyword_phone_number = $request->phone_number;
         $keyword_prefecture_id = $request->prefecture_id;
-
         $query = User::query();
         if(!empty($keyword_name)){
             $query->where('name','like',"%{$keyword_name}%");

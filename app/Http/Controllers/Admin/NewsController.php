@@ -43,33 +43,43 @@ class NewsController extends Controller
         $news->fill($attributes)->save();
         return redirect()->route('admin_news');
     }
-    // public function search(NewsSearchRequest $request,News $news)
-    // {
-    //     $pref = config('const.pref');
-    //     $keyword_status = $request->status;
-    //     $keyword_title = $request->title;
-        
-    //     $query = News::query();
-    //     dd($query);
-    //     $start_show = new DateTime($news->start_show);
-    //     $now_time = new DateTime();
-    //     $now_time->format('Y-m-d H:i');
-    //     $end_show = new DateTime($news->end_show);
-    //     if(!empty($keyword_status)){
-    //         if($keyword_status['0'] == '公開前'){
-    //             $query->where();
-    //         }
-            
-    //     }
-    //     $news = $query->get();
+    
+    
+    public function search(NewsSearchRequest $request)
+    {
+        $status = config('const.open');
+        $keyword_status = $request->status;
+        $keyword_title = $request->title;
+        $query = News::query();
 
-    //     return view('admin.users.index',compact('news','pref'));
-    // }
+        if(!empty($keyword_status)){
+            if($keyword_status == '公開開始前'){
+                $query->where('start_show','>=',now());
+                }    
+            }
+            if($keyword_status == '公開中'){
+                if(News::whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get()){
+                    $query->whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get();
+                } 
+            }    
+            if($keyword_status == '公開終了'){
+                if(News::where('end_show','<=',now())->get()){
+                    $query->where('end_show','<=',now())->get();
+                }    
+            }
+        
+        if(!empty($keyword_title)){
+            $query->where('title','like',"%{$keyword_title}%");
+        }
+        $news = $query->get();
+        return view('admin.news.index',compact('news','status'));
+    }
 
     //削除処理//
-    // public function delete(News $news)
-    // {
-    //     $news->delete();
-    //     return redirect()->route('user');
-    // }
+    public function delete(News $news)
+    {
+        $news->delete();
+        return redirect()->route('user');
+    }
 }
+
