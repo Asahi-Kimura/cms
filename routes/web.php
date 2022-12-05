@@ -29,15 +29,13 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/contact/confirm', [ContactsController::class,'confirm'])->name('contact_confirm');
     //送信フォーム
     Route::post('/contact/send', [ContactsController::class,'send'])->name('contact_send');
+
+    //お知らせ一覧
+    Route::get('/notice/{news?}', [NewsController::class,'news_index'])->name('news_index');
+
+    // 詳細情報
+    Route::get('/notice/detail/{news?}', [NewsController::class,'news_detail'])->name('news_detail'); 
     
-    Route::get('/notice', function () {
-        return view('news.index');
-    })->name('news');
-
-    Route::get('/notice/detail', function () {
-        return view('news.detail');
-    })->name('news_detail');
-
     //ログインページ
     Route::get('/', [LoginController::class,'show'])->name('login');
     //処理

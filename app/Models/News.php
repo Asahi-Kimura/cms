@@ -17,9 +17,12 @@ class News extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function dateConvert($int)
+    public function datetime_converted_text($attribute_array)
     {
-        
+        $replace_array = [" ","/",":"]; 
+        $attribute_array = str_replace($replace_array,'',$attribute_array);
+        $attribute_array = date('Y-m-d H:i',$attribute_array);
+        return $attribute_array;
     }
     
 }

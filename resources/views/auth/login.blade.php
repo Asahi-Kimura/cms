@@ -51,7 +51,7 @@
                     <a class="new-btn" href="{{ route('contact_index') }}"><i class="fas fa-plus-circle mg-r_5"></i>お問い合わせ</a>
                 </p>
                 <p style="margin: 20px 0 0 2.5px;">
-                    <a class="new-btn" href="{{ route('news') }}"><i class="fas fa-plus-circle mg-r_5"></i>お知らせ</a>
+                    <a class="new-btn" href="{{ route('news_index') }}"><i class="fas fa-plus-circle mg-r_5"></i>お知らせ</a>
                 </p>
             </div>
         </section>

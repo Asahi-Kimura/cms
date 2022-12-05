@@ -6,18 +6,19 @@
     <div class="Form-Item" style="justify-content: space-between">
         <p class="Form-Item-Label">
             {{-- ※公開時間 --}}
-            2022/10/10
+            {{ $news->start_show }}
         </p>
+        @php
+            $image_array = explode('/',$news->file_image);
+            $image = str_replace('public','',$news->file_image);
+        @endphp
+
         <div>
-            <a href="">ファイル名が入ります</a>
+            <a href="{{ asset('storage'.$image)}}">{{ end($image_array) }}</a>
         </div>
     </div>
     <div>
-        お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容
-        お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容
-        お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容
-        お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容
-        お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容お問い合わせ内容
+        {{ $news->content }}
     </div>
     <button type="button" class="Form-Btn" onClick="history.back()">戻る</button>
 </div>

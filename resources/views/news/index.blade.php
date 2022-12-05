@@ -3,17 +3,19 @@
 @section('content')
 <div class="Form">
     <div class="alert-danger" style="color: black">ニュース一覧</div>
-    @for ($i = 3; $i<10; $i++)
-    <div class="Form-Item">
-        <p class="Form-Item-Label">
-            2022/10/10
-        </p>
-        <div>
-            <div>
-                <a href="{{ route('news_detail') }}">タイトル</a>
+    @if($news != null)
+        @foreach ($news as $news)
+            <div class="Form-Item">
+                <p class="Form-Item-Label">{{ $news->start_show }}</p>
+                <div>
+                    <div>
+                        <a href="{{ route('news_detail',$news) }}">{{ $news->title }}</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    @endfor
+        @endforeach
+    @else
+        新着情報はありません。
+    @endif
 </div>
 @endsection

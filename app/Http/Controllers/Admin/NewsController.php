@@ -13,6 +13,22 @@ use DateTime;
 
 class NewsController extends Controller
 {
+    public function news_index(News $news)
+    {
+        if(News::whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get()){
+            $news = News::whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get();
+        }  
+        return view('news.index',compact('news'));
+    }
+
+    public function news_detail(News $news)
+    {
+        if($news->id != null){
+            $news = News::find($news->id);
+        }
+        return view('news.detail',compact('news'));
+    }
+
     public function index(News $news)
     {
         $news = News::all();
@@ -30,16 +46,13 @@ class NewsController extends Controller
     }
     public function store(NewsRequest $request,News $news){
         $attributes = $request->all();
-        $replace_array = [" ","/",":"]; 
-        $attributes['start_show'] = str_replace($replace_array,'',$attributes['start_show']);
-        $attributes['start_show'] = date('Y-m-d H:i',strtotime($attributes['start_show']));
+        $attributes['start_show'] = News::datetime_converted_string($attributes['start_show']);
         if($attributes['end_show'] != null){
-            $attributes['end_show'] = str_replace($replace_array,'',$attributes['end_show']);
-            $attributes['end_show'] = date('Y-m-d H:i',strtotime($attributes['end_show']));
+            $attributes['start_show'] = News::datetime_converted_string($attributes['start_show']);
         }
-        $news_dir = 'news';
+
         $file_name = $request->file('file_image')->getClientOriginalName();
-        $attributes['file_image'] = $request->file_image->storeAs('public/'.$news_dir,$file_name);
+        $attributes['file_image'] = $request->file_image->storeAs('public/news',$file_name);
         $news->fill($attributes)->save();
         return redirect()->route('admin_news');
     }
@@ -53,16 +66,16 @@ class NewsController extends Controller
         $query = News::query();
 
         if(!empty($keyword_status)){
-            if($keyword_status == '公開開始前'){
+            if($keyword_status == '1'){
                 $query->where('start_show','>=',now());
                 }    
             }
-            if($keyword_status == '公開中'){
+            if($keyword_status == '2'){
                 if(News::whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get()){
                     $query->whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get();
                 } 
             }    
-            if($keyword_status == '公開終了'){
+            if($keyword_status == '3'){
                 if(News::where('end_show','<=',now())->get()){
                     $query->where('end_show','<=',now())->get();
                 }    

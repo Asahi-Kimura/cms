@@ -32,14 +32,15 @@
                     <textarea name="title"  class="form-control" id="exampleFormControlTextarea1" rows="4">{{ old('title',$news->title) }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像
+                    
+                    <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像 
                         <small>
                             @if( $errors->has('file_image') )
                                 <li>{{ $errors->first('file_image') }}</li>
                             @endif
                         </small>
                     </label>
-                    <input type="file" name="file_image"  value="" class="form-control">
+                    <input type="file" name="file_image"  value="" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>本文
@@ -63,7 +64,7 @@
                         </label>
                     </div>
                     {{-- // datetimepickerを利用してください --}}
-                    <input type="date" id="start_show" name="start_show" value="{{ old('start_show',$news->start_show) }}" class="form-control">
+                    <input type="text" id="start_show" name="start_show" value="{{ old('start_show',$news->start_show) }}" class="form-control">
                 </div>
                 <div class="input-group pb-3">
                     <div class="input-group-prepend">
@@ -91,4 +92,11 @@
         });
     });
 </script>
+@php
+    $image_array = explode('/',$news->file_image);
+    $image = str_replace('public','',$news->file_image);
+@endphp
+
+表示画像名：{{ end($image_array) }}
+<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" >
 @endsection

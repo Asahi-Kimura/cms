@@ -20,7 +20,7 @@
                     <select name="status" class="form-input">
                         <option value=''>選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{ $value }} {{ $key == old('status') ? selected:'' }}">{{ $value }}</option>
+                            <option value="{{ $key }} {{ $key == old('status') ? selected:'' }}">{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
