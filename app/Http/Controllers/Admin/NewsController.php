@@ -7,9 +7,6 @@ use App\Http\Requests\NewsRequest;
 use App\Http\Requests\NewsSearchRequest;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\Session\Session;
-use DateTime;
 
 class NewsController extends Controller
 {
@@ -44,11 +41,12 @@ class NewsController extends Controller
         }
         return view('admin.news.edit',compact('news','user'));    
     }
+
     public function store(NewsRequest $request,News $news){
         $attributes = $request->all();
-        $attributes['start_show'] = News::datetime_converted_string($attributes['start_show']);
+        $attributes['start_show'] = $news->text_convert_datetime($attributes['start_show']);
         if($attributes['end_show'] != null){
-            $attributes['start_show'] = News::datetime_converted_string($attributes['start_show']);
+            $attributes['end_show'] = $news->text_convert_datetime($attributes['end_show']);
         }
 
         $file_name = $request->file('file_image')->getClientOriginalName();
@@ -56,8 +54,7 @@ class NewsController extends Controller
         $news->fill($attributes)->save();
         return redirect()->route('admin_news');
     }
-    
-    
+
     public function search(NewsSearchRequest $request)
     {
         $status = config('const.open');
@@ -85,7 +82,7 @@ class NewsController extends Controller
             $query->where('title','like',"%{$keyword_title}%");
         }
         $news = $query->get();
-        return view('admin.news.index',compact('news','status'));
+        return view('admin.news.index',compact('news','status','keyword_status','keyword_title'));
     }
 
     //削除処理//

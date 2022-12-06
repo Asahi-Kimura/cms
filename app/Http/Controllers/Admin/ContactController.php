@@ -11,13 +11,13 @@ use App\Models\User;
 class ContactController extends Controller
 {
     // 管理画面一覧
-    public function show(Contact $contact,User $user)
+    public function show()
     {
-        $contact = Contact::all();
+        $contacts = Contact::all();
         $user = User::all();
         $auth = config('const.authority');
         $status = config('const.status');
-        return view('admin.contacts.show',compact('status','contact','user'));
+        return view('admin.contacts.show',compact('status','contacts','user'));
     }
 
     // 管理画面詳細
@@ -53,29 +53,28 @@ class ContactController extends Controller
         return redirect()->route('admin_contact');
     }
 
-
     //検索機能処理
     public function search(ContactSearchRequest $request,Contact $contact)
     {
         $user = User::all();
         $keyword_status = $request->status;
         $keyword_authority = $request->authority;
-        $keyword_company = $request->company;
-
+        $conact_user_id = User::where('name',$keyword_authority)->first();
+        $keyword_company = $request->company;     
         $status = config('const.status');
         $query = Contact::query();
+
         if(!empty($keyword_status)){
-            $query->where('status','like',"%{$keyword_status}%");
+            $query->where('status',$keyword_status);
         }
         if(!empty($keyword_authority)){
-            $query->where('received_name','like',"%{$keyword_authority}%");
+            $query->where('user_id',$conact_user_id->id);
         }
         if(!empty($keyword_company)){
             $query->where('company_name','like',"%{$keyword_company}%");
         }
         $contact = $query->get();
-
-        return view('admin.contacts.show',compact('user','contact','status'));
+        return view('admin.contacts.show',compact('user','contact','status','keyword_company','keyword_status','keyword_authority'));
     }
     
     //削除

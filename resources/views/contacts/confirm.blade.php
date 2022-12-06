@@ -15,7 +15,6 @@
     <input name="sex" value ="{{ $attributes['sex'] }}" type="hidden">   
     <input name="job" value ="{{ $attributes['job'] }}" type="hidden">          
     <input name="content" value ="{!! nl2br($attributes['content']) !!}" type="hidden">
-    
     <div class="Form">
         <div class="Form-Item">
             <p class="Item-Input">種別:

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
-use App\Models\Category;
 use App\Models\Contact;
-use Illuminate\Support\Facades\Auth;
 
 class ContactsController extends Controller
 {
@@ -25,8 +23,8 @@ class ContactsController extends Controller
         {
             session()->forget('reset');
         }
-
-        return view('contacts.index',[
+        return view('contacts.index',
+        [
             'inquiry_type' => $this->inquiry_types,
             'sex' => $this->sex,
             'job' => $this->job,
@@ -39,15 +37,12 @@ class ContactsController extends Controller
         {
             return redirect()->route('contact_index');
         }
-
         $attributes = $request->all();
-        return view('contacts.confirm',[
-            [
-                'attributes' => $attributes,
-                'inquiry_type' => $this->inquiry_types,
-                'sex' => $this->sex,
-                'job' => $this->job,
-            ]
+        return view('contacts.confirm',
+        [   'attributes' => $attributes,
+            'inquiry_type' => $this->inquiry_types,
+            'sex' => $this->sex,
+            'job' => $this->job,
         ]);
     }
 
@@ -57,10 +52,8 @@ class ContactsController extends Controller
         {
             return redirect()->route('contact_index');
         }
-        
         $string_birthday = $request->birthday;
         $inputs = $request->all();
-
         $inquiry_type = config('const.inquiry_type');
         $inquiry_type_array = array_intersect($inquiry_type,$inputs['inquiry_type']);
         foreach($inquiry_type_array as $key => $value){
@@ -69,7 +62,7 @@ class ContactsController extends Controller
         $inputs = array_merge($inputs,$inquiry_type_array);
         $inputs['birthday'] = date('Y-m-d',strtotime($inputs['birthday']));
         unset($inputs['inquiry_type']);
-        session()->put('reset','リセット');
+        session()->put('reset','reset');
         $contact->fill($inputs)->save();
         return view('contacts.thanks',compact('inputs','string_birthday'));
     }

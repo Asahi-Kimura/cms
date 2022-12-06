@@ -23,10 +23,11 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">ステータス
                     </div>
+                    
                     <select name="status"class="status-select" id="inputGroupSelect01">
                         <option value="">選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{ $key }}" {{ $key == old('status') ? 'selected':'' }}>{{ $value }}</option>
+                            <option value="{{ $key }}" {{ $key == $contact->status ? 'selected':'' }}>{{ $value }}</option>
                         @endforeach
                     </select>
                     <small>
@@ -42,7 +43,7 @@
                     <select name="user_id"class="status-select" id="inputGroupSelect01">
                         <option value="">会員を選択する</option>
                             @foreach ($user as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}" {{ $contact->user_id == $user->id ? 'selected':'' }}>{{ $user->name }}</option>
                             @endforeach
                     </select>
                     <small>

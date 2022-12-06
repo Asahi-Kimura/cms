@@ -20,13 +20,13 @@
                     <select name="status" class="form-input">
                         <option value=''>選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{ $key }} {{ $key == old('status') ? selected:'' }}">{{ $value }}</option>
+                            <option value="{{ $key }}" @if(isset($keyword_status)){{ $key == $keyword_status ? 'selected':'' }}@endif>{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">タイトル</label>
-                    <input class="form-input" name="title" value="{{ old('title') }}">
+                    <input class="form-input" name="title" value="@if(isset($keyword_title)){{ $keyword_title }}@endif">
                 </div>
 
                 <div class="search-cont search-btn">
@@ -68,8 +68,10 @@
                             </td>
                             <td class ="edit-icon">
                                 {{-- 管理者ユーザー以外削除可能 --}}
-                                @if($news->user->authority != 'guest')
-                                    <p class="delete-btn tooltip" title="削除する" data-id=""><a href="{{ route('delete_news',$news) }}"><i class="fas fa-trash"></i></a></p>
+                                @if($news->user != null)
+                                    @if($news->user->authority != 'guest')
+                                        <p class="delete-btn tooltip" title="削除する" data-id=""><a href="{{ route('delete_news',$news) }}"><i class="fas fa-trash"></i></a></p>
+                                    @endif
                                 @endif
                             </td>
                             <td>

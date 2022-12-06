@@ -7,11 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserSearchRequest;
 use App\Models\Prefecture;
-
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -44,9 +40,7 @@ class UserController extends Controller
         } else {
             unset($attributes['password']);
         }
-        //users
         $user->fill($attributes)->save();
-        //prefecutures
         return redirect()->route('user');
     }
     public function search(UserSearchRequest $request,Prefecture $prefecture)
@@ -72,7 +66,7 @@ class UserController extends Controller
         }
         $user = $query->get();
 
-        return view('admin.users.index',compact('user','pref'));
+        return view('admin.users.index',compact('user','pref','keyword_name','keyword_phone_number','keyword_prefecture_id'));
     }
 
     //削除処理//

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,12 +18,11 @@ class News extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function datetime_converted_text($attribute_array)
+    public function text_convert_datetime($string)
     {
         $replace_array = [" ","/",":"]; 
-        $attribute_array = str_replace($replace_array,'',$attribute_array);
-        $attribute_array = date('Y-m-d H:i',$attribute_array);
-        return $attribute_array;
+        $string = str_replace($replace_array,'',$string);
+        $date_time_object = new DateTime($string);
+        return $date_time_object;
     }
-    
 }

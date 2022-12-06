@@ -18,7 +18,7 @@
                     <select class="form-input" name="status">
                         <option value="">選択してください</option>
                         @foreach ($status as $key => $value)
-                            <option value="{{ $key }}" {{ $status == old('status') ? 'selected':'' }}>{{ $value }}</option>
+                            <option value="{{ $key }}" @if(isset($keyword_status)){{ $key == $keyword_status ? 'selected':'' }}@endif>{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -27,13 +27,13 @@
                     <select class="form-input" name="authority">
                         <option value="">選択してください</option>
                         @foreach($user as $user)
-                            <option value="{{ $user->name }}" {{ $user == old('authority') ? 'selected':'' }}>{{ $user->name }}</option>
+                            <option value="{{ $user->name }}" @if(isset($keyword_authority)){{ $user == $keyword_authority ? 'selected':'' }}@endif>{{ $user->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">会社名</label>
-                    <input type="text" class="form-input" name="company" value="{{ old('company') }}" >
+                    <input type="text" class="form-input" name="company" value=" @if(isset($keyword_company)){{ $keyword_company }}@endif" >
                 </div>
 
                 <div class="search-cont search-btn">
@@ -69,34 +69,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($contact as $contact )
-                    <tr>
-                        <td class="edit-icon">
-                            <p><a class="tooltip" title="編集する" href="{{ route('admin_contact_edit',$contact) }}" ><i class="fas fa-edit"></i></a></p>
-                        </td>
-                        <td class ="edit-icon">
-                            {{-- 管理者ユーザー以外削除可能 --}}
-                            @if($contact->user->authority == 'guest')
-                                <a href="{{ route('delete_contact',$contact) }}"><p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p><a>
-                            @endif
-                        </td>
-                        <td>
-                            <p>{{ $status[$contact->status] }}</p>
-                        </td>
-                        <td>
-                            <p>{{ $contact->user->name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ $contact->company_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ $contact->user_name }}</p>
-                        </td>
-                        <td>
-                            <p>{{ $contact->tele_num }}</p>
-                        </td>
-                    </tr>
-                    @endforeach
+                    @if($contacts != null)
+                        @foreach($contacts as $contact )
+                            <tr>
+                                <td class="edit-icon">
+                                    <p><a class="tooltip" title="編集する" href="{{ route('admin_contact_edit',$contact) }}" ><i class="fas fa-edit"></i></a></p>
+                                </td>
+                                <td class ="edit-icon">
+                                    {{-- 管理者ユーザー以外削除可能 --}}
+                                    @if($contact->user != null)
+                                        @if($contact->user->authority == 'guest')
+                                            <a href="{{ route('delete_contact',$contact) }}"><p class="delete-btn tooltip" title="削除する" data-id=""><i class="fas fa-trash"></i></p><a>
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>
+                                    <p>{{ $status[$contact->status] }}</p>
+                                </td>
+                                <td>
+                                    @if($contact->user != null)
+                                        <p>{{ $contact->user->name }}</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    <p>{{ $contact->company_name }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ $contact->user_name }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ $contact->tele_num }}</p>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

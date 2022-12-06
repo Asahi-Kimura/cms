@@ -17,18 +17,18 @@
             <form method="GET" action="{{ route('search_user') }}">
                 <div class="search-cont">
                     <label class="label-ttl">名前</label>
-                    <input type="text" class="form-input" name="name" value="">
+                    <input type="text" class="form-input" name="name" value="@if(isset($keyword_name)){{ $keyword_name }}@endif">
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl" >電話番号</label>
-                    <input type="text" class="form-input" name="phone_number" value="">
+                    <input type="text" class="form-input" name="phone_number" value="@if(isset($keyword_phone_number)){{ $keyword_phone_number }}@endif">
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">都道府県</label>
                     <select class="form-input" name="prefecture_id">
                         <option value="">選択してください</option>
                         @foreach ($pref as $key => $value)
-                                <option value="{{ $key }}" >{{ $value }}</option>
+                                <option value="{{ $key }}" @if(isset($keyword_prefecture_id)){{ $key == $keyword_prefecture_id ? 'selected':'' }}@endif>{{ $value }}</option>
                             @endforeach
                     </select>
                 </div>
