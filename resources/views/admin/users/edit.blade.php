@@ -88,6 +88,8 @@
                         </small>
                     </label>
 
+                    @dump(old('phone_number'))
+                    @dump(old('phone_number[0]'))
                     <div class="col">
                         <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{ old('phone_number[0]',$phone_number[0]) }}@else{{ old('phone_number[0]') }}@endif" class="form-control"  placeholder="000">
                     </div>
@@ -99,6 +101,8 @@
                     </div>
                 </div>
 
+                @dump(old('post_code'))
+                @dump(old('post_code[0]'))
                 <div class="form-group">
                     @php $post_code = explode('-',$user->post_code) @endphp
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>郵便番号
