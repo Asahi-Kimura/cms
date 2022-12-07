@@ -43,6 +43,7 @@ class UserController extends Controller
         $user->fill($attributes)->save();
         return redirect()->route('user');
     }
+    //検索機能
     public function search(UserSearchRequest $request,Prefecture $prefecture)
     {
         $pref = config('const.pref');

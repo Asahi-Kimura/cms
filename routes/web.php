@@ -2,14 +2,11 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactsController;
-// use App\Http\Controllers\TestController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // 管理画面TOP
     Route::get('/home', function () {
-        dump(Auth::user());
         return view('admin.home.index');
     })->name('home');
     //ログアウト

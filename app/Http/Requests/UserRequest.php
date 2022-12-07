@@ -33,7 +33,6 @@ class UserRequest extends FormRequest
         $post_code_regex = '/^[0-9]{3}-[0-9]{4}$/';
         // バリデーションルール
         return [
-            
             'authority' => 'required',
             'name' => 'required|string|max:30',
             'kana' => 'required|max:30|regex:/^[\t\sァ-ヾ]+$/u',

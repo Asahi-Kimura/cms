@@ -77,7 +77,7 @@ class ContactController extends Controller
         return view('admin.contacts.show',compact('user','contact','status','keyword_company','keyword_status','keyword_authority'));
     }
     
-    //削除
+    //削除機能
     public function delete(Contact $contact)
     {
         $contact->delete();

@@ -87,14 +87,15 @@
                             @endif
                         </small>
                     </label>
+
                     <div class="col">
-                        <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{ old('phone_number[0]',$phone_number[0]) }} @else {{ old('phone_number[0]') }} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{ old('phone_number[0]',$phone_number[0]) }}@else{{ old('phone_number[0]') }}@endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[1]"  value="@if($user->id != null){{ old('phone_number[1]',$phone_number[1]) }} @else {{ old('phone_number[1]')}} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[1]"  value="@if($user->id != null){{ old('phone_number[1]',$phone_number[1]) }}@else{{ old('phone_number[1]')}}@endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[2]"  value="@if($user->id != null){{ old('phone_number[2]',$phone_number[2]) }} @else {{ old('phone_number[2]') }} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[2]"  value="@if($user->id != null){{ old('phone_number[2]',$phone_number[2]) }}@else{{ old('phone_number[2]') }}@endif" class="form-control"  placeholder="000">
                     </div>
                 </div>
 
@@ -108,10 +109,10 @@
                         </small>
                     </label>
                     <div class="col">
-                        <input type="tel" name="post_code[0]" value="@if($user->id != null){{ old('post_code[0]',$post_code[0]) }} @else {{ old('post_code[0]') }} @endif" class="form-control" placeholder="000">
+                        <input type="tel" name="post_code[0]" value="@if($user->id != null){{ old('post_code[0]',$post_code[0]) }}@else{{ old('post_code[0]')}}@endif" class="form-control" placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="post_code[1]" value="@if($user->id != null){{ old('post_code[1]',$post_code[1]) }} @else {{ old('post_code[1]') }} @endif" class="form-control" placeholder="0000">
+                        <input type="tel" name="post_code[1]" value="@if($user->id != null){{ old('post_code[1]',$post_code[1]) }}@else{{ old('post_code[1]') }}@endif" class="form-control" placeholder="0000">
                     </div>
                 </div>
                 <div class="input-group pb-3">

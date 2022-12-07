@@ -32,8 +32,15 @@
                     <textarea name="title"  class="form-control" id="exampleFormControlTextarea1" rows="4">{{ old('title',$news->title) }}</textarea>
                 </div>
                 <div class="form-group">
+                    @php
+                        $image_array = explode('/',$news->file_image);
+                        $image = str_replace('public','',$news->file_image);
+                    @endphp
                     
-                    <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像 
+                    <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像
+                        @if($user->id != null)
+                            <a href="{{ asset('storage'.$image)}}">{{ end($image_array) }}</a>
+                        @endif 
                         <small>
                             @if( $errors->has('file_image') )
                                 <li>{{ $errors->first('file_image') }}</li>
@@ -79,7 +86,6 @@
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- jQuery-datetimepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous"></script>
@@ -92,11 +98,4 @@
         });
     });
 </script>
-@php
-    $image_array = explode('/',$news->file_image);
-    $image = str_replace('public','',$news->file_image);
-@endphp
-
-表示画像名：{{ end($image_array) }}
-<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" >
 @endsection
