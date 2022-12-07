@@ -4,19 +4,27 @@
 
 <div class="Form">
     <h1>送信完了しました</h1>
+
     <div class="Form-Item">
-        <p class="Item-Input">会社名: {{ $inputs['company_name'] }}</p>
+        <p class="Item-Input">種別:
+        @foreach($attributes['inquiry_type'] as $key => $value)
+            ・{{$value}}
+        @endforeach
+    </div>
+    </p>
+    <div class="Form-Item">
+        <p class="Item-Input">会社名: {{ $attributes['company_name'] }}</p>
     </div>
     <div class="Form-Item">
-        <p class="Item-Input">氏名 : {{ $inputs['user_name'] }}</p>
+        <p class="Item-Input">氏名 : {{ $attributes['user_name'] }}</p>
     </div>
     <div class="Form-Item">
-        <p class="Item-Input">電話番号: {{ $inputs['tele_num'] }}</p>
+        <p class="Item-Input">電話番号: {{ $attributes['tele_num'] }}</p>
     </div>
     <div class="Form-Item">
-        <p class="Item-Input">メールアドレス: {{ $inputs['email'] }}</p>
+        <p class="Item-Input">メールアドレス: {{ $attributes['email'] }}</p>
     </div>
-    @php $birthday = explode('/',$inputs['birthday'] ) @endphp
+    @php $birthday = explode('/',$attributes['birthday'] ) @endphp
     <div class="Form-Item">
         @php 
             $birthday = explode("/",$string_birthday,3);
@@ -24,13 +32,13 @@
         <p class="Item-Input">生年月日: {{ $birthday[0] }}/{{ $birthday[1] }}/{{ $birthday[2] }}</p>
     </div>
     <div class="Form-Item">
-        <p class="Item-Input">性別: {{ $inputs['sex'] }}</p>
+        <p class="Item-Input">性別: {{ $sex[$attributes['sex']] }}</p>
     </div>
     <div class="Form-Item">
-        <p class="Item-Input">職業: {{ $inputs['job'] }}</p>
+        <p class="Item-Input">職業: {{ $job[$attributes['job']] }}</p>
     </div>
     <div class="Form-Item">
-        <p class="Item-Input">お問い合わせ内容:<br>{!! nl2br( $inputs['content'] ) !!}</p>
+        <p class="Item-Input">お問い合わせ内容:<br>{!! nl2br( $attributes['content'] ) !!}</p>
     </div>
     <a href="{{ route('contact_index') }}"><button type="button" class="Form-Btn">戻る</button></a>
 </div>

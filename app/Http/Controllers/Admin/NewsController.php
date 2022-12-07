@@ -89,7 +89,7 @@ class NewsController extends Controller
     public function delete(News $news)
     {
         $news->delete();
-        return redirect()->route('user');
+        return redirect()->route('admin_news');
     }
 }
 

@@ -31,7 +31,7 @@ class ContactsController extends Controller
         ]);
     }
 
-    public function confirm(ContactRequest $request,Contact $contact)
+    public function confirm(ContactRequest $request)
     {
         if(session()->has('reset'))
         {
@@ -53,17 +53,19 @@ class ContactsController extends Controller
             return redirect()->route('contact_index');
         }
         $string_birthday = $request->birthday;
-        $inputs = $request->all();
-        $inquiry_type = config('const.inquiry_type');
-        $inquiry_type_array = array_intersect($inquiry_type,$inputs['inquiry_type']);
-        foreach($inquiry_type_array as $key => $value){
-            $inquiry_type_array[$key] = 'checked';
-        }
-        $inputs = array_merge($inputs,$inquiry_type_array);
-        $inputs['birthday'] = date('Y-m-d',strtotime($inputs['birthday']));
-        unset($inputs['inquiry_type']);
+        $attributes = $request->all();
+        $attributes = $contact->inpuiry_type_checked($attributes);
+        $attributes['birthday'] = date('Y-m-d',strtotime($attributes['birthday']));
+        unset($attributes['inquiry_type']);
         session()->put('reset','reset');
-        $contact->fill($inputs)->save();
-        return view('contacts.thanks',compact('inputs','string_birthday'));
+        $contact->fill($attributes)->save();
+        $attributes['inquiry_type'] = $request->inquiry_type;
+        return view('contacts.thanks',
+        [
+            'attributes' => $attributes,
+            'string_birthday' => $string_birthday,
+            'sex' => $this->sex,
+            'job' => $this->job
+        ]);
     }
 }

@@ -69,8 +69,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($contacts != null)
-                        @foreach($contacts as $contact )
+                    @if(isset($contact))
+                        @foreach($contact as $contact )
                             <tr>
                                 <td class="edit-icon">
                                     <p><a class="tooltip" title="編集する" href="{{ route('admin_contact_edit',$contact) }}" ><i class="fas fa-edit"></i></a></p>

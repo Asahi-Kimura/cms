@@ -15,4 +15,15 @@ class Contact extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function inpuiry_type_checked($attributes)
+    {
+        $inquiry_type = config('const.inquiry_type');
+        $inquiry_type_array = array_intersect($inquiry_type,$attributes['inquiry_type']);
+        foreach($inquiry_type_array as $key => $value){
+            $inquiry_type_array[$key] = 'checked';
+        }
+        $attributes = array_merge($attributes,$inquiry_type_array);
+        return $attributes;    
+    }
 }

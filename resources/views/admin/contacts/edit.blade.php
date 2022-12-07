@@ -47,7 +47,7 @@
                             @endforeach
                     </select>
                     <small>
-                        @if( $errors->has( 'received_name' ) )
+                        @if( $errors->has( 'user_id' ) )
                             <li>対応者を選択してください</li>
                         @endif 
                     </small>
@@ -56,7 +56,7 @@
                     <label class="input-group-text" for="inputGroupSelect01">お問い合わせ内容
                     </label>
                     <div>
-                        {{ $contact->content }}
+                        {!! nl2br($contact->content) !!}
                     </div>
                 </div>
                 <div class="form-group">

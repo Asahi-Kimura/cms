@@ -13,11 +13,11 @@ class ContactController extends Controller
     // 管理画面一覧
     public function show()
     {
-        $contacts = Contact::all();
+        $contact = Contact::all();
         $user = User::all();
         $auth = config('const.authority');
         $status = config('const.status');
-        return view('admin.contacts.show',compact('status','contacts','user'));
+        return view('admin.contacts.show',compact('status','contact','user'));
     }
 
     // 管理画面詳細

@@ -13,10 +13,10 @@
 	</div>
     <div class="container">
         <div class="row justify-content-center">
-            <form method="POST" action="{{route('admin_store',$user)}}">
+            <form method="POST" action="{{ route('admin_store',$user) }}">
                 @csrf
                 @if($user->id != null)
-                    <input type="hidden" name="id" value="{{$user->id}}">
+                    <input type="hidden" name="id" value="{{ $user->id }}">
                 @else
                     <input type="hidden" name="id" value="">
                 @endif
@@ -31,8 +31,8 @@
                     <div class="">
                         @foreach($auth as $key => $value)
                             <div class="radio-wrapper">
-                                <input class="radio01-input" id="{{$key}}" name="authority" type="radio" value="{{$key}}" {{ $user->authority == $key ? 'checked' : '' }}>
-                                <label for="{{$key}}" class="radio01-parts">{{$value}}</label>
+                                <input class="radio01-input" id="{{ $key }}" name="authority" type="radio" value="{{ $key }}" {{ $user->authority == $key ? 'checked' : '' }}>
+                                <label for="{{ $key }}" class="radio01-parts">{{ $value }}</label>
                             </div>
                         @endforeach
                     </div>
@@ -82,19 +82,19 @@
                     @php $phone_number = explode('-',$user->phone_number) @endphp
                     <label for="exampleInputPhone_Number"><span class="Form-Item-Label-Required">必須</span>電話番号
                         <small>
-                            @if( $errors->has('phone_number') )
+                            @if($errors->has('phone_number'))
                                 <li>{{ $errors->first('phone_number') }}</li>
                             @endif
                         </small>
                     </label>
                     <div class="col">
-                        <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{ old('phone_number[0]',$phone_number[0]) }} @else {{old('phone_number[0]')}} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[0]"  value="@if($user->id != null){{ old('phone_number[0]',$phone_number[0]) }} @else {{ old('phone_number[0]') }} @endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[1]"  value="@if($user->id != null){{ old('phone_number[1]',$phone_number[1]) }} @else {{old('phone_number[1]')}} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[1]"  value="@if($user->id != null){{ old('phone_number[1]',$phone_number[1]) }} @else {{ old('phone_number[1]')}} @endif" class="form-control"  placeholder="000">
                     </div>
                     <div class="col">
-                        <input type="tel" name="phone_number[2]"  value="@if($user->id != null){{ old('phone_number[2]',$phone_number[2]) }} @else {{old('phone_number[2]')}} @endif" class="form-control"  placeholder="000">
+                        <input type="tel" name="phone_number[2]"  value="@if($user->id != null){{ old('phone_number[2]',$phone_number[2]) }} @else {{ old('phone_number[2]') }} @endif" class="form-control"  placeholder="000">
                     </div>
                 </div>
 
@@ -153,7 +153,7 @@
                             @endif
                         </small>
                     </label>
-                    <textarea name="remark"  class="form-control" id="exampleFormControlTextarea1" rows="4">{{old('remark',$user->remark)}}</textarea>
+                    <textarea name="remark"  class="form-control" id="exampleFormControlTextarea1" rows="4">{{ old('remark',$user->remark)}}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">登録する</button>
             </form>

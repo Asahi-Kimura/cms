@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // 管理画面TOP
     Route::get('/home', function () {
-        // dd(Auth::user());
+        dump(Auth::user());
         return view('admin.home.index');
     })->name('home');
     //ログアウト
