@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
-use App\Http\Requests\UserSearchRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Prefecture;
 use Illuminate\Support\Facades\Hash;
 
@@ -44,7 +44,7 @@ class UserController extends Controller
         return redirect()->route('user');
     }
     //検索機能
-    public function search(UserSearchRequest $request,Prefecture $prefecture)
+    public function search(SearchRequest $request,Prefecture $prefecture)
     {
         $pref = config('const.pref');
         $keyword_name = $request->name;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
-use App\Http\Requests\ContactSearchRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Contact;
 use App\Models\User;
 
@@ -54,7 +54,7 @@ class ContactController extends Controller
     }
 
     //検索機能処理
-    public function search(ContactSearchRequest $request,Contact $contact)
+    public function search(SearchRequest $request,Contact $contact)
     {
         $user = User::all();
         $keyword_status = $request->status;

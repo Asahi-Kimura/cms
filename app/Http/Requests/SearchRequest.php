@@ -3,11 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
-use App\Models\Contact;
 
-class ContactSearchRequest extends FormRequest
+class SearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +21,6 @@ class ContactSearchRequest extends FormRequest
      *
      * @return array
      */
-
-
     public function rules()
     {
         return [

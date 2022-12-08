@@ -4,28 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
-use App\Http\Requests\NewsSearchRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
-    public function news_index(News $news)
-    {
-        if(News::whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get()){
-            $news = News::whereNull('end_show')->where('start_show','<=',now())->orWhere('end_show','>=',now())->where('start_show','<=',now())->get();
-        }  
-        return view('news.index',compact('news'));
-    }
-
-    public function news_detail(News $news)
-    {
-        if($news->id != null){
-            $news = News::find($news->id);
-        }
-        return view('news.detail',compact('news'));
-    }
-
     public function index(News $news)
     {
         $news = News::all();
@@ -55,7 +39,7 @@ class NewsController extends Controller
         return redirect()->route('admin_news');
     }
 
-    public function search(NewsSearchRequest $request)
+    public function search(SearchRequest $request)
     {
         $status = config('const.open');
         $keyword_status = $request->status;

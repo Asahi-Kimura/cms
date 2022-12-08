@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\NewsGuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,10 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/contact/send', [ContactsController::class,'send'])->name('contact_send');
 
     //お知らせ一覧
-    Route::get('/notice/{news?}', [NewsController::class,'news_index'])->name('news_index');
+    Route::get('/notice/{news?}', [NewsGuestController::class,'news_index'])->name('news_index');
 
     // 詳細情報
-    Route::get('/notice/detail/{news?}', [NewsController::class,'news_detail'])->name('news_detail'); 
+    Route::get('/notice/detail/{news?}', [NewsGuestController::class,'news_detail'])->name('news_detail'); 
     
     //ログインページ
     Route::get('/', [LoginController::class,'show'])->name('login');

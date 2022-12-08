@@ -3,11 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 use App\Rules\PhoneNumberRule;
 use App\Rules\PostcodeRule;
-use App\Rules\PasswordRule;
 
 class UserRequest extends FormRequest
 {
@@ -44,7 +42,7 @@ class UserRequest extends FormRequest
             'post_code' => new PostcodeRule($post_code_regex),
             'prefecture_id' => 'required',
             'city' => 'required|max:30',
-            'remark' => 'max:500'
+            'remark' => 'max:255'
         ];
     }
 
@@ -59,7 +57,6 @@ class UserRequest extends FormRequest
     {
         return [
             'authority' => '権限'
-    //       'prefecture' => '都道府県'
         ];
     }
     public function messages()

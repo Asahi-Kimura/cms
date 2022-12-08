@@ -3,9 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
-use App\Models\Contact;
 
 class ContactRequest extends FormRequest
 {
@@ -48,7 +45,7 @@ class ContactRequest extends FormRequest
                 'birthday' => 'required|before:today',
                 'sex' => 'required',
                 'job'=> 'required',
-                'content'  => 'required|max:500',
+                'content'  => 'required|max:255',
                 'status' => 'required',     
             ];
         }
