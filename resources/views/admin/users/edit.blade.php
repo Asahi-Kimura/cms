@@ -9,7 +9,7 @@
 
 <div class="main-contet-inner">
 	<div class="page-ttl_ar">
-		<h1 class="page-ttl">会員一覧</h1>
+		<h1 class="page-ttl">会員編集</h1>
 	</div>
     <div class="container">
         <div class="row justify-content-center">
@@ -28,16 +28,16 @@
                             @endif
                         </small>
                     </label>
+                    
                     <div class="">
                         @foreach($auth as $key => $value)
                             <div class="radio-wrapper">
-                                <input class="radio01-input" id="{{ $key }}" name="authority" type="radio" value="{{ $key }}" {{ $user->authority == $key ? 'checked' : '' }}>
+                                <input class="radio01-input" id="{{ $key }}" name="authority" type="radio" value="{{ $key }}" @if($user != null){{ old('authority',$user->authority) == $key ? 'checked' : '' }}@endif>
                                 <label for="{{ $key }}" class="radio01-parts">{{ $value }}</label>
                             </div>
                         @endforeach
                     </div>
-                </div>
-                
+                    
                 <div class="form-group">
                     <label for="exampleInputUserName"><span class="Form-Item-Label-Required">必須</span>会員名
                         <small>

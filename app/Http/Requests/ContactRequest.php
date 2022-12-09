@@ -25,7 +25,6 @@ class ContactRequest extends FormRequest
 
     public function rules()
     {
-
         // idがnullでない場合、データー更新
         if(request('id') != null){
             return [

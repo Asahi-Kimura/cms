@@ -9,7 +9,7 @@
 
 <div class="main-contet-inner">
 	<div class="page-ttl_ar">
-		<h1 class="page-ttl">会員一覧</h1>
+		<h1 class="page-ttl">新着情報</h1>
 	</div>
     <div class="container">
         <div class="row justify-content-center">
@@ -47,7 +47,7 @@
                             @endif
                         </small>
                     </label>
-                    <input type="file" name="file_image"  value="" class="form-control" >
+                    <input type="file" name="file_image" value="@if($news != null){{ $news->file_image }}@endif" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>本文
@@ -93,9 +93,18 @@
 <script>
     $(function() {
         $('#start_show').datetimepicker({
+            format:'d-m-y H:m'
         });
         $('#end_show').datetimepicker({
         });
     });
 </script>
+
+@php
+    $image_array = explode('/',$news->file_image);
+    $image = str_replace('public','',$news->file_image);
+@endphp
+
+表示画像名：{{ end($image_array) }}
+<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" >
 @endsection
