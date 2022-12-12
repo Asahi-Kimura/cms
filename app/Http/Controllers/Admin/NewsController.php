@@ -7,6 +7,7 @@ use App\Http\Requests\NewsRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -22,6 +23,8 @@ class NewsController extends Controller
         $user = Auth::user();
         if($news->id != null){
             $news = News::find($news->id);
+            $news->start_show = substr($news->start_show,0,-3);
+            $news->end_show = substr($news->end_show,0,-3);
         }
         return view('admin.news.edit',compact('news','user'));    
     }
@@ -33,8 +36,10 @@ class NewsController extends Controller
             $attributes['end_show'] = $news->text_convert_datetime($attributes['end_show']);
         }
 
-        $file_name = $request->file('file_image')->getClientOriginalName();
-        $attributes['file_image'] = $request->file_image->storeAs('public/news',$file_name);
+        if(isset($attributes['file_image'])){
+            $file_name = $request->file('file_image')->getClientOriginalName();
+            $attributes['file_image'] = $request->file_image->storeAs('public/news',$file_name);
+        }
         $news->fill($attributes)->save();
         return redirect()->route('admin_news');
     }

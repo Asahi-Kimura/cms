@@ -55,7 +55,9 @@
 </form>
 <script>
     $('#submit').click(function () { 
-        alert('送信しますか？');
+        if(!confirm('送信しますか？')){
+            return false;
+        }
     });
 
 

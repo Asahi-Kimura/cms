@@ -103,10 +103,14 @@
                                 <p>{{ $news->title }}</p>
                             </td>
                             <td>
-                                <p>{{ $news->start_show }}</p>
+                                @if($news->id != null)
+                                    <p>{{ $news->start_show = substr($news->start_show,0,-3) }}</p>
+                                @endif
                             </td>
                             <td>
-                                <p>{{ $news->end_show }}</p>
+                                @if($news->id != null)
+                                    <p>{{ $news->end_show = substr($news->end_show,0,-3) }}</p>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

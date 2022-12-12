@@ -17,10 +17,12 @@
                 @csrf
                 {{-- 新規作成者 --}}
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
-
                 @if($news->id != null)
                     <input type="hidden" name="id" value="{{ $news->id }}">
+                @else
+                    <input type="hidden" name="id" value="">
                 @endif
+                
                 <div class="form-group">
                     <label for="exampleInputKana"><span class="Form-Item-Label-Required">必須</span>タイトル
                         <small>
@@ -47,7 +49,7 @@
                             @endif
                         </small>
                     </label>
-                    <input type="file" name="file_image" value="@if($news != null){{ $news->file_image }}@endif" class="form-control" >
+                    <input type="file" name="file_image" value="" class="form-control" accept="image/*">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>本文
@@ -90,11 +92,12 @@
     <!-- jQuery-datetimepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" />
+    
 <script>
     $(function() {
+        $.datetimepicker.setLocale('ja');
         $('#start_show').datetimepicker({
-            format:'d-m-y H:m'
-        });
+            });
         $('#end_show').datetimepicker({
         });
     });

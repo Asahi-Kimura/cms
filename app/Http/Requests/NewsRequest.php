@@ -30,7 +30,7 @@ class NewsRequest extends FormRequest
             'content' => 'required|max:255',
             'start_show' => 'required',
             'end_show' => 'nullable',
-            'file_image' => 'required|image'   
+            'file_image' => ['required_if:id,null','nullable','image']   
         ];
     }
     public function attributes()
@@ -47,6 +47,7 @@ class NewsRequest extends FormRequest
     public function messages()
     {
         return [
+            'required_if' => '画像を選択してください。',
             'image' => '画像ファイルはjpg,png,svg拡張子を選択してください。'
         ];
     }
