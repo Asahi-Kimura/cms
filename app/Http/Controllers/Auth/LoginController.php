@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,10 +52,16 @@ class LoginController extends Controller
         $remember = $request->remember;
         if(auth()->attempt(['email' => $email,'password' => $password],$remember))
         {
-            $user = auth()->user();
-            return redirect()->route('home','user');
+            // dd($request->user()->authority);
+            if($request->user()->authority == 'guest'){
+                
+                Auth::logout();
+                return back()->with('error','管理者のみログインできます');
+            }
+            
+            return redirect()->route('home');
         } else {
-            return back();
+            return back()->with('error','emailかパスワードが間違っています。');
         }
     }
 

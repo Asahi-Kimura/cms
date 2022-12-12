@@ -31,9 +31,9 @@
                     <div class="login-error">
                         <span class="invalid-feedback" role="alert">
                             <strong>
-                                @if($errors->any())
-                                    <div class="alert-danger">メールとパスワードが違います</div>
-                                @endif  
+                                @if (session('error')) 
+                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                @endif
                             </strong>
                         </span>
                     </div>
