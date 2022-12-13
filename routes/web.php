@@ -58,6 +58,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/users/edit/store/{user?}', [UserController::class,'store'])->name('admin_store');
     //会員検索機能
     Route::get('/search', [UserController::class,'search'])->name('search_user');
+    //並び替え検索機能
+    Route::get('/sort', [UserController::class,'sort'])->name('sort_user');
     //お問い合わせ検索機能
     Route::get('/contacts/search', [ContactController::class,'search'])->name('search_contact');
     //論理削除（ユーザー）

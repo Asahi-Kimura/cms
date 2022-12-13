@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\SearchRequest;
+use App\Http\Requests\SortRequest;
 use App\Models\Prefecture;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,7 +19,8 @@ class UserController extends Controller
             $user = User::all();
         }
         $pref = config('const.pref');
-        return view('admin.users.index',compact('user','pref'));
+        $sort = config('const.sort');
+        return view('admin.users.index',compact('user','pref','sort'));
     }
     
     // 作成画面.編集画面
@@ -46,6 +48,7 @@ class UserController extends Controller
     //検索機能
     public function search(SearchRequest $request,Prefecture $prefecture)
     {
+        $sort = config('const.sort');
         $pref = config('const.pref');
         $keyword_name = $request->name;
         $keyword_phone_number = $request->phone_number;
@@ -66,8 +69,42 @@ class UserController extends Controller
             $query->where('prefecture_id',$keyword_prefecture_id);
         }
         $user = $query->get();
-
         return view('admin.users.index',compact('user','pref','keyword_name','keyword_phone_number','keyword_prefecture_id'));
+    }
+
+    //並び替え機能作成途中
+    public function sort(SortRequest $request)
+    {
+
+        $attributes = $request->all();
+        $user = User::all();
+        $sort = config('const.sort');
+        $pref = config('const.pref');
+
+        if($sort != null){
+            if($attributes['sort'] == 'asc'){
+                if($attributes['name'] != null){
+                    $sort_asc_name = User::orderBy('name','asc');
+                    if($attributes['email'] != null){
+                        $sort_asc_name_and_email = $sort_asc_name->orderBy('name','asc');
+                    }
+                } else {
+                    $sort_asc_email = User::orderBy('email','asc');
+                }
+            }
+            if($attributes['sort'] == 'desc'){
+                if($attributes['name'] != null){
+                    $sort_desc_name = User::orderBy('name','desc');
+                    if($attributes['email'] != null){
+                        $sort_desc_name_and_email = $sort_desc_name->orderBy('name','desc');
+                    } else {
+                    $sort_desc_email = User::orderBy('email','desc')->get();    
+                    }
+                }        
+            }
+        }
+        
+        return view('admin.users.index',compact('user','pref','sort'));        
     }
 
     //削除処理//

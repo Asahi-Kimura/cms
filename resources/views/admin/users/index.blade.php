@@ -37,6 +37,36 @@
                 </div>
             </form>
         </div>
+
+        <div class="list-contents">
+            <div class="search_ar submit-area">
+                <form method="GET" action="{{ route('sort_user') }}">
+                    <div class="search-cont">
+                        <label class="label-ttl">名前</label>
+                        <input type="text" class="form-input" name="name" value="@if(isset($keyword_name)){{ $keyword_name }}@endif">
+                    </div>
+                    <div class="search-cont">
+                        <label class="label-ttl" >メールアドレス</label>
+                        {{-- <input type="text" class="form-input" name="email" value="@if(isset($keyword_phone_number)){{ $keyword_phone_number }}@endif"> --}}
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="search-cont">
+                        <label class="label-ttl">ソート</label>
+                        <select class="form-input" name="sort">
+                            <option value="">選択してください</option>
+                            @foreach ($sort as $key => $value)
+                            <option value="{{ $key }}" @if(isset($keyword_prefecture_id)){{ $key == $keyword_prefecture_id ? 'selected':'' }}@endif>{{ $value }}</option>
+                        @endforeach
+                </select>
+                        </select>
+                    </div>
+                    <div class="search-cont search-btn">
+                        <button class="form-input" type="submit">検索</button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+
         <div class="alert-danger"></div>
         <div class="table_ar">
             <table class="list-table">

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
+use App\Mail\ContactMail;
+use App\Mail\AdminContactMail;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
 
 class ContactsController extends Controller
 {
@@ -60,6 +63,10 @@ class ContactsController extends Controller
         session()->put('reset','reset');
         $contact->fill($attributes)->save();
         $attributes['inquiry_type'] = $request->inquiry_type;
+        //送信元に送信
+        Mail::to($attributes['email'])->send(new ContactMail($attributes,$string_birthday,$this->sex,$this->job));
+        //管理者に送信
+        Mail::to('admin@test.com')->send(new AdminContactMail($attributes,$string_birthday,$this->sex,$this->job));
         return view('contacts.thanks',
         [
             'attributes' => $attributes,
