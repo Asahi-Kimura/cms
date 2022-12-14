@@ -16,6 +16,8 @@ Header Contents
   width: 100%;
   background: #fff;
 } */
+
+
 .header-inner {
     display: flex;
     align-items: center;

@@ -1,5 +1,10 @@
 <?php 
 return [
+    'sort_name' =>
+    [
+        'sort_name' => '名前',
+        'sort_email' => 'メールアドレス',
+    ],
     'sort' =>
     [
         'asc' => '昇順',

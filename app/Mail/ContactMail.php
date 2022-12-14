@@ -28,6 +28,7 @@ class ContactMail extends Mailable
         $this->string_birthday = $string_birthday;
         $this->sex = $sex;
         $this->job = $job;
+        $this->from();
     }
 
     /**

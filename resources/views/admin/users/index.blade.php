@@ -28,8 +28,26 @@
                     <select class="form-input" name="prefecture_id">
                         <option value="">選択してください</option>
                         @foreach ($pref as $key => $value)
-                                <option value="{{ $key }}" @if(isset($keyword_prefecture_id)){{ $key == $keyword_prefecture_id ? 'selected':'' }}@endif>{{ $value }}</option>
-                            @endforeach
+                            <option value="{{ $key }}" @if(isset($keyword_prefecture_id)){{ $key == $keyword_prefecture_id ? 'selected':'' }}@endif>{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="search-cont">
+                    <label class="label-ttl">並び替え</label>
+                    <select class="form-input" name="sort_name">
+                        <option value=""></option>
+                            @foreach ($sort_name as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="search-cont">
+                    <label class="label-ttl">並び順</label>
+                    <select class="form-input" name="sort">
+                        <option value=""></option>
+                            @foreach ($sort as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="search-cont search-btn">
@@ -37,43 +55,13 @@
                 </div>
             </form>
         </div>
-
-        <div class="list-contents">
-            <div class="search_ar submit-area">
-                <form method="GET" action="{{ route('sort_user') }}">
-                    <div class="search-cont">
-                        <label class="label-ttl">名前</label>
-                        <input type="text" class="form-input" name="name" value="@if(isset($keyword_name)){{ $keyword_name }}@endif">
-                    </div>
-                    <div class="search-cont">
-                        <label class="label-ttl" >メールアドレス</label>
-                        {{-- <input type="text" class="form-input" name="email" value="@if(isset($keyword_phone_number)){{ $keyword_phone_number }}@endif"> --}}
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="search-cont">
-                        <label class="label-ttl">ソート</label>
-                        <select class="form-input" name="sort">
-                            <option value="">選択してください</option>
-                            @foreach ($sort as $key => $value)
-                            <option value="{{ $key }}" @if(isset($keyword_prefecture_id)){{ $key == $keyword_prefecture_id ? 'selected':'' }}@endif>{{ $value }}</option>
-                        @endforeach
-                </select>
-                        </select>
-                    </div>
-                    <div class="search-cont search-btn">
-                        <button class="form-input" type="submit">検索</button>
-                    </div>
-                </form>
-            </div>
-        </div>    
-
         <div class="alert-danger"></div>
         <div class="table_ar">
             <table class="list-table">
                 <thead>
                     <tr>
                         <th style="width: 50px">
-                            <p>編集</p>
+                            編集
                         </th>
                         <th style="width: 20px">
                             <p>削除</p>
@@ -81,11 +69,71 @@
                         <th style="width: 30px">
                             <p>権限</p>
                         </th>
-                        <th style="width: 50px">
-                            <p>名前</p>
+                        <th style="width: 50px" class="arrow-top">
+                            名前
+                            <div style="display:inline-flex">
+                                <form method="GET" action="{{ route('search_user') }}"> 
+                                    @if(isset($keyword_name))
+                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
+                                    @endif
+                                    @if(isset($keyword_phone_number))
+                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
+                                    @endif
+                                    @if(isset($keyword_prefecture_id))
+                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
+                                    @endif
+                                    <input type="hidden" name="sort" value="asc">
+                                    <input type="hidden" name="sort_name" value="sort_name">
+                                    <button type="submit">⇧</button>
+                                </form>    
+                                <form method="GET" action="{{ route('search_user') }}"> 
+                                    @if(isset($keyword_name))
+                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
+                                    @endif
+                                    @if(isset($keyword_phone_number))
+                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
+                                    @endif
+                                    @if(isset($keyword_prefecture_id))
+                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
+                                    @endif
+                                    <input type="hidden" name="sort" value="desc">
+                                    <input type="hidden" name="sort_name" value="sort_name">
+                                    <button style="cursor: pointer">⇩</button>
+                                </form>
+                            </div>
                         </th>
-                        <th style="width: 70px">
-                            <p>メールアドレス</p>
+                        <th style="width: 70px" class="arrow-bottom">
+                            メールアドレス
+                            <div style="display:inline-flex">
+                                <form method="GET" action="{{ route('search_user') }}"> 
+                                    @if(isset($keyword_name))
+                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
+                                    @endif
+                                    @if(isset($keyword_phone_number))
+                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
+                                    @endif
+                                    @if(isset($keyword_prefecture_id))
+                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
+                                    @endif
+                                    <input type="hidden" name="sort" value="asc">
+                                    <input type="hidden" name="sort_name" value="sort_email">
+                                    <button type="submit">⇧</button>
+                                </form>
+                                <form method="GET" action="{{ route('search_user') }}"> 
+                                    @if(isset($keyword_name))
+                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
+                                    @endif
+                                    @if(isset($keyword_phone_number))
+                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
+                                    @endif
+                                    @if(isset($keyword_prefecture_id))
+                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
+                                    @endif
+                                    <input type="hidden" name="sort" value="desc">
+                                    <input type="hidden" name="sort_name" value="sort_email">
+                                    <button style="cursor: pointer">⇩</button>
+                                </form>
+                            </div>
                         </th>
                         <th style="width: 70px">
                             <p>電話番号</p>
