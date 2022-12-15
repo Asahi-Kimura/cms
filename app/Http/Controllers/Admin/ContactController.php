@@ -49,6 +49,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request,Contact $contact)
     {
+        
         $contact->fill($request->all())->save();
         return redirect()->route('admin_contact');
     }
@@ -56,9 +57,14 @@ class ContactController extends Controller
     //検索機能処理
     public function search(SearchRequest $request,Contact $contact)
     {
+        $contact_sort_name = config('const.contact_sort_name');
+        $sort = config('const.sort');
+        $sort_pattern = $request->sort;
+        $sort_inc_name = $request->sort_name;
         $user = User::all();
         $keyword_status = $request->status;
         $keyword_authority = $request->authority;
+        $keyword_name = $request->name;
         $conact_user_id = User::where('name',$keyword_authority)->first();
         $keyword_company = $request->company;     
         $status = config('const.status');
@@ -73,8 +79,39 @@ class ContactController extends Controller
         if(!empty($keyword_company)){
             $query->where('company_name','like',"%{$keyword_company}%");
         }
+        if(!empty($sort_pattern)){
+            if($sort_pattern == 'asc'){
+                if($sort_inc_name == 'sort_status'){
+                    $query->orderBy('status','asc');
+                }
+                if($sort_inc_name == 'sort_authority'){
+                    $query->orderBy('user_id','asc');
+                }
+                if($sort_inc_name == 'sort_company'){
+                    $query->orderBy('company_name','asc');
+                }
+                if($sort_inc_name == 'sort_name'){
+                    $query->orderBy('user_name','asc');
+                }
+            }
+            if($sort_pattern == 'desc'){
+                
+                if($sort_inc_name == 'sort_status'){
+                    $query->orderBy('status','desc');
+                }
+                if($sort_inc_name == 'sort_authority'){
+                    $query->orderBy('user_id','desc');
+                }
+                if($sort_inc_name == 'sort_company'){
+                    $query->orderBy('company_name','desc');
+                }
+                if($sort_inc_name == 'sort_name'){
+                    $query->orderBy('user_name','desc');
+                }
+            }
+        }
         $contact = $query->get();
-        return view('admin.contacts.show',compact('user','contact','status','keyword_company','keyword_status','keyword_authority'));
+        return view('admin.contacts.show',compact('contact','status','keyword_company','keyword_status','keyword_authority','sort','contact_sort_name','user'));
     }
     
     //削除機能

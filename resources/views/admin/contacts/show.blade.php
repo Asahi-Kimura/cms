@@ -52,21 +52,50 @@
                             <p>削除</p>
                         </th>
                         <th style="width: 50px">
-                            <p>ステータス</p>
+                            ステータス
+                            @component('components.sort')
+                                @slot('asc','asc')
+                                @slot('desc','desc')    
+                                @slot('item','status')  
+                                @slot('arrow_up','⇧')  
+                                @slot('arrow_under','⇩')  
+                            @endcomponent
                         </th>
                         <th style="width: 80px">
-                            <p>対応者</p>
+                            対応者
+                            @component('components.sort')
+                                @slot('asc','asc')
+                                @slot('desc','desc')
+                                @slot('item','authority')  
+                                @slot('arrow_up','⇧')  
+                                @slot('arrow_under','⇩')  
+                            @endcomponent
                         </th>
                         <th style="width: 80px">
-                            <p>会社名</p>
+                            会社名
+                            @component('components.sort')
+                                @slot('asc','asc')
+                                @slot('desc','desc')
+                                @slot('item','company')  
+                                @slot('arrow_up','⇧')  
+                                @slot('arrow_under','⇩')  
+                            @endcomponent
                         </th>
                         <th style="width: 50px">
-                            <p>氏名</p>
+                            氏名
+                            @component('components.sort')
+                                @slot('asc','asc')
+                                @slot('desc','desc')
+                                @slot('item','name')  
+                                @slot('arrow_up','⇧')  
+                                @slot('arrow_under','⇩')  
+                            @endcomponent
                         </th>
                         <th style="width: 70px">
-                            <p>電話番号</p>
+                            電話番号
                         </th>
                     </tr>
+
                 </thead>
                 <tbody>
                     @if(isset($contact))

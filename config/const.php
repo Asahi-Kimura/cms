@@ -1,5 +1,12 @@
 <?php 
 return [
+    'contact_sort_name' =>
+    [
+        'sort_status' => 'ステータス',
+        'sort_authority' => '対応者',
+        'sort_company' => '会社名',
+        'sort_name' => '氏名',
+    ],
     'sort_name' =>
     [
         'sort_name' => '名前',

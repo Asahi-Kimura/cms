@@ -6,7 +6,6 @@
 @include('admin.layouts.sub')
 @include('admin.layouts.header')
 @section('content')
-
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">会員一覧</h1>
@@ -34,19 +33,18 @@
                 </div>
                 <div class="search-cont">
                     <label class="label-ttl">並び替え</label>
-                    <select class="form-input" name="sort_name">
+                    <select class="form-input click" name="sort_name">
                         <option value=""></option>
                             @foreach ($sort_name as $key => $value)
-                        <option value="{{ $key }}">{{ $value }}</option>
-                        @endforeach
+                                <option value="{{ $key }}"@if(isset($keyword_sort_name)){{ $key == $keyword_sort_name ? 'selected':'' }}@endif>{{ $value }}</option>
+                            @endforeach
                     </select>
                 </div>
-                <div class="search-cont">
+                <div class="search-cont" @if(!isset($keyword_sort))style="display: none"@endif id="display">
                     <label class="label-ttl">並び順</label>
                     <select class="form-input" name="sort">
-                        <option value=""></option>
-                            @foreach ($sort as $key => $value)
-                        <option value="{{ $key }}">{{ $value }}</option>
+                        @foreach ($sort as $key => $value)
+                            <option value="{{ $key }}"@if(isset($keyword_sort)){{ $key == $keyword_sort ? 'selected':'' }}@endif>{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -70,70 +68,10 @@
                             <p>権限</p>
                         </th>
                         <th style="width: 50px" class="arrow-top">
-                            名前
-                            <div style="display:inline-flex">
-                                <form method="GET" action="{{ route('search_user') }}"> 
-                                    @if(isset($keyword_name))
-                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
-                                    @endif
-                                    @if(isset($keyword_phone_number))
-                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
-                                    @endif
-                                    @if(isset($keyword_prefecture_id))
-                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
-                                    @endif
-                                    <input type="hidden" name="sort" value="asc">
-                                    <input type="hidden" name="sort_name" value="sort_name">
-                                    <button type="submit">⇧</button>
-                                </form>    
-                                <form method="GET" action="{{ route('search_user') }}"> 
-                                    @if(isset($keyword_name))
-                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
-                                    @endif
-                                    @if(isset($keyword_phone_number))
-                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
-                                    @endif
-                                    @if(isset($keyword_prefecture_id))
-                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
-                                    @endif
-                                    <input type="hidden" name="sort" value="desc">
-                                    <input type="hidden" name="sort_name" value="sort_name">
-                                    <button style="cursor: pointer">⇩</button>
-                                </form>
-                            </div>
+                            <p>名前</p>
                         </th>
                         <th style="width: 70px" class="arrow-bottom">
-                            メールアドレス
-                            <div style="display:inline-flex">
-                                <form method="GET" action="{{ route('search_user') }}"> 
-                                    @if(isset($keyword_name))
-                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
-                                    @endif
-                                    @if(isset($keyword_phone_number))
-                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
-                                    @endif
-                                    @if(isset($keyword_prefecture_id))
-                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
-                                    @endif
-                                    <input type="hidden" name="sort" value="asc">
-                                    <input type="hidden" name="sort_name" value="sort_email">
-                                    <button type="submit">⇧</button>
-                                </form>
-                                <form method="GET" action="{{ route('search_user') }}"> 
-                                    @if(isset($keyword_name))
-                                        <input type="hidden" name="name" value="{{ $keyword_name }}">
-                                    @endif
-                                    @if(isset($keyword_phone_number))
-                                        <input type="hidden" name="phone_number" value=" {{ $keyword_phone_number }}">
-                                    @endif
-                                    @if(isset($keyword_prefecture_id))
-                                        <input type="hidden" name="prefecture_id" value=" {{ $keyword_prefecture_id }}">
-                                    @endif
-                                    <input type="hidden" name="sort" value="desc">
-                                    <input type="hidden" name="sort_name" value="sort_email">
-                                    <button style="cursor: pointer">⇩</button>
-                                </form>
-                            </div>
+                            <p>メールアドレス</p>
                         </th>
                         <th style="width: 70px">
                             <p>電話番号</p>
@@ -211,6 +149,15 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    if($('.click').val() == ""){
+        $('.click').click(function () { 
+                $('#display').show();
+        });
+    }
+
+</script>
 @endsection
 
 @section('pageJs')

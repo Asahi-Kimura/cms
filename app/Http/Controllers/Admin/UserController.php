@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\SearchRequest;
-use App\Http\Requests\SortRequest;
 use App\Models\Prefecture;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,10 +17,9 @@ class UserController extends Controller
         if($user != null){
             $user = User::all();
         }
-        
         $sort_name = config('const.sort_name');
-        $pref = config('const.pref');
         $sort = config('const.sort');
+        $pref = config('const.pref');
         return view('admin.users.index',compact('user','pref','sort','sort_name'));
     }
     
@@ -53,11 +51,14 @@ class UserController extends Controller
         $sort_name = config('const.sort_name');
         $sort = config('const.sort');
         $pref = config('const.pref');
+        $sort_pattern = $request->sort;
+        $sort_inc_name = $request->sort_name;
+        $keyword_sort = $request->sort;
+        $keyword_sort_name = $request->sort_name;
         $keyword_name = $request->name;
         $keyword_phone_number = $request->phone_number;
         $keyword_prefecture_id = $request->prefecture_id;
-        $sort_inc_name = $request->sort_name;
-        $sort_pattern = $request->sort;
+        
         $query = User::query();
         if(!empty($keyword_name)){
             $query->where('name','like',"%{$keyword_name}%");
@@ -93,7 +94,7 @@ class UserController extends Controller
             }
         }
         $user = $query->get();
-        return view('admin.users.index',compact('user','pref','keyword_name','keyword_phone_number','keyword_prefecture_id','sort','sort_name'));
+        return view('admin.users.index',compact('user','pref','keyword_name','keyword_phone_number','keyword_prefecture_id','sort','sort_name','keyword_sort','keyword_sort_name'));
     }
 
     //削除処理//
