@@ -70,6 +70,7 @@ class ContactController extends Controller
         $status = config('const.status');
         $query = Contact::query();
 
+        
         if(!empty($keyword_status)){
             $query->where('status',$keyword_status);
         }
@@ -88,12 +89,14 @@ class ContactController extends Controller
 
 
                 //????リレーションを利用する???
+                //wherehasを利用する
                 if($sort_inc_name == 'sort_authority'){
-                    $query->User::with(['contact' => function ($query){
-                        $query->orderBy('sort');}]);
+                    $query = Contact::whereHas('user',function($query){
+                        $query->orderBy('authority','asc')->get();
+                    })->get();
                 }
 
-
+                dd($query);
 
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','asc');
