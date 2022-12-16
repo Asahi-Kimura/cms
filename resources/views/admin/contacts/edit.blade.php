@@ -69,7 +69,7 @@
                                 @endif 
                         </small>
                     </div>
-                    <textarea name="remark" form-control  rows="20">{{ old('remark') }}</textarea>
+                    <textarea name="remark" form-control  rows="20">{{ old('remark',$contact->remark) }}</textarea>
                 </div>
                 <div class="form-group">
                     <label class="input-group-text" for="inputGroupSelect01">お問い合わせ情報</label>

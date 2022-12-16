@@ -41,4 +41,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Prefecture::class);
     }
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }
 }

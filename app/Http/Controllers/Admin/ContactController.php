@@ -7,6 +7,7 @@ use App\Http\Requests\ContactRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Contact;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -49,8 +50,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request,Contact $contact)
     {
-        
-        $contact->fill($request->all())->save();
+        $contact->fill($request->all())->save();  
         return redirect()->route('admin_contact');
     }
 
@@ -84,9 +84,17 @@ class ContactController extends Controller
                 if($sort_inc_name == 'sort_status'){
                     $query->orderBy('status','asc');
                 }
+
+
+
+                //????リレーションを利用する???
                 if($sort_inc_name == 'sort_authority'){
-                    $query->orderBy('user_id','asc');
+                    $query->User::with(['contact' => function ($query){
+                        $query->orderBy('sort');}]);
                 }
+
+
+
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','asc');
                 }
