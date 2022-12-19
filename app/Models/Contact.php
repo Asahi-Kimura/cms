@@ -26,4 +26,60 @@ class Contact extends Model
         $attributes = array_merge($attributes,$inquiry_type_array);
         return $attributes;    
     }
+
+    //並び替え機能
+    public function sort($request,$query){
+        $sort_pattern = $request->sort;
+        $sort_inc_name = $request->sort_name;
+        if(!empty($sort_pattern)){
+            if($sort_pattern == 'asc'){
+                if($sort_inc_name == 'sort_status'){
+                    $query->orderBy('status','asc');
+                }
+
+
+                //????リレーションを利用する???
+                // wherehasを利用する
+                if($sort_inc_name == 'sort_authority'){
+                    $query = Contact::whereHas('user',function($query){
+                        $query->orderBy('name','asc');
+                    });
+                }
+
+
+
+                if($sort_inc_name == 'sort_company'){
+                    $query->orderBy('company_name','asc');
+                }
+                if($sort_inc_name == 'sort_name'){
+                    $query->orderBy('user_name','asc');
+                }
+            }
+            if($sort_pattern == 'desc'){
+                
+                if($sort_inc_name == 'sort_status'){
+                    $query->orderBy('status','desc');
+                }
+
+
+
+                if($sort_inc_name == 'sort_authority'){
+                    $query = Contact::whereHas('user',function($query){
+                        $query->orderBy('name','desc');
+                    });
+                }
+
+
+                
+                if($sort_inc_name == 'sort_company'){
+                    $query->orderBy('company_name','desc');
+                }
+                if($sort_inc_name == 'sort_name'){
+                    $query->orderBy('user_name','desc');
+                }
+            }
+        }
+    
+    return $query;
+    }
 }
