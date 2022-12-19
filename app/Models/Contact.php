@@ -41,9 +41,10 @@ class Contact extends Model
                 //????リレーションを利用する???
                 // wherehasを利用する
                 if($sort_inc_name == 'sort_authority'){
-                    $query = Contact::whereHas('user',function($query){
-                        $query->orderBy('name','asc');
-                    });
+                    // $query->whereHas('user',function($query){
+                    //     $query->orderBy('name','asc');
+                    // })
+                    // ->orderBy('user.name')
                 }
 
 
@@ -60,17 +61,13 @@ class Contact extends Model
                 if($sort_inc_name == 'sort_status'){
                     $query->orderBy('status','desc');
                 }
-
-
-
+                
                 if($sort_inc_name == 'sort_authority'){
-                    $query = Contact::whereHas('user',function($query){
+                    $query->whereHas('user',function($query){
                         $query->orderBy('name','desc');
                     });
+                    
                 }
-
-
-                
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','desc');
                 }

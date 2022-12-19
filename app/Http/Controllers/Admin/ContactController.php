@@ -58,6 +58,11 @@ class ContactController extends Controller
     public function search(SearchRequest $request,Contact $contact)
     {
         $user = User::all();
+
+
+        //修正ポイント　$keyword_ テーブルボタンを押すと更新されて検索が消える。sessionを利用する？？
+        
+
         $keyword_status = $request->status;
         $keyword_authority = $request->authority;
         $keyword_name = $request->name;
@@ -65,12 +70,7 @@ class ContactController extends Controller
         $keyword_company = $request->company;     
         $status = config('const.status');
         $query = Contact::query();
-        // $name = 'kimura';
-        //         $a = Contact::whereHas('user',function($query) use ($name) {
-        //                 $query->where('name',$name);
-        //                 // $query->orderBy('name','asc');
-        //             })->get();
-        //             dd($a);
+
         if(!empty($keyword_status)){
             $query->where('status',$keyword_status);
         }

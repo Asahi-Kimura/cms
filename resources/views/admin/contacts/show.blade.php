@@ -12,7 +12,7 @@
     </div>
     <div class="list-contents">
         <div class="search_ar submit-area">
-            <form action="{{ route('search_contact') }}" method="GET">
+            <form action="{{ route('search_contact') }}" method="GET" name="contact_form">
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
                     <select class="form-input" name="status">
@@ -41,6 +41,7 @@
                 </div>
             </form>
         </div>
+
         <div class="table_ar">
             <table class="list-table">
                 <thead>
