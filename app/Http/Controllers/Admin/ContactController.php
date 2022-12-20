@@ -18,7 +18,8 @@ class ContactController extends Controller
         $user = User::all();
         $auth = config('const.authority');
         $status = config('const.status');
-        return view('admin.contacts.show',compact('status','contact','user'));
+        $item = config('const.contact_sort_name');
+        return view('admin.contacts.show',compact('status','contact','user','item'));
     }
 
     // 管理画面詳細

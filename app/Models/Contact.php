@@ -49,21 +49,10 @@ class Contact extends Model
                     $query->orderBy('status','asc');
                 }
                 if($sort_inc_name == 'sort_authority'){
-                    $query->whereHas('user',
-                        function($q)
-                            {
-                            $q->join('contacts','contacts.user_id','=','users.id')
-                                ->orderBy('users.name','asc');
-                                return $q;
-                            }
-                    );
-                        // $query = DB::table('users')
-                        //     ->select('users.*')
-                        //     ->join('contacts','contacts.user_id','=','users.id')
-                        //     ->orderBy('users.name','asc')->get();
-                        // dd($query);
+                    $query->select('contacts.*')
+                        ->join('users','contacts.user_id','=','users.id')
+                        ->orderBy('users.name','asc')->get();
                     }
-            
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','asc');
                 }
@@ -77,14 +66,9 @@ class Contact extends Model
                     $query->orderBy('status','desc');
                 }
                 if($sort_inc_name == 'sort_authority'){
-                    $query->whereHas('user',
-                    function($q)
-                        {
-                            $q->join('contacts','contacts.user_id','=','users.id')
-                                ->orderBy('users.name','asc');
-                                return $q;
-                        }
-                    ); 
+                    $query->select('contacts.*')
+                            ->join('users','contacts.user_id','=','users.id')
+                            ->orderBy('users.name','desc')->get();
                 }
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','desc');

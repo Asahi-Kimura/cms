@@ -6,6 +6,7 @@
 @include('admin.layouts.sub')
 @include('admin.layouts.header')
 @section('content')
+@dump(request()->all())
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">お問い合わせ一覧</h1>
@@ -16,6 +17,7 @@
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
                     <select class="form-input" name="status">
+                        
                         <option value="">選択してください</option>
                         @foreach ($status as $key => $value)
                             <option value="{{ $key }}" @if(isset($keyword_status)){{ $key == $keyword_status ? 'selected':'' }}@endif>{{ $value }}</option>
@@ -37,10 +39,9 @@
                 </div>
 
                 <div class="search-cont search-btn">
-                    <button class="form-input" type="submit">検索</button>
+                    <button id="submit" class="form-input" type="submit">検索</button>
                 </div>
-            </form>
-        </div>
+            </div>
 
         <div class="table_ar">
             <table class="list-table">
@@ -54,20 +55,23 @@
                         </th>
                         <th style="width: 50px">
                             ステータス
-                            @component('components.sort')
-                                @slot('asc','asc')
-                                @slot('desc','desc')    
+                            @component('components.sort')  
+                                @slot('sort','asc')
                                 @slot('item','status')  
-                                @slot('arrow_up','⇧')  
-                                @slot('arrow_under','⇩')  
+                                @slot('arrow','⇧') 
+                            @endcomponent
+                            @component('components.sort')
+                                @slot('sort','desc')    
+                                @slot('item','status')   
+                                @slot('arrow','⇩')  
                             @endcomponent
                         </th>
                         <th style="width: 80px">
                             対応者
                             @component('components.sort')
                                 @slot('asc','asc')
-                                @slot('desc','desc')
-                                @slot('item','authority')  
+                                @slot('desc','desc')    
+                                @slot('item','status')  
                                 @slot('arrow_up','⇧')  
                                 @slot('arrow_under','⇩')  
                             @endcomponent
@@ -96,7 +100,6 @@
                             電話番号
                         </th>
                     </tr>
-
                 </thead>
                 <tbody>
                     @if(isset($contact))
@@ -143,6 +146,15 @@
         </div>
     </div>
 </div>
+</form>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script>
+$(function(){
+    $('button').click(function() {
+        $('#submit').trigger('click');
+    });
+});
+</script>
 @endsection
 
 @section('pageJs')
