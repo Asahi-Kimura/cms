@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Contact extends Model
 {
@@ -27,8 +28,19 @@ class Contact extends Model
         return $attributes;    
     }
 
+    //並び替え関数
+    public function sort_authority(){
+        {
+            $q = DB::table('users')
+                ->select('users.*')
+                ->join('contacts','contacts.user_id','=','users.id')
+                ->orderBy('users.name','asc')->get();
+            return $q;
+        }
+    }
     //並び替え機能
-    public function sort($request,$query){
+    public function sort($request,$query)
+    {
         $sort_pattern = $request->sort;
         $sort_inc_name = $request->sort_name;
         if(!empty($sort_pattern)){
@@ -36,19 +48,22 @@ class Contact extends Model
                 if($sort_inc_name == 'sort_status'){
                     $query->orderBy('status','asc');
                 }
-
-
-                //????リレーションを利用する???
-                // wherehasを利用する
                 if($sort_inc_name == 'sort_authority'){
-                    // $query->whereHas('user',function($query){
-                    //     $query->orderBy('name','asc');
-                    // })
-                    // ->orderBy('user.name')
-                }
-
-
-
+                    $query->whereHas('user',
+                        function($q)
+                            {
+                            $q->join('contacts','contacts.user_id','=','users.id')
+                                ->orderBy('users.name','asc');
+                                return $q;
+                            }
+                    );
+                        // $query = DB::table('users')
+                        //     ->select('users.*')
+                        //     ->join('contacts','contacts.user_id','=','users.id')
+                        //     ->orderBy('users.name','asc')->get();
+                        // dd($query);
+                    }
+            
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','asc');
                 }
@@ -61,12 +76,15 @@ class Contact extends Model
                 if($sort_inc_name == 'sort_status'){
                     $query->orderBy('status','desc');
                 }
-                
                 if($sort_inc_name == 'sort_authority'){
-                    $query->whereHas('user',function($query){
-                        $query->orderBy('name','desc');
-                    });
-                    
+                    $query->whereHas('user',
+                    function($q)
+                        {
+                            $q->join('contacts','contacts.user_id','=','users.id')
+                                ->orderBy('users.name','asc');
+                                return $q;
+                        }
+                    ); 
                 }
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','desc');
@@ -76,7 +94,6 @@ class Contact extends Model
                 }
             }
         }
-    
     return $query;
     }
 }
