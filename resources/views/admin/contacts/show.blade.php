@@ -124,56 +124,56 @@
 </form>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script>
-$(function()
-{
-    //ステータス
-    $('.on_asc_status').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_status">');
-        $('#submit').trigger('click');
-    });
-    $('.on_desc_status').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_status">');
-        $('#submit').trigger('click');
-    });
+    $(function()
+    {
+        //ステータス
+        $('.on_asc_status').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_status">');
+            $('#submit').trigger('click');
+        });
+        $('.on_desc_status').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_status">');
+            $('#submit').trigger('click');
+        });
 
-    //対応者
-    $('.on_asc_authority').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_authority">');
-        $('#submit').trigger('click');
-    });
-    $('.on_desc_authority').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_authority">');
-        $('#submit').trigger('click');
-    });   
+        //対応者
+        $('.on_asc_authority').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_authority">');
+            $('#submit').trigger('click');
+        });
+        $('.on_desc_authority').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_authority">');
+            $('#submit').trigger('click');
+        });   
 
-    //会社名
-    $('.on_asc_company').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_company">');
-        $('#submit').trigger('click');
-    });
-    $('.on_desc_company').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_company">');
-        $('#submit').trigger('click');
-    }); 
+        //会社名
+        $('.on_asc_company').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_company">');
+            $('#submit').trigger('click');
+        });
+        $('.on_desc_company').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_company">');
+            $('#submit').trigger('click');
+        }); 
 
-    //氏名
-    $('.on_asc_name').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_name">');
-        $('#submit').trigger('click');
+        //氏名
+        $('.on_asc_name').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_name">');
+            $('#submit').trigger('click');
+        });
+        $('.on_desc_name').click(function() {
+            $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+            $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_name">');
+            $('#submit').trigger('click');
+        }); 
     });
-    $('.on_desc_name').click(function() {
-        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
-        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_name">');
-        $('#submit').trigger('click');
-    }); 
-});
 </script>
 @endsection
 
