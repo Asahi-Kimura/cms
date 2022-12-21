@@ -6,7 +6,6 @@
 @include('admin.layouts.sub')
 @include('admin.layouts.header')
 @section('content')
-@dump(request()->all())
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">お問い合わせ一覧</h1>
@@ -17,7 +16,6 @@
                 <div class="search-cont">
                     <label class="label-ttl">ステータス</label>
                     <select class="form-input" name="status">
-                        
                         <option value="">選択してください</option>
                         @foreach ($status as $key => $value)
                             <option value="{{ $key }}" @if(isset($keyword_status)){{ $key == $keyword_status ? 'selected':'' }}@endif>{{ $value }}</option>
@@ -29,7 +27,7 @@
                     <select class="form-input" name="authority">
                         <option value="">選択してください</option>
                         @foreach($user as $user)
-                            <option value="{{ $user->name }}" @if(isset($keyword_authority)){{ $user == $keyword_authority ? 'selected':'' }}@endif>{{ $user->name }}</option>
+                            <option value="{{ $user->name }}" @if(isset($keyword_authority)){{ $user->name == $keyword_authority ? 'selected':'' }}@endif>{{ $user->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -37,7 +35,7 @@
                     <label class="label-ttl">会社名</label>
                     <input type="text" class="form-input" name="company" value=" @if(isset($keyword_company)){{ $keyword_company }}@endif" >
                 </div>
-
+                <div class="sort_event"></div>
                 <div class="search-cont search-btn">
                     <button id="submit" class="form-input" type="submit">検索</button>
                 </div>
@@ -55,46 +53,23 @@
                         </th>
                         <th style="width: 50px">
                             ステータス
-                            @component('components.sort')  
-                                @slot('sort','asc')
-                                @slot('item','status')  
-                                @slot('arrow','⇧') 
-                            @endcomponent
-                            @component('components.sort')
-                                @slot('sort','desc')    
-                                @slot('item','status')   
-                                @slot('arrow','⇩')  
-                            @endcomponent
+                            <button class="on_asc_status">⇧</button>
+                            <button class="on_desc_status">⇩</button>
                         </th>
                         <th style="width: 80px">
                             対応者
-                            @component('components.sort')
-                                @slot('asc','asc')
-                                @slot('desc','desc')    
-                                @slot('item','status')  
-                                @slot('arrow_up','⇧')  
-                                @slot('arrow_under','⇩')  
-                            @endcomponent
+                            <button class="on_asc_authority">⇧</button>
+                            <button class="on_desc_authority">⇩</button>
                         </th>
                         <th style="width: 80px">
                             会社名
-                            @component('components.sort')
-                                @slot('asc','asc')
-                                @slot('desc','desc')
-                                @slot('item','company')  
-                                @slot('arrow_up','⇧')  
-                                @slot('arrow_under','⇩')  
-                            @endcomponent
+                            <button class="on_asc_company">⇧</button>
+                            <button class="on_desc_company">⇩</button>
                         </th>
                         <th style="width: 50px">
                             氏名
-                            @component('components.sort')
-                                @slot('asc','asc')
-                                @slot('desc','desc')
-                                @slot('item','name')  
-                                @slot('arrow_up','⇧')  
-                                @slot('arrow_under','⇩')  
-                            @endcomponent
+                            <button class="on_asc_name">⇧</button>
+                            <button class="on_desc_name">⇩</button>
                         </th>
                         <th style="width: 70px">
                             電話番号
@@ -149,10 +124,55 @@
 </form>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script>
-$(function(){
-    $('button').click(function() {
+$(function()
+{
+    //ステータス
+    $('.on_asc_status').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_status">');
         $('#submit').trigger('click');
     });
+    $('.on_desc_status').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_status">');
+        $('#submit').trigger('click');
+    });
+
+    //対応者
+    $('.on_asc_authority').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_authority">');
+        $('#submit').trigger('click');
+    });
+    $('.on_desc_authority').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_authority">');
+        $('#submit').trigger('click');
+    });   
+
+    //会社名
+    $('.on_asc_company').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_company">');
+        $('#submit').trigger('click');
+    });
+    $('.on_desc_company').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_company">');
+        $('#submit').trigger('click');
+    }); 
+
+    //氏名
+    $('.on_asc_name').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" asc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_name">');
+        $('#submit').trigger('click');
+    });
+    $('.on_desc_name').click(function() {
+        $('.sort_event').append('<input type="hidden" name="sort" value=" desc">');
+        $('.sort_event').append('<input type="hidden" name="sort_name" value="sort_name">');
+        $('#submit').trigger('click');
+    }); 
 });
 </script>
 @endsection

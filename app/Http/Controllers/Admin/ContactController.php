@@ -7,7 +7,6 @@ use App\Http\Requests\ContactRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Contact;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -59,11 +58,6 @@ class ContactController extends Controller
     public function search(SearchRequest $request,Contact $contact)
     {
         $user = User::all();
-
-
-        //修正ポイント　$keyword_ テーブルボタンを押すと更新されて検索が消える。sessionを利用する？？
-        
-
         $keyword_status = $request->status;
         $keyword_authority = $request->authority;
         $keyword_name = $request->name;
@@ -84,7 +78,7 @@ class ContactController extends Controller
         // 並び替えする場合        
         $sort = config('const.sort');
         $contact_sort_name = config('const.contact_sort_name');
-        $contact->sort($request,$query);        
+        $contact->sort($request,$query);
         $contact = $query->get();
         return view('admin.contacts.show',compact('contact','status','keyword_company','keyword_status','keyword_authority','sort','contact_sort_name','user'));
     }
