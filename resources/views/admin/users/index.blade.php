@@ -40,7 +40,7 @@
                             @endforeach
                     </select>
                 </div>
-                <div class="search-cont" @if(!isset($keyword_sort)) @endif id="display">
+                <div class="search-cont" style="display: none" @if(!isset($keyword_sort)) @endif id="display">
                     <label class="label-ttl">並び順</label>
                     <select class="form-input" name="sort">
                         @foreach ($sort as $key => $value)
@@ -150,7 +150,20 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
 
+    $('.sort_click').click(function () { 
+        var value = $('.sort_click').val();
+        console.log(value);
+        if(value == ""){
+            $('#display').hide();
+        }
+        if(value != ""){
+            $('#display').show();
+        } 
+    });
+    
+</script>
 @endsection
 
 @section('pageJs')
