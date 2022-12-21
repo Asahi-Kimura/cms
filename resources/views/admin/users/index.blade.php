@@ -154,7 +154,6 @@
 
     $('.sort_click').click(function () { 
         var value = $('.sort_click').val();
-        console.log(value);
         if(value == ""){
             $('#display').hide();
         }
