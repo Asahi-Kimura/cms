@@ -50,9 +50,9 @@ class Contact extends Model
                 }
                 if($sort_inc_name == 'sort_authority'){
                     $query->select('contacts.*')
-                        ->join('users','contacts.user_id','=','users.id')
-                        ->orderBy('users.name','asc')->get();
-                    }
+                        ->leftJoin('users','contacts.user_id','=','users.id')
+                        ->orderBy('users.name','asc');
+                }
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','asc');
                 }
@@ -67,8 +67,8 @@ class Contact extends Model
                 }
                 if($sort_inc_name == 'sort_authority'){
                     $query->select('contacts.*')
-                            ->join('users','contacts.user_id','=','users.id')
-                            ->orderBy('users.name','desc')->get();
+                            ->leftJoin('users','contacts.user_id','=','users.id')
+                            ->orderBy('users.name','desc');
                 }
                 if($sort_inc_name == 'sort_company'){
                     $query->orderBy('company_name','desc');
@@ -78,6 +78,7 @@ class Contact extends Model
                 }
             }
         }
-    return $query;
+
+        return $query;
     }
 }

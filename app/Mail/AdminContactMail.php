@@ -36,6 +36,6 @@ class AdminContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.admin');
+        return $this->view('mail.admin')->text('mail.admin');
     }
 }

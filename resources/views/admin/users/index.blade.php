@@ -7,6 +7,7 @@
 @include('admin.layouts.header')
 @section('content')
 <div class="main-contet-inner">
+    @dump(request()->all())
     <div class="page-ttl_ar">
         <h1 class="page-ttl">会員一覧</h1>
         <p><a class="new-btn" href="{{ route('new') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
@@ -50,7 +51,7 @@
                     </select>
                 </div>
                 <div class="search-cont search-btn">
-                    <button class="form-input" type="submit">検索</button>
+                    <button class="form-input submit_switch " type="submit">検索</button>
                 </div>
             </form>
         </div>
@@ -152,15 +153,29 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $('.sort_click').click(function () { 
+    $('.sort_click').click(function ()
+    { 
         var value = $('.sort_click').val();
         if(value == ""){
             $('#display').hide();
         }
         if(value != ""){
             $('#display').show();
-        } 
+        }
     });
+    
+
+    //動かない
+    $('.submit_switch').click(function()
+    {
+        $('.submit_switch').addClass('.active');
+        console.log('hoge');
+    });
+    if($('.submit_switch').hasClass('.active'))
+        {
+            console.log('hogehoge');
+            $('#display').show();
+        };
 </script>
 @endsection
 
