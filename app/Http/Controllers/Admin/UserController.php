@@ -74,24 +74,10 @@ class UserController extends Controller
             $keyword_prefecture_id = $str_prefecture_id;
             $query->where('prefecture_id',$keyword_prefecture_id);
         }
-        
-        if(!empty($sort_pattern)){
-            if($sort_pattern == 'asc'){
-                if($sort_inc_name == 'sort_name'){
-                    $query->orderBy('name','asc');
-                } 
-                if($sort_inc_name == 'sort_email') {
-                    $query->orderBy('email','asc');
-                }
-            }
-            if($sort_pattern == 'desc'){
-                if($sort_inc_name == 'sort_name'){
-                    $query->orderBy('name','desc');
-                } 
-                if($sort_inc_name == 'sort_email') {
-                    $query->orderBy('email','desc');
-                }
-            }
+        //並び替え
+        $user = new User;
+        if($sort_name != ""){
+            $user->user_sort($query,$sort_inc_name,$sort_pattern);
         }
         $user = $query->get();
         return view('admin.users.index',compact('user','pref','keyword_name','keyword_phone_number','keyword_prefecture_id','sort','sort_name','keyword_sort','keyword_sort_name'));

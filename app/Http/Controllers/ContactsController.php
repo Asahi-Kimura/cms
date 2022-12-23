@@ -66,7 +66,7 @@ class ContactsController extends Controller
         //送信元に送信
         Mail::to($attributes['email'])->send(new ContactMail($attributes,$string_birthday,$this->sex,$this->job));
         //管理者に送信
-        Mail::to('admin@test.com')->send(new AdminContactMail($attributes,$string_birthday,$this->sex,$this->job));
+        Mail::to('test.kimura.ak0914@gmail.com')->send(new AdminContactMail($attributes,$string_birthday,$this->sex,$this->job));
         return view('contacts.thanks',
         [
             'attributes' => $attributes,

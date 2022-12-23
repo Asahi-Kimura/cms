@@ -40,6 +40,7 @@
                             @endforeach
                     </select>
                 </div>
+            
                 <div class="search-cont" style="display: none" @if(!isset($keyword_sort)) @endif id="display">
                     <label class="label-ttl">並び順</label>
                     <select class="form-input" name="sort">

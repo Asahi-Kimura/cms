@@ -44,4 +44,27 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Contact::class);
     }
+
+    public function user_sort($query,$sort_inc_name,$sort_pattern)
+    {
+        if(!empty($sort_pattern)){
+            if($sort_pattern == 'asc'){
+                if($sort_inc_name == 'sort_name'){
+                    $query->orderBy('name','asc');
+                } 
+                if($sort_inc_name == 'sort_email') {
+                    $query->orderBy('email','asc');
+                }
+            }
+            if($sort_pattern == 'desc'){
+                if($sort_inc_name == 'sort_name'){
+                    $query->orderBy('name','desc');
+                } 
+                if($sort_inc_name == 'sort_email') {
+                    $query->orderBy('email','desc');
+                }
+            }
+        }
+        return $query;
+    }
 }
