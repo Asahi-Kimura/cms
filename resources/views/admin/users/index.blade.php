@@ -7,7 +7,6 @@
 @include('admin.layouts.header')
 @section('content')
 <div class="main-contet-inner">
-    @dump(request()->all())
     <div class="page-ttl_ar">
         <h1 class="page-ttl">会員一覧</h1>
         <p><a class="new-btn" href="{{ route('new') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
@@ -36,20 +35,19 @@
                     <label class="label-ttl">並び替え</label>
                     <select class="form-input sort_click" name="sort_name">
                         <option value=""></option>
-                            @foreach ($sort_name as $key => $value)
-                                <option value="{{ $key }}"@if(isset($keyword_sort_name)){{ $key == $keyword_sort_name ? 'selected':'' }}@endif>{{ $value }}</option>
-                            @endforeach
+                        @foreach ($sort_name as $key => $value)
+                            <option value="{{ $key }}"@if(isset($keyword_sort_name)){{ $key == $keyword_sort_name ? 'selected':'' }}@endif>{{ $value }}</option>
+                        @endforeach
                     </select>
                 </div>
-            
-                <div class="search-cont" style="display: none" @if(!isset($keyword_sort)) @endif id="display">
+                <div class="search-cont"   id="display" @if(!isset($keyword_sort_name)) style="display: none" @endif>
                     <label class="label-ttl">並び順</label>
                     <select class="form-input" name="sort">
                         @foreach ($sort as $key => $value)
                             <option value="{{ $key }}"@if(isset($keyword_sort)){{ $key == $keyword_sort ? 'selected':'' }}@endif>{{ $value }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div>  
                 <div class="search-cont search-btn">
                     <button class="form-input submit_switch " type="submit">検索</button>
                 </div>
@@ -163,19 +161,6 @@
             $('#display').show();
         }
     });
-    
-
-    //動かない
-    $('.submit_switch').click(function()
-    {
-        $('.submit_switch').addClass('.active');
-        console.log('hoge');
-    });
-    if($('.submit_switch').hasClass('.active'))
-        {
-            console.log('hogehoge');
-            $('#display').show();
-        };
 </script>
 @endsection
 
