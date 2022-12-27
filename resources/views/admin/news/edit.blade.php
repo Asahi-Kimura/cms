@@ -49,7 +49,9 @@
                             @endif
                         </small>
                     </label>
-                    <input type="file" name="file_image" value="" class="form-control" accept="image/*">
+                    <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
+                {{-- js練習中 --}}
+                    <img id="preview">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>本文
@@ -103,11 +105,23 @@
     });
 </script>
 
+<script>
+    $('#file_image').on('change', function (e) {
+        // js練習中
+        const reader = new FileReader();
+        const fileName = e.target.files[0].name;
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result).css('width', '150px').css('height', '150px');
+        }
+        reader.readAsDataURL(this.files[0]);
+    })
+</script>
 @php
     $image_array = explode('/',$news->file_image);
     $image = str_replace('public','',$news->file_image);
 @endphp
 
+{{-- 高さ幅調整が効かない　cssファイルが原因か？ --}}
 表示画像名：{{ end($image_array) }}
 <img src="{{ asset('storage'.$image)}}" alt="ニュース画像" >
 @endsection
