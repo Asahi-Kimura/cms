@@ -124,4 +124,8 @@
 {{-- 高さ幅調整が効かない　cssファイルが原因か？ --}}
 表示画像名：{{ end($image_array) }}
 <img src="{{ asset('storage'.$image)}}" alt="ニュース画像" >
+{{-- テスト１
+<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" width="150px" height="150px" >
+テスト２
+<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" style="width: 150px !important,height:150px !important"> --}}
 @endsection
