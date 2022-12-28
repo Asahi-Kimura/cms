@@ -41,7 +41,10 @@
                     
                     <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像
                         @if($user->id != null)
-                            <a href="{{ asset('storage'.$image)}}">{{ end($image_array) }}</a>
+                            <div>
+                                <img src="{{ asset('storage'.$image)}}" style="width: 100px"  alt="ニュース画像" >
+                                <p>ファイル名：{{ end($image_array) }}</p>
+                            </div>
                         @endif 
                         <small>
                             @if( $errors->has('file_image') )
@@ -52,6 +55,7 @@
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
                 {{-- js練習中 --}}
                     <img id="preview">
+                    <div id="preview_name"></div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1"><span class="Form-Item-Label-Required">必須 </span>本文
@@ -111,9 +115,10 @@
         const reader = new FileReader();
         const fileName = e.target.files[0].name;
         reader.onload = function (e) {
-            $('#preview').attr('src', e.target.result).css('width', '150px').css('height', '150px');
+            $('#preview').attr('src', e.target.result).css('width', '100px').css('height', '100px');
         }
         reader.readAsDataURL(this.files[0]);
+        $('#preview_name').append("<p>プレビュー</p>");
     })
 </script>
 @php
@@ -121,11 +126,6 @@
     $image = str_replace('public','',$news->file_image);
 @endphp
 
-{{-- 高さ幅調整が効かない　cssファイルが原因か？ --}}
 表示画像名：{{ end($image_array) }}
-<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" >
-{{-- テスト１
-<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" width="150px" height="150px" >
-テスト２
-<img src="{{ asset('storage'.$image)}}" alt="ニュース画像" style="width: 150px !important,height:150px !important"> --}}
+<img src="{{ asset('storage'.$image)}}" style="width: 100px"  alt="ニュース画像" >
 @endsection
