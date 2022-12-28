@@ -53,7 +53,6 @@
                         </small>
                     </label>
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
-                {{-- js練習中 --}}
                     <img id="preview">
                     <div id="preview_name"></div>
                 </div>
@@ -67,7 +66,6 @@
                     </label>
                     <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="4">{{ old('content',$news->content) }}</textarea>
                 </div>
-
                 <div class="input-group pb-3">
                     <div class="input-group-prepend">
                         <label class="input-group" for="inputGroupSelect01"><span class="Form-Item-Label-Required">必須</span>公開開始
@@ -111,21 +109,13 @@
 
 <script>
     $('#file_image').on('change', function (e) {
-        // js練習中
         const reader = new FileReader();
         const fileName = e.target.files[0].name;
         reader.onload = function (e) {
             $('#preview').attr('src', e.target.result).css('width', '100px').css('height', '100px');
         }
         reader.readAsDataURL(this.files[0]);
-        $('#preview_name').append("<p>プレビュー</p>");
+        $('#preview_name').append("<p>プレビューファイル</p>");
     })
 </script>
-@php
-    $image_array = explode('/',$news->file_image);
-    $image = str_replace('public','',$news->file_image);
-@endphp
-
-表示画像名：{{ end($image_array) }}
-<img src="{{ asset('storage'.$image)}}" style="width: 100px"  alt="ニュース画像" >
 @endsection
