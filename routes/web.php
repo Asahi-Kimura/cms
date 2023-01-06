@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     //ログアウト
     Route::post('logout', [LoginController::class,'logout'])->name('logout');
     //会員一覧
-    Route::get('/users/{user?}', [UserController::class,'show'])->name('user');
+    Route::get('/users/{user?}/', [UserController::class,'show'])->name('user');
     //ユーザー編集画面
     Route::get('/users/edit/{user?}', [UserController::class,'create'])->name('user_edit');
     //ユーザー新規作成、編集画面

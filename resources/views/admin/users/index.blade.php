@@ -7,6 +7,7 @@
 @include('admin.layouts.header')
 @section('content')
 <div class="main-contet-inner">
+    {{-- @dump(url()->full()) --}}
     <div class="page-ttl_ar">
         <h1 class="page-ttl">会員一覧</h1>
         <p><a class="new-btn" href="{{ route('new') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
@@ -50,8 +51,15 @@
                 </div>  
                 <div class="search-cont search-btn">
                     <button class="form-input submit_switch " type="submit">検索</button>
+                    <button class="delete_search">検索削除</button>
                 </div>
             </form>
+            <div class=""></div>
+            <script>
+                $(".delete_search").on("click", function () {
+                    return delete_pop_up = 
+                });
+            </script>
         </div>
         <div class="alert-danger"></div>
         <div class="table_ar">

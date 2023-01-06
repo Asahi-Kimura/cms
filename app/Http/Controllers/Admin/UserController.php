@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Prefecture;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -45,19 +46,38 @@ class UserController extends Controller
         $user->fill($attributes)->save();
         return redirect()->route('user');
     }
+
     //検索機能
     public function search(SearchRequest $request,Prefecture $prefecture)
     {
         $sort_name = config('const.sort_name');
         $sort = config('const.sort');
         $pref = config('const.pref');
-        $sort_pattern = $request->sort;
-        $sort_inc_name = $request->sort_name;
-        $keyword_sort = $request->sort;
-        $keyword_sort_name = $request->sort_name;
-        $keyword_name = $request->name;
-        $keyword_phone_number = $request->phone_number;
-        $keyword_prefecture_id = $request->prefecture_id;
+        
+        
+        session()->put('sort_pattern',$request->sort);
+        session()->put('sort_inc_name',$request->sort_name);
+        session()->put('keyword_sort',$request->sort);
+        session()->put('keyword_sort_name',$request->sort_name);
+        session()->put('keyword_name',$request->name);
+        session()->put('keyword_phone_number',$request->phone_number);
+        session()->put('keyword_prefecture_id',$request->prefecture_id);    
+        
+        $sort_pattern = session()->get('sort_pattern');
+        $sort_inc_name = session()->get('sort_inc_name');
+        $keyword_sort = session()->get('keyword_sort');
+        $keyword_sort_name = session()->get('keyword_sort_name');
+        $keyword_name = session()->get('keyword_name');
+        $keyword_phone_number = session()->get('keyword_phone_number');
+        $keyword_prefecture_id = session()->get('keyword_prefecture_id');
+        
+        // $sort_pattern = $request->sort;
+        // $sort_inc_name = $request->sort_name;
+        // $keyword_sort = $request->sort;
+        // $keyword_sort_name = $request->sort_name;
+        // $keyword_name = $request->name;
+        // $keyword_phone_number = $request->phone_number;
+        // $keyword_prefecture_id = $request->prefecture_id;
         
         $query = User::query();
         if(!empty($keyword_name)){
