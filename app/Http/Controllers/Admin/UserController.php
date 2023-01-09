@@ -53,8 +53,7 @@ class UserController extends Controller
         $sort_name = config('const.sort_name');
         $sort = config('const.sort');
         $pref = config('const.pref');
-        
-        
+
         session()->put('sort_pattern',$request->sort);
         session()->put('sort_inc_name',$request->sort_name);
         session()->put('keyword_sort',$request->sort);
@@ -101,6 +100,11 @@ class UserController extends Controller
         }
         $user = $query->get();
         return view('admin.users.index',compact('user','pref','keyword_name','keyword_phone_number','keyword_prefecture_id','sort','sort_name','keyword_sort','keyword_sort_name'));
+    }
+    //検索削除
+    public function search_delete(SearchRequest $request){
+        $request->session()->forget(['sort_pattern','sort_inc_name','keyword_sort','keyword_sort_name','keyword_name','keyword_phone_number','keyword_prefecture_id']); 
+        return redirect()->route('user');
     }
 
     //削除処理//

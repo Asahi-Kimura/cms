@@ -17,6 +17,7 @@
     <link href="{{ asset('css/admin/cms-home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/contact-form.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/contents.css') }}" rel="stylesheet">
+    
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

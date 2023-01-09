@@ -12,7 +12,7 @@
         <h1 class="page-ttl">会員一覧</h1>
         <p><a class="new-btn" href="{{ route('new') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
     </div>
-    <div class="list-contents">
+    < class="list-contents">
         <div class="search_ar submit-area">
             <form method="GET" action="{{ route('search_user') }}">
                 <div class="search-cont">
@@ -51,15 +51,14 @@
                 </div>  
                 <div class="search-cont search-btn">
                     <button class="form-input submit_switch " type="submit">検索</button>
-                    <button class="delete_search">検索削除</button>
+                </div>
+                <div class="search-cont search-btn" id="search_delete">
+                    <button class="form-input submit_switch">検索削除</button>
                 </div>
             </form>
+
+
             <div class=""></div>
-            <script>
-                $(".delete_search").on("click", function () {
-                    return delete_pop_up = 
-                });
-            </script>
         </div>
         <div class="alert-danger"></div>
         <div class="table_ar">
@@ -140,6 +139,8 @@
         </div>
     </div>
 </div>
+
+{{-- modal-window --}}
 <div class="modal-content delete">
     <div class="modal-ttl">
     <h4>削除</h4>
@@ -147,10 +148,10 @@
     </div>
 
     <div class="modal-inner">
-    <p>削除しますか？</p>
+    <p>検索削除しますか？</p>
         <div class="modal-btn_ar">
         <button type="button" class="no">いいえ</button>
-            <form method="POST" action="" id="delete">
+            <form class="form_search_delete" method="GET" action="{{ route('search_user_delete') }}">
                 <input type="hidden" value="" name="id" id="deleteInput">
                 <button type="submit" class="yes">はい</button>
             </form>
@@ -158,7 +159,9 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
+    //ソートボタン
     $('.sort_click').click(function ()
     { 
         var value = $('.sort_click').val();
@@ -170,10 +173,22 @@
         }
     });
 </script>
+<script>
+    $('#search_delete').click(function (e) { 
+        e.preventDefault();
+        $('.modal-content').fadeIn();
+    });
+    $('.no').click(function (e) { 
+        e.preventDefault();
+        $('.modal-content').fadeOut();
+    });
+    $('.yes').click(function () { 
+        $('.form_search_delete').submit();
+    });
+</script>
+    
 @endsection
 
 @section('pageJs')
 <script src="{{ asset('js/admin/modal.js') }}"></script>
-<script>
-</script>
 @endsection
