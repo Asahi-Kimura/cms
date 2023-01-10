@@ -6,6 +6,7 @@
 @include('admin.layouts.sub')
 @include('admin.layouts.header')
 @section('content')
+@dump(request()->session())
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">お問い合わせ一覧</h1>
@@ -38,6 +39,9 @@
                 <div class="sort_event"></div>
                 <div class="search-cont search-btn">
                     <button id="submit" class="form-input" type="submit">検索</button>
+                </div>
+                <div class="search-cont search-btn" id="search_delete">
+                    <button class="form-input submit_switch">検索削除</button>
                 </div>
             </div>
 
@@ -122,7 +126,40 @@
     </div>
 </div>
 </form>
+{{-- modal-window --}}
+<div class="modal-content delete">
+    <div class="modal-ttl">
+    <h4>削除</h4>
+        <p class="modal-close"></p>
+    </div>
+
+    <div class="modal-inner">
+    <p>検索削除しますか？</p>
+        <div class="modal-btn_ar">
+        <button type="button" class="no">いいえ</button>
+            <form class="form_search_delete" method="GET" action="{{ route('search_contact_delete') }}">
+                <input type="hidden" value="" name="id" id="deleteInput">
+                <button type="submit" class="yes">はい</button>
+            </form>
+        </div>
+    </div>
+</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+{{-- modal-window --}}
+<script>
+    $('#search_delete').click(function (e) { 
+        e.preventDefault();
+        $('.modal-content').fadeIn();
+    });
+    $('.no').click(function (e) { 
+        e.preventDefault();
+        $('.modal-content').fadeOut();
+    });
+    $('.yes').click(function () { 
+        $('.form_search_delete').submit();
+    });
+</script>
+
 <script>
     $(function()
     {

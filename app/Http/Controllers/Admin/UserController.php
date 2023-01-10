@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     //　会員一覧
-    public function show(User $user)
+    public function show(User $user,SearchRequest $request)
     {
         if($user != null){
             $user = User::all();
         }
+        $request->session()->forget(['sort_pattern','sort_inc_name','keyword_sort','keyword_sort_name','keyword_name','keyword_phone_number','keyword_prefecture_id']);
+
         $sort_name = config('const.sort_name');
         $sort = config('const.sort');
         $pref = config('const.pref');
@@ -43,41 +45,46 @@ class UserController extends Controller
         } else {
             unset($attributes['password']);
         }
-        $user->fill($attributes)->save();
-        return redirect()->route('user');
-    }
+            $user->fill($attributes)->save();
+            return redirect()->route('search_user',['user' => $user]);
+        }
+    
 
     //検索機能
-    public function search(SearchRequest $request,Prefecture $prefecture)
+    public function search(SearchRequest $request,Prefecture $prefecture,User $user)
     {
         $sort_name = config('const.sort_name');
         $sort = config('const.sort');
         $pref = config('const.pref');
 
-        session()->put('sort_pattern',$request->sort);
-        session()->put('sort_inc_name',$request->sort_name);
-        session()->put('keyword_sort',$request->sort);
-        session()->put('keyword_sort_name',$request->sort_name);
-        session()->put('keyword_name',$request->name);
-        session()->put('keyword_phone_number',$request->phone_number);
-        session()->put('keyword_prefecture_id',$request->prefecture_id);    
-        
-        $sort_pattern = session()->get('sort_pattern');
-        $sort_inc_name = session()->get('sort_inc_name');
-        $keyword_sort = session()->get('keyword_sort');
-        $keyword_sort_name = session()->get('keyword_sort_name');
-        $keyword_name = session()->get('keyword_name');
-        $keyword_phone_number = session()->get('keyword_phone_number');
-        $keyword_prefecture_id = session()->get('keyword_prefecture_id');
-        
-        // $sort_pattern = $request->sort;
-        // $sort_inc_name = $request->sort_name;
-        // $keyword_sort = $request->sort;
-        // $keyword_sort_name = $request->sort_name;
-        // $keyword_name = $request->name;
-        // $keyword_phone_number = $request->phone_number;
-        // $keyword_prefecture_id = $request->prefecture_id;
-        
+        //編集パターン
+        if($user->id != null){
+            $sort_pattern = session()->get('sort_pattern');
+            $sort_inc_name = session()->get('sort_inc_name');
+            $keyword_sort = session()->get('keyword_sort');
+            $keyword_sort_name = session()->get('keyword_sort_name');
+            $keyword_name = session()->get('keyword_name');
+            $keyword_phone_number = session()->get('keyword_phone_number');
+            $keyword_prefecture_id = session()->get('keyword_prefecture_id');  
+        } else {
+            //検索だけ
+            session()->put('sort_pattern',$request->sort);
+            session()->put('sort_inc_name',$request->sort_name);
+            session()->put('keyword_sort',$request->sort);
+            session()->put('keyword_sort_name',$request->sort_name);
+            session()->put('keyword_name',$request->name);
+            session()->put('keyword_phone_number',$request->phone_number);
+            session()->put('keyword_prefecture_id',$request->prefecture_id);
+            
+            $sort_pattern = session()->get('sort_pattern');
+            $sort_inc_name = session()->get('sort_inc_name');
+            $keyword_sort = session()->get('keyword_sort');
+            $keyword_sort_name = session()->get('keyword_sort_name');
+            $keyword_name = session()->get('keyword_name');
+            $keyword_phone_number = session()->get('keyword_phone_number');
+            $keyword_prefecture_id = session()->get('keyword_prefecture_id');
+        }
+
         $query = User::query();
         if(!empty($keyword_name)){
             $query->where('name','like',"%{$keyword_name}%");
@@ -86,7 +93,11 @@ class UserController extends Controller
             $query->where('phone_number','like',"%{$keyword_phone_number}%");
         }
         if(!empty($keyword_prefecture_id)){
+            
             $int_prefecture_id = intval($request->prefecture_id);
+            if($int_prefecture_id == 0){
+                $int_prefecture_id = intval($keyword_prefecture_id);
+            }
             $prefecture = Prefecture::where('id',$int_prefecture_id)->first();
             $prefecture_id = $prefecture->id;
             $str_prefecture_id = strval($prefecture_id);

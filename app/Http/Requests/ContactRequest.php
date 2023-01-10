@@ -15,14 +15,11 @@ class ContactRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
-
-
     public function rules()
     {
         // idがnullでない場合、データー更新
@@ -45,8 +42,16 @@ class ContactRequest extends FormRequest
                 'sex' => 'required',
                 'job'=> 'required',
                 'content'  => 'required|max:255',
-                'status' => 'required',     
+                'status' => 'required',
+                'file_image' => ['required','image'] 
             ];
         }
+    }
+
+    public function attributes()
+    {
+        return [
+            'file_image' => '証明写真'
+        ];
     }
 }

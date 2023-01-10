@@ -40,7 +40,7 @@
                     @endphp
                     
                     <label for="exampleInputEmail"><span class="Form-Item-Label-Required">必須</span>画像
-                        @if($user->id != null)
+                        @if($news->id != null)
                             <div>
                                 <img src="{{ asset('storage'.$image)}}" style="width: 100px"  alt="ニュース画像" >
                                 <p>ファイル名：{{ end($image_array) }}</p>

@@ -18,7 +18,8 @@ class ContactController extends Controller
         $auth = config('const.authority');
         $status = config('const.status');
         $item = config('const.contact_sort_name');
-        return view('admin.contacts.show',compact('status','contact','user','item'));
+        session()->forget(['keyword_status','keyword_authority','keyword_name','conact_user_id','keyword_company']);
+        return view('admin.contacts.show',compact('status','contact','user','item')); 
     }
 
     // 管理画面詳細
@@ -51,19 +52,32 @@ class ContactController extends Controller
     public function store(ContactRequest $request,Contact $contact)
     {
         $contact->fill($request->all())->save();  
-        return redirect()->route('admin_contact');
+        return redirect()->route('search_contact',['contact' => $contact]);
     }
 
     //検索機能処理
     public function search(SearchRequest $request,Contact $contact)
     {
+        if($contact->id != null){
+            $keyword_status = session()->get('keyword_status');
+            $keyword_authority = session()->get('keyword_authority');
+            $keyword_name = session()->get('keyword_name');  
+            $keyword_company = session()->get('keyword_company');
+        } else {
+            session()->put('keyword_status',$request->status);
+            session()->put('keyword_authority',$request->authority);
+            session()->put('keyword_name',$request->name);
+            session()->put('keyword_company',$request->company);
+            $keyword_status = session()->get('keyword_status');
+            $keyword_authority = session()->get('keyword_authority');
+            $keyword_name = session()->get('keyword_name');
+            $keyword_company = session()->get('keyword_company');
+        }
+        
         $user = User::all();
-        $keyword_status = $request->status;
-        $keyword_authority = $request->authority;
-        $keyword_name = $request->name;
         $conact_user_id = User::where('name',$keyword_authority)->first();
-        $keyword_company = $request->company;     
         $status = config('const.status');
+        
         $query = Contact::query();
 
         if(!empty($keyword_status)){
@@ -81,6 +95,11 @@ class ContactController extends Controller
         $contact->sort($request,$query);
         $contact = $query->get();
         return view('admin.contacts.show',compact('contact','status','keyword_company','keyword_status','keyword_authority','sort','contact_sort_name','user'));
+    }
+    //検索削除
+    public function search_delete(SearchRequest $request){
+        $request->session()->forget(['keyword_status','keyword_authority','keyword_name','conact_user_id','keyword_company']);
+        return redirect()->route('admin_contact');
     }
 
     //削除機能

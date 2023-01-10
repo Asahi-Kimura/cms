@@ -58,6 +58,29 @@
                 </div>
             </div>
         </div>
+
+
+        
+
+        {{--  画像 --}}
+        {{-- <div class="Form-Item">
+            <p class="Form-Item-Label">
+                <span class="Form-Item-Label-Required">必須</span>証明写真
+            </p>
+            <div>
+                <div>
+                    <input name="file_image" value ="" type="file"  class="Form-Item-Input" accept="image/*">
+                </div>
+                <div class="Form-Item-Error">
+                    @if($errors->has('file_image'))
+                        <li>{{ $errors->first('file_image') }}</li>
+                    @endif
+                </div>
+            </div>
+        </div> --}}
+
+
+
         <div class="Form-Item">
             <p class="Form-Item-Label">
                 <span class="Form-Item-Label-Required">必須</span>電話番号

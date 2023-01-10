@@ -7,12 +7,12 @@
 @include('admin.layouts.header')
 @section('content')
 <div class="main-contet-inner">
-    {{-- @dump(url()->full()) --}}
+
     <div class="page-ttl_ar">
         <h1 class="page-ttl">会員一覧</h1>
         <p><a class="new-btn" href="{{ route('new') }}"><i class="fas fa-plus-circle mg-r_5"></i>新規作成</a></p>
     </div>
-    < class="list-contents">
+    <div class="list-contents">
         <div class="search_ar submit-area">
             <form method="GET" action="{{ route('search_user') }}">
                 <div class="search-cont">
@@ -56,7 +56,6 @@
                     <button class="form-input submit_switch">検索削除</button>
                 </div>
             </form>
-
 
             <div class=""></div>
         </div>
