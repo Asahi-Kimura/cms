@@ -40,6 +40,9 @@ class ContactsController extends Controller
         {
             return redirect()->route('contact_index');
         }
+        // $img = $request->file('file_image');
+        // $path = $img->store('img','public');
+        
         $attributes = $request->all();
         return view('contacts.confirm',
         [   'attributes' => $attributes,

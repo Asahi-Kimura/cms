@@ -2,7 +2,7 @@
 @section('title','お問い合わせ')
 @section('content')
 
-<form method="POST" action="{{ route('contact_confirm') }}">
+<form method="POST" action="{{ route('contact_confirm') }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="status" value="1">
     <div class="Form">
@@ -59,26 +59,34 @@
             </div>
         </div>
 
-
-        
-
         {{--  画像 --}}
-        {{-- <div class="Form-Item">
+        <div class="Form-Item">
             <p class="Form-Item-Label">
                 <span class="Form-Item-Label-Required">必須</span>証明写真
             </p>
             <div>
                 <div>
-                    <input name="file_image" value ="" type="file"  class="Form-Item-Input" accept="image/*">
+                    <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
                 </div>
+                <img id="sample">
                 <div class="Form-Item-Error">
                     @if($errors->has('file_image'))
                         <li>{{ $errors->first('file_image') }}</li>
                     @endif
                 </div>
             </div>
-        </div> --}}
+        </div>
 
+    <script>
+        $("#file_image").on('change', function (e) {
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $("#sample").attr("src",e.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+        
+    </script>
 
 
         <div class="Form-Item">

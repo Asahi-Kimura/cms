@@ -32,6 +32,9 @@
                 <div class="search-cont search-btn">
                     <button class="form-input" type="submit">検索</button>
                 </div>
+                <div class="search-cont search-btn" id="search_delete">
+                    <button class="form-input submit_switch">検索削除</button>
+                </div>
             </form>
         </div>
         <div class="table_ar">
@@ -118,6 +121,42 @@
             </table>
         </div>
     </div>
+
+    {{-- modal-window --}}
+<div class="modal-content delete">
+    <div class="modal-ttl">
+    <h4>削除</h4>
+        <p class="modal-close"></p>
+    </div>
+
+    <div class="modal-inner">
+    <p>検索削除しますか？</p>
+        <div class="modal-btn_ar">
+        <button type="button" class="no">いいえ</button>
+            <form class="form_search_delete" method="GET" action="{{ route('search_news_delete') }}">
+                <input type="hidden" value="" name="id" id="deleteInput">
+                <button type="submit" class="yes">はい</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{-- modal-window --}}
+<script>
+    $('#search_delete').click(function (e) { 
+        e.preventDefault();
+        $('.modal-content').fadeIn();
+    });
+    $('.no').click(function (e) { 
+        e.preventDefault();
+        $('.modal-content').fadeOut();
+    });
+    $('.yes').click(function () { 
+        $('.form_search_delete').submit();
+    });
+</script>
+
     <div class="pager-wrapper bottom">
         <div class="pager_ar">
             <p class="search-result"></p>

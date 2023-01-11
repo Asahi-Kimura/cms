@@ -36,6 +36,7 @@ class UserController extends Controller
         $pref = config('const.pref');
         return view('admin.users.edit',compact('user','pref','auth'));
     }
+    
     //編集処理
     public function store(UserRequest $request ,User $user)
     {
@@ -48,7 +49,6 @@ class UserController extends Controller
             $user->fill($attributes)->save();
             return redirect()->route('search_user',['user' => $user]);
         }
-    
 
     //検索機能
     public function search(SearchRequest $request,Prefecture $prefecture,User $user)
@@ -56,7 +56,6 @@ class UserController extends Controller
         $sort_name = config('const.sort_name');
         $sort = config('const.sort');
         $pref = config('const.pref');
-
         //編集パターン
         if($user->id != null){
             $sort_pattern = session()->get('sort_pattern');
@@ -84,7 +83,6 @@ class UserController extends Controller
             $keyword_phone_number = session()->get('keyword_phone_number');
             $keyword_prefecture_id = session()->get('keyword_prefecture_id');
         }
-
         $query = User::query();
         if(!empty($keyword_name)){
             $query->where('name','like',"%{$keyword_name}%");
@@ -112,6 +110,7 @@ class UserController extends Controller
         $user = $query->get();
         return view('admin.users.index',compact('user','pref','keyword_name','keyword_phone_number','keyword_prefecture_id','sort','sort_name','keyword_sort','keyword_sort_name'));
     }
+
     //検索削除
     public function search_delete(SearchRequest $request){
         $request->session()->forget(['sort_pattern','sort_inc_name','keyword_sort','keyword_sort_name','keyword_name','keyword_phone_number','keyword_prefecture_id']); 

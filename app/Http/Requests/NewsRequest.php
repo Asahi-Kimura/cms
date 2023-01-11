@@ -23,6 +23,7 @@ class NewsRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'id' => 'nullable',
             'user_id' => 'required',

@@ -7,7 +7,6 @@ use App\Http\Requests\NewsRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -15,6 +14,7 @@ class NewsController extends Controller
     {
         $news = News::all();
         $status = config('const.open');
+        session()->forget(['keyword_status','keyword_title']);
         return view('admin.news.index',compact('status','news'));
     }
 
@@ -35,22 +35,27 @@ class NewsController extends Controller
         if($attributes['end_show'] != null){
             $attributes['end_show'] = $news->text_convert_datetime($attributes['end_show']);
         }
-
         if(isset($attributes['file_image'])){
             $file_name = $request->file('file_image')->getClientOriginalName();
             $attributes['file_image'] = $request->file_image->storeAs('public/news',$file_name);
         }
         $news->fill($attributes)->save();
-        return redirect()->route('admin_news');
+        return redirect()->route('search_news',['news' => $news]);
     }
 
-    public function search(SearchRequest $request)
+    public function search(SearchRequest $request,News $news)
     {
         $status = config('const.open');
-        $keyword_status = $request->status;
-        $keyword_title = $request->title;
+        if($news->id != null){
+            $keyword_status = session()->get('keyword_status');
+            $keyword_title = session()->get('keyword_title');
+        } else {
+            $request->session()->put('keyword_status',$request->status);
+            $request->session()->put('keyword_title',$request->title);
+            $keyword_status = session()->get('keyword_status');
+            $keyword_title = session()->get('keyword_title');
+        }
         $query = News::query();
-
         if(!empty($keyword_status)){
             if($keyword_status == '1'){
                 $query->where('start_show','>=',now());
@@ -74,6 +79,11 @@ class NewsController extends Controller
         return view('admin.news.index',compact('news','status','keyword_status','keyword_title'));
     }
 
+    public function search_delete(SearchRequest $request)
+    {
+        $request->session()->forget(['keyword_status','keyword_title']);
+        return redirect()->route('admin_news');
+    }
     //削除処理//
     public function delete(News $news)
     {

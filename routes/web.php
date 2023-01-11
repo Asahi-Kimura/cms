@@ -81,8 +81,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/news/edit/{news?}', [NewsController::class,'edit'])->name('admin_news_edit');
     //編集処理
     Route::post('admin/store/{news?}', [NewsController::class,'store'])->name('admin_news_store');
+    //新着情報検索削除機能
+    Route::get('/dn/search/delete', [NewsController::class,'search_delete'])->name('search_news_delete');
     //新着検索機能
-    Route::get('/news/search', [NewsController::class,'search'])->name('search_news');
+    Route::get('/news/search/{news?}', [NewsController::class,'search'])->name('search_news');
     //論理削除（お問い合わせ
     Route::get('/dn/{news}', [NewsController::class,'delete'])->name('delete_news');
 

@@ -1,6 +1,7 @@
 @extends('layouts.contact')
 @section('title','確認画面')
 @section('content')
+@dump(request()->all())
 <form method="POST" action="{{ route('contact_send') }}"> 
     @csrf
     <input type="hidden" name="status" value="1">
@@ -30,6 +31,11 @@
             <p class="Item-Input">氏名: {{ $attributes['user_name'] }}</p>
         </div>
         <div class="Form-Item">
+            <p class="Item-Input">証明写真: 
+                <img src="{{ $attributes['file_image'] }}" alt="">
+            </p>
+        </div>
+        <div class="Form-Item">
             <p class="Item-Input">電話番号: {{ $attributes['tele_num'] }}</p>
         </div>
         <div class="Form-Item">
@@ -53,13 +59,13 @@
         <button type="button" class="Form-Btn" onClick="history.back()">戻る</button>
     </div>
 </form>
+
 <script>
     $('#submit').click(function () { 
         if(!confirm('送信しますか？')){
             return false;
         }
     });
-
-
 </script>
+
 @endsection

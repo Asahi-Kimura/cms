@@ -43,7 +43,7 @@ class ContactRequest extends FormRequest
                 'job'=> 'required',
                 'content'  => 'required|max:255',
                 'status' => 'required',
-                'file_image' => ['required','image'] 
+                'file_image' => ['required','image']   
             ];
         }
     }
@@ -52,6 +52,12 @@ class ContactRequest extends FormRequest
     {
         return [
             'file_image' => '証明写真'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'image' => '画像ファイルはjpg,png拡張子を選択してください。'
         ];
     }
 }
