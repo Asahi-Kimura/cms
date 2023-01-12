@@ -43,7 +43,8 @@ class ContactRequest extends FormRequest
                 'job'=> 'required',
                 'content'  => 'required|max:255',
                 'status' => 'required',
-                'file_image' => ['required','image']   
+                'file_image' => 'required',
+                'back' => 'nullable'
             ];
         }
     }

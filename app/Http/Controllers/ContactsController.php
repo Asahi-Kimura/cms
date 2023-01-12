@@ -22,9 +22,19 @@ class ContactsController extends Controller
 
     public function index()
     {
-        if(session()->has('reset'))
-        {
+        if(session()->has('reset')){
             session()->forget('reset');
+            session()->forget('image');
+        }
+        if(session()->has('image')){
+            $temp_image = session()->get('image');
+                    return view('contacts.index',
+        [
+            'inquiry_type' => $this->inquiry_types,
+            'sex' => $this->sex,
+            'job' => $this->job,
+            'temp_image' => $temp_image
+        ]);
         }
         return view('contacts.index',
         [
@@ -38,26 +48,37 @@ class ContactsController extends Controller
     {
         if(session()->has('reset'))
         {
+            session()->forget('image');
             return redirect()->route('contact_index');
         }
-        // $img = $request->file('file_image');
-        // $path = $img->store('img','public');
-        
+        $img_name = $request->file('file_image')->getClientOriginalName();    
+        $img_mine = $request->file('file_image')->getClientOriginalExtension();
+        $new_image_name = pathinfo($img_name,PATHINFO_FILENAME)."_".uniqid().".".$img_mine;
+        $request->file('file_image')->move(public_path()."/storage/contacts",$new_image_name);
+        $image = "/storage/contacts/".$new_image_name;
+        session()->put('image',$image);
+        $temp_image = session()->get('image'); 
         $attributes = $request->all();
         return view('contacts.confirm',
         [   'attributes' => $attributes,
             'inquiry_type' => $this->inquiry_types,
             'sex' => $this->sex,
             'job' => $this->job,
+            'temp_image' => $temp_image
         ]);
     }
 
     public function send(ContactRequest $request,Contact $contact)
     {
+        if($request->input('back') == 'back'){
+            return redirect()->route('contact_index')->withInput();
+        }
         if(session()->has('reset'))
         {
+            session()->forget('image');
             return redirect()->route('contact_index');
         }
+        $temp_image = session()->get('image'); 
         $string_birthday = $request->birthday;
         $attributes = $request->all();
         $attributes = $contact->inpuiry_type_checked($attributes);
@@ -75,7 +96,8 @@ class ContactsController extends Controller
             'attributes' => $attributes,
             'string_birthday' => $string_birthday,
             'sex' => $this->sex,
-            'job' => $this->job
+            'job' => $this->job,
+            'temp_image' => $temp_image
         ]);
     }
 }

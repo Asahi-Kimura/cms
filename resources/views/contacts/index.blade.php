@@ -66,6 +66,9 @@
             </p>
             <div>
                 <div>
+                    @if(isset($temp_image))
+                        <img src="{{ $temp_image }}" id="confirm_image" alt="証明写真">
+                    @endif
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
                 </div>
                 <img id="sample">
@@ -76,19 +79,6 @@
                 </div>
             </div>
         </div>
-
-    <script>
-        $("#file_image").on('change', function (e) {
-            var reader = new FileReader();
-            reader.onload = function(e){
-                $("#sample").attr("src",e.target.result);
-            }
-            reader.readAsDataURL(e.target.files[0]);
-        });
-        
-    </script>
-
-
         <div class="Form-Item">
             <p class="Form-Item-Label">
                 <span class="Form-Item-Label-Required">必須</span>電話番号
@@ -198,5 +188,20 @@
         $('#birthday').datepicker(
         );
     });
+</script>
+
+<script>
+    $("#file_image").on('change', function (e) {
+        var reader = new FileReader();
+        reader.onload = function(e){
+            $("#sample").attr("src",e.target.result).css('width', '100px').css('height', '100px');
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    });
+</script>
+<script>
+    var $image = document.getElementById('confirm_image'); 
+    $image.witdh = 100;
+    $image.height = 100;
 </script>
 @endsection

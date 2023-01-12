@@ -19,6 +19,11 @@
         <p class="Item-Input">氏名 : {{ $attributes['user_name'] }}</p>
     </div>
     <div class="Form-Item">
+        <p class="Item-Input">証明写真: 
+            <img id="confirm_image" src="{{ $temp_image }}" alt="証明写真">
+        </p>
+    </div>
+    <div class="Form-Item">
         <p class="Item-Input">電話番号: {{ $attributes['tele_num'] }}</p>
     </div>
     <div class="Form-Item">

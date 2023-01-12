@@ -1,12 +1,12 @@
 @extends('layouts.contact')
 @section('title','確認画面')
 @section('content')
-@dump(request()->all())
 <form method="POST" action="{{ route('contact_send') }}"> 
     @csrf
     <input type="hidden" name="status" value="1">
+    <input type="hidden" name="file_image" value='{{ $temp_image }}'>
     @foreach( $attributes['inquiry_type'] as $key => $value )
-        <input type="hidden" name="inquiry_type[]" value="{{$value}}" >
+        <input type="hidden" name="inquiry_type[]" value="{{ $value }}" >
     @endforeach
     <input name="company_name" value ="{{ $attributes['company_name'] }}" type="hidden" >
     <input name="user_name" value ="{{ $attributes['user_name'] }}" type="hidden">
@@ -32,7 +32,7 @@
         </div>
         <div class="Form-Item">
             <p class="Item-Input">証明写真: 
-                <img src="{{ $attributes['file_image'] }}" alt="">
+                <img id="confirm_image" src="{{ $temp_image }}" alt="証明写真">
             </p>
         </div>
         <div class="Form-Item">
@@ -56,7 +56,7 @@
             </p>
         </div>
         <input type="submit" class="Form-Btn" id='submit' value="送信する">
-        <button type="button" class="Form-Btn" onClick="history.back()">戻る</button>
+        <button type="submit" class="Form-Btn" name="back" value="back">戻る</button>
     </div>
 </form>
 
@@ -67,5 +67,10 @@
         }
     });
 </script>
-
+<script>
+    var image = document.getElementById('confirm_image');
+    image.style.margin = "0px 0px 0px 100px";
+    image.width = 100;
+    image.height = 100;
+</script>
 @endsection
