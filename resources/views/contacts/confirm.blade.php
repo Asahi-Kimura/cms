@@ -56,10 +56,18 @@
             </p>
         </div>
         <input type="submit" class="Form-Btn" id='submit' value="送信する">
-        <button type="submit" class="Form-Btn" name="back" value="back">戻る</button>
+        <button type="submit" class="Form-Btn" id="back" >戻る</button>
     </div>
 </form>
 
+
+<script>
+    let back_button = document.getElementById('back');
+    back_button.addEventListener('click', function(){
+        // console.log('hoge');
+        back_button.insertAdjacentHTML('afterend', ' <input name="back" value ="back" type="hidden">');
+    });
+</script>
 <script>
     $('#submit').click(function () { 
         if(!confirm('送信しますか？')){

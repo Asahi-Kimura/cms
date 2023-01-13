@@ -47,4 +47,13 @@
     </div>
     <a href="{{ route('contact_index') }}"><button type="button" class="Form-Btn">戻る</button></a>
 </div>
+
+<script>
+    $("#file_image").on('change', function (e) {
+        var reader = new FileReader();
+        reader.onload = function(e){
+            $("#sample").attr("src",e.target.result).css('width', '100px').css('height', '100px');
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    });
 @endsection

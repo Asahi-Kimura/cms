@@ -70,7 +70,7 @@ class ContactsController extends Controller
 
     public function send(ContactRequest $request,Contact $contact)
     {
-        if($request->input('back') == 'back'){
+        if($request->back != null){
             return redirect()->route('contact_index')->withInput();
         }
         if(session()->has('reset'))
