@@ -67,12 +67,13 @@
             <div>
                 <div>
                     @if(isset($temp_image))
-                        <img src="{{ $temp_image }}" id="confirm_image" alt="証明写真">
-                        <p>ファイルを選択→戻る→選択した画像</p>
+                        <div id="reload_image">
+                            <img src="{{ $temp_image }}" id="confirm_image" alt="証明写真">
+                            <p>選択した画像→戻る→選択した画像</p>
+                        </div>
                     @endif
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
                 </div>
-                <div id="message"></div>
                 <img id="sample">
                 <div class="Form-Item-Error">
                     @if($errors->has('file_image'))
@@ -193,19 +194,12 @@
 </script>
 
 <script>
-    $("#file_image").click(function (e) { 
-        // e.preventDefault();
-        $("#file_image").on('change', function (e) {
+    $("#file_image").on('change', function (e) {
         var reader = new FileReader();
         reader.onload = function(e){
-            $("#sample").attr("src",e.target.result).css('width', '100px').css('height', '100px');
+            $("#sample").attr("src",e.target.result).css('width', '100px').css('height', '100px').css('margin','20px 0 0 0 ');
         }
         reader.readAsDataURL(e.target.files[0]);
-
-        $("#message").append('<p選択した画像</p>');
-        console.log('hoge');
-    });
-
     });
 </script>
 <script>
@@ -213,4 +207,13 @@
     $image.witdh = 100;
     $image.height = 100;
 </script>
+<script>
+    if (window.performance) {
+        if (performance.navigation.type === 1) {
+            console.log('hoge');
+            $("#reload_image").hide();
+        }
+    }
+</script>
+
 @endsection

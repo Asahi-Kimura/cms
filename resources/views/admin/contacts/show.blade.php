@@ -6,7 +6,6 @@
 @include('admin.layouts.sub')
 @include('admin.layouts.header')
 @section('content')
-@dump(request()->session())
 <div class="main-contet-inner">
     <div class="page-ttl_ar">
         <h1 class="page-ttl">お問い合わせ一覧</h1>
