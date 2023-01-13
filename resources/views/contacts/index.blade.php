@@ -210,7 +210,6 @@
 <script>
     if (window.performance) {
         if (performance.navigation.type === 1) {
-            console.log('hoge');
             $("#reload_image").hide();
         }
     }

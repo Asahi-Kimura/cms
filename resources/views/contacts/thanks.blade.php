@@ -20,7 +20,7 @@
     </div>
     <div class="Form-Item">
         <p class="Item-Input">証明写真: 
-            <img id="file_image" src="{{ $temp_image }}" alt="証明写真">
+            <img id="thanks_image" src="{{ $temp_image }}" alt="証明写真">
         </p>
     </div>
     <div class="Form-Item">
@@ -49,11 +49,10 @@
 </div>
 
 <script>
-    $("#file_image").on('change', function (e) {
-        var reader = new FileReader();
-        reader.onload = function(e){
-            $("#sample").attr("src",e.target.result).css('width', '100px').css('height', '100px');
-        }
-        reader.readAsDataURL(e.target.files[0]);
-    });
+    var image = document.getElementById('thanks_image');
+    image.style.margin = "0px 0px 0px 100px";
+    image.width = 100;
+    image.height = 100;
+</script>
+
 @endsection
