@@ -22,7 +22,11 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
+        // dd(request()->all());
         $temp_image = session()->get('image');
+        // if($temp_image == null){
+
+        // }
         // idがnullでない場合、データー更新
         if(request('id') != null){
             return [
