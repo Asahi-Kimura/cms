@@ -2,14 +2,15 @@
 @section('title','お問い合わせ')
 @section('content')
 
+{{-- @dump(old()) --}}
+@dump(session('image'))
 <form method="POST" action="{{ route('contact_confirm') }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="status" value="1">
     <div class="Form">
         @if($errors->any())
             <div class="alert-danger">エラーがあります</div>
-        @endif
-        
+        @endif     
         <div class="Form-Item">
             <p class="Form-Item-Label">
                 <span class="Form-Item-Label-Required">必須</span>お問い合わせ種別
@@ -58,7 +59,6 @@
                 </div>
             </div>
         </div>
-
         {{--  画像 --}}
         <div class="Form-Item">
             <p class="Form-Item-Label">
@@ -72,9 +72,12 @@
                             <p>選択した画像→戻る→選択した画像</p>
                         </div>
                     @endif
+                    {{-- @if($file_image != null) --}}
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
+                    <div class="Form-Item-Label-Required delete_button" style="cursor: pointer" name="delete_figure" value="1" id="delete_figure">画像削除</div>
                 </div>
                 <img id="sample">
+                
                 <div class="Form-Item-Error">
                     @if($errors->has('file_image'))
                         <li>{{ $errors->first('file_image') }}</li>
@@ -192,7 +195,6 @@
         );
     });
 </script>
-
 <script>
     $("#file_image").on('change', function (e) {
         var reader = new FileReader();
@@ -213,6 +215,9 @@
             $("#reload_image").hide();
         }
     }
+    $('#delete_figure').click(function () { 
+        $("#reload_image").hide();
+    });
 </script>
 
 @endsection

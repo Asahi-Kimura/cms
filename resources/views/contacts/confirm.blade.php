@@ -64,7 +64,6 @@
 <script>
     let back_button = document.getElementById('back');
     back_button.addEventListener('click', function(){
-        // console.log('hoge');
         back_button.insertAdjacentHTML('afterend', ' <input name="back" value ="back" type="hidden">');
     });
 </script>

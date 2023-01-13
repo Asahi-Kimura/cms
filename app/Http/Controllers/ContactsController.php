@@ -51,12 +51,15 @@ class ContactsController extends Controller
             session()->forget('image');
             return redirect()->route('contact_index');
         }
-        $img_name = $request->file('file_image')->getClientOriginalName();    
-        $img_mine = $request->file('file_image')->getClientOriginalExtension();
-        $new_image_name = pathinfo($img_name,PATHINFO_FILENAME)."_".uniqid().".".$img_mine;
-        $request->file('file_image')->move(public_path()."/storage/contacts",$new_image_name);
-        $image = "/storage/contacts/".$new_image_name;
-        session()->put('image',$image);
+        if(!(session()->has('image'))){
+            $img_name = $request->file('file_image')->getClientOriginalName();    
+            $img_mine = $request->file('file_image')->getClientOriginalExtension();
+            $new_image_name = pathinfo($img_name,PATHINFO_FILENAME)."_".uniqid().".".$img_mine;
+            $request->file('file_image')->move(public_path()."/storage/contacts",$new_image_name);
+            dd('hoge');
+            $image = "/storage/contacts/".$new_image_name;
+            session()->put('image',$image);
+        }
         $temp_image = session()->get('image'); 
         $attributes = $request->all();
         return view('contacts.confirm',
