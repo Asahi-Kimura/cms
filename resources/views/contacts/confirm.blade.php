@@ -1,6 +1,7 @@
 @extends('layouts.contact')
 @section('title','確認画面')
 @section('content')
+@dump(session('image'))
 <form method="POST" action="{{ route('contact_send') }}"> 
     @csrf
     <input type="hidden" name="status" value="1">

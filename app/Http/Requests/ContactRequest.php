@@ -23,10 +23,16 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         // dd(request()->all());
-        $temp_image = session()->get('image');
-        // if($temp_image == null){
-
+        
+        // if(request()->input('file_image_delete')){
+        //     dd('hoge');
+        //     session()->forget('image');
         // }
+        if(session()->has('image')){
+            $temp_image = session()->get('image');
+        } else {
+            $temp_image = null;
+        }
         // idがnullでない場合、データー更新
         if(request('id') != null){
             return [
@@ -48,7 +54,8 @@ class ContactRequest extends FormRequest
                 'job'=> 'required',
                 'content'  => 'required|max:255',
                 'status' => 'required',
-                'file_image' => "required_if:'{$temp_image},null'|nullable",
+                'file_image' => "required_if:'{$temp_image},null'",
+                'file_image_delete' => 'nullable',
                 'back' => 'nullable'
             ];
         }

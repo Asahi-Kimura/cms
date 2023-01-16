@@ -38,6 +38,10 @@ class LoginController extends Controller
 
     public function show()
     {
+        if(session()->has('image')){
+            session()->forget('image');
+        }
+        
         return view('auth.login');
     }
 

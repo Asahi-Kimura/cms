@@ -1,8 +1,9 @@
 @extends('layouts.contact')
 @section('title','送信しました。')
 @section('content')
-
+@dump(session('image'))
 <div class="Form">
+
     <h1>送信完了しました</h1>
 
     <div class="Form-Item">

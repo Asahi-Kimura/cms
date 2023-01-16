@@ -72,9 +72,9 @@
                             <p>選択した画像→戻る→選択した画像</p>
                         </div>
                     @endif
-                    {{-- @if($file_image != null) --}}
+
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
-                    <div class="Form-Item-Label-Required delete_button" style="cursor: pointer" name="delete_figure" value="1" id="delete_figure">画像削除</div>
+                    <button class="Form-Item-Label-Required delete_button" type="button" name="delete_figure" value="1" id="delete_figure">画像削除</button>
                 </div>
                 <img id="sample">
                 

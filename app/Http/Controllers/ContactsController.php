@@ -28,6 +28,7 @@ class ContactsController extends Controller
         }
         if(session()->has('image')){
             $temp_image = session()->get('image');
+            // dd('hoge_image');
                     return view('contacts.index',
         [
             'inquiry_type' => $this->inquiry_types,
@@ -51,15 +52,13 @@ class ContactsController extends Controller
             session()->forget('image');
             return redirect()->route('contact_index');
         }
-        if(!(session()->has('image'))){
+        if($request->file_image){
             $img_name = $request->file('file_image')->getClientOriginalName();    
             $img_mine = $request->file('file_image')->getClientOriginalExtension();
             $new_image_name = pathinfo($img_name,PATHINFO_FILENAME)."_".uniqid().".".$img_mine;
             $request->file('file_image')->move(public_path()."/storage/contacts",$new_image_name);
             $image = "/storage/contacts/".$new_image_name;
             session()->put('image',$image);
-            $temp_image = session()->get('image'); 
-            dd('hoge1');
         }
         $temp_image = session()->get('image'); 
         $attributes = $request->all();
@@ -82,6 +81,7 @@ class ContactsController extends Controller
             session()->forget('image');
             return redirect()->route('contact_index');
         }
+        
         $temp_image = session()->get('image'); 
         $string_birthday = $request->birthday;
         $attributes = $request->all();
