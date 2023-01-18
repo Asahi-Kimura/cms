@@ -19,7 +19,6 @@ class UserController extends Controller
             $user = User::all();
         }
         $request->session()->forget(['sort_pattern','sort_inc_name','keyword_sort','keyword_sort_name','keyword_name','keyword_phone_number','keyword_prefecture_id']);
-
         $sort_name = config('const.sort_name');
         $sort = config('const.sort');
         $pref = config('const.pref');

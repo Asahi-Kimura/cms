@@ -26,17 +26,6 @@ class ContactsController extends Controller
             session()->forget('reset');
             session()->forget('image');
         }
-        if(session()->has('image')){
-            $temp_image = session()->get('image');
-            // dd('hoge_image');
-                    return view('contacts.index',
-        [
-            'inquiry_type' => $this->inquiry_types,
-            'sex' => $this->sex,
-            'job' => $this->job,
-            'temp_image' => $temp_image
-        ]);
-        }
         return view('contacts.index',
         [
             'inquiry_type' => $this->inquiry_types,
@@ -53,22 +42,19 @@ class ContactsController extends Controller
             return redirect()->route('contact_index');
         }
         if($request->file_image){
-            $img_name = $request->file('file_image')->getClientOriginalName();    
-            $img_mine = $request->file('file_image')->getClientOriginalExtension();
-            $new_image_name = pathinfo($img_name,PATHINFO_FILENAME)."_".uniqid().".".$img_mine;
-            $request->file('file_image')->move(public_path()."/storage/contacts",$new_image_name);
-            $image = "/storage/contacts/".$new_image_name;
+            
+            $image_name = $request->file('file_image')->getClientOriginalName();
+            $image = "/storage/contacts/".$image_name;
             session()->put('image',$image);
+            // session()->put('upload_file',$request->file_image);
         }
-        $temp_image = session()->get('image'); 
         $attributes = $request->all();
         return view('contacts.confirm',
         [   'attributes' => $attributes,
-            'inquiry_type' => $this->inquiry_types,
-            'sex' => $this->sex,
-            'job' => $this->job,
-            'temp_image' => $temp_image
-        ]);
+        'inquiry_type' => $this->inquiry_types,
+        'sex' => $this->sex,
+        'job' => $this->job,
+    ]);
     }
 
     public function send(ContactRequest $request,Contact $contact)
@@ -82,7 +68,6 @@ class ContactsController extends Controller
             return redirect()->route('contact_index');
         }
         
-        $temp_image = session()->get('image'); 
         $string_birthday = $request->birthday;
         $attributes = $request->all();
         $attributes = $contact->inpuiry_type_checked($attributes);
@@ -101,7 +86,6 @@ class ContactsController extends Controller
             'string_birthday' => $string_birthday,
             'sex' => $this->sex,
             'job' => $this->job,
-            'temp_image' => $temp_image
         ]);
     }
 }

@@ -2,7 +2,6 @@
 @section('title','お問い合わせ')
 @section('content')
 
-{{-- @dump(old()) --}}
 @dump(session('image'))
 <form method="POST" action="{{ route('contact_confirm') }}" enctype="multipart/form-data">
     @csrf
@@ -66,9 +65,9 @@
             </p>
             <div>
                 <div>
-                    @if(isset($temp_image))
+                    @if(session()->has('image'))
                         <div id="reload_image">
-                            <img src="{{ $temp_image }}" id="confirm_image" alt="証明写真">
+                            <img src="{{ session('image') }}" id="confirm_image" alt="証明写真">
                             <p>選択した画像→戻る→選択した画像</p>
                         </div>
                     @endif
@@ -184,7 +183,7 @@
                 </div>
             </div>
         </div>
-        <input type="submit" class="Form-Btn" value="確認する">
+        <input type="submit" name="aaa" class="Form-Btn" value="確認する">
     </div>
 </form>
 

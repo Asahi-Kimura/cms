@@ -21,7 +21,7 @@
     </div>
     <div class="Form-Item">
         <p class="Item-Input">証明写真: 
-            <img id="thanks_image" src="{{ $temp_image }}" alt="証明写真">
+            <img id="thanks_image" src="{{ session('image') }}" alt="証明写真">
         </p>
     </div>
     <div class="Form-Item">

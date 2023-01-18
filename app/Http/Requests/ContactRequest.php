@@ -22,12 +22,7 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
-        // dd(request()->all());
-        
-        // if(request()->input('file_image_delete')){
-        //     dd('hoge');
-        //     session()->forget('image');
-        // }
+
         if(session()->has('image')){
             $temp_image = session()->get('image');
         } else {
