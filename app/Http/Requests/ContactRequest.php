@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\FileImageRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ContactRequest extends FormRequest
@@ -22,13 +23,6 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
-
-        if(session()->has('image')){
-            $temp_image = session()->get('image');
-        } else {
-            $temp_image = null;
-        }
-        // idがnullでない場合、データー更新
         if(request('id') != null){
             return [
                 'status' => 'required',
@@ -49,8 +43,8 @@ class ContactRequest extends FormRequest
                 'job'=> 'required',
                 'content'  => 'required|max:255',
                 'status' => 'required',
-                'file_image' => "required_if:'{$temp_image},null'",
-                'file_image_delete' => 'nullable',
+                'file_image' => 'required_if:confirm_image,',
+                // 'confirm_image' => 'required_if:file_image,null',
                 'back' => 'nullable'
             ];
         }
@@ -69,3 +63,29 @@ class ContactRequest extends FormRequest
         ];
     }
 }
+
+
+// 初回はfile_image は必須
+// required_
+// 確認画面にもどると入力された画像の表示　hiddenで入力された画像のパスを保持
+//  confirm_image
+
+// そのまま確認画面すすむとさっきの画像が表示される　
+// →　file_image = null confrim_image = ~~~~~~
+
+// 入力画面にもどり画像を消す　　
+
+// 確認画面に進むとバリエーションをかける
+
+
+
+
+
+
+
+
+
+
+
+
+

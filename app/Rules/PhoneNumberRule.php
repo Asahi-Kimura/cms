@@ -52,7 +52,6 @@ class PhoneNumberRule implements Rule
             $this->message = '半角数字で正しく入力してください。';
             return false;
         }
-
         return true;
     }
 

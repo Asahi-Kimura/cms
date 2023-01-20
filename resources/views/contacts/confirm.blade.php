@@ -3,6 +3,7 @@
 @section('content')
 <form method="POST" action="{{ route('contact_send') }}"> 
     @dump(session('image'))
+    @dump(old())
     @csrf
     <input type="hidden" name="status" value="1">
     <input type="hidden" name="file_image" value='{{ session('image') }}'>
@@ -61,7 +62,6 @@
         {{-- @dd(session('upload_file')) --}}
     </div>
 </form>
-
 
 <script>
     let back_button = document.getElementById('back');

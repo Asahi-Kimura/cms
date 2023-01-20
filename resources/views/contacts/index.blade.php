@@ -2,7 +2,9 @@
 @section('title','お問い合わせ')
 @section('content')
 
-@dump(session('image'))
+@dump(old())
+{{-- @dump(session('image'))
+@dump(request()) --}}
 <form method="POST" action="{{ route('contact_confirm') }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="status" value="1">
@@ -65,13 +67,15 @@
             </p>
             <div>
                 <div>
-                    @if(session()->has('image'))
-                        <div id="reload_image">
-                            <img src="{{ session('image') }}" id="confirm_image" alt="証明写真">
-                            <p>選択した画像→戻る→選択した画像</p>
-                        </div>
-                    @endif
-
+                    <div id="show_image" name='show_image'>
+                        @if(session()->has('image'))
+                            <div name="reload_name" id="reload_image">
+                                <img src="{{ session('image') }}" id="confirm_image" alt="証明写真">
+                                <p>選択した画像→戻る→選択した画像</p>
+                            </div>
+                        @endif
+                    </div>
+                    <input type="hidden" name="confirm_image" value="{{ old('file_image') }}">
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
                     <button class="Form-Item-Label-Required delete_button" type="button" name="delete_figure" value="1" id="delete_figure">画像削除</button>
                 </div>
@@ -215,7 +219,12 @@
         }
     }
     $('#delete_figure').click(function () { 
-        $("#reload_image").hide();
+        // let div = document.createElement("div");
+        // div.append("{{ session()->forget('image') }}");
+        const element = document.getElementById('show_image');
+        element.remove();
+
+        console.log(element);
     });
 </script>
 

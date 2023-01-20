@@ -21,6 +21,7 @@ class News extends Model
     public function text_convert_datetime($string)
     {
         $replace_array = [" ","/",":"]; 
+
         $string = str_replace($replace_array,'',$string);
         $date_time_object = new DateTime($string);
         return $date_time_object;

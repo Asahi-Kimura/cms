@@ -50,11 +50,12 @@ class ContactsController extends Controller
         }
         $attributes = $request->all();
         return view('contacts.confirm',
-        [   'attributes' => $attributes,
-        'inquiry_type' => $this->inquiry_types,
-        'sex' => $this->sex,
-        'job' => $this->job,
-    ]);
+        [   
+            'attributes' => $attributes,
+            'inquiry_type' => $this->inquiry_types,
+            'sex' => $this->sex,
+            'job' => $this->job,
+        ]);
     }
 
     public function send(ContactRequest $request,Contact $contact)
