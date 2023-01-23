@@ -2,11 +2,10 @@
 @section('title','確認画面')
 @section('content')
 <form method="POST" action="{{ route('contact_send') }}"> 
-    @dump(session('image'))
-    @dump(old())
     @csrf
     <input type="hidden" name="status" value="1">
     <input type="hidden" name="file_image" value='{{ session('image') }}'>
+    <input type="hidden" name="confirm_image" value="{{ session('image') }}">
     @foreach( $attributes['inquiry_type'] as $key => $value )
     <input type="hidden" name="inquiry_type[]" value="{{ $value }}" >
     @endforeach

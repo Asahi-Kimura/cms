@@ -23,6 +23,11 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
+        if(request()->file_image){
+            $image_name = request()->file('file_image')->getClientOriginalName();
+            $image = "/storage/contacts/".$image_name;
+            session()->put('image',$image);
+        }
         if(request('id') != null){
             return [
                 'status' => 'required',
@@ -43,8 +48,7 @@ class ContactRequest extends FormRequest
                 'job'=> 'required',
                 'content'  => 'required|max:255',
                 'status' => 'required',
-                'file_image' => 'required_if:confirm_image,',
-                // 'confirm_image' => 'required_if:file_image,null',
+                'file_image' => 'required_if:confirm_image,null',
                 'back' => 'nullable'
             ];
         }
@@ -64,28 +68,48 @@ class ContactRequest extends FormRequest
     }
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// 初回はfile_image は必須
-// required_
-// 確認画面にもどると入力された画像の表示　hiddenで入力された画像のパスを保持
-//  confirm_image
-
-// そのまま確認画面すすむとさっきの画像が表示される　
-// →　file_image = null confrim_image = ~~~~~~
-
-// 入力画面にもどり画像を消す　　
-
-// 確認画面に進むとバリエーションをかける
+// file_imageのバリデーションルールについて
 
 
+// 前提　input type="file" name="file_image"のvalueは保持できない。
+// https://teratail.com/questions/115016
 
 
+// 1回目
+// file_image は必須
+// file_image = required, 
+// ↓
+// 確認画面　→　もどるとアップロードした画像の表示される。
+
+// 画像を表示させるため、画像パス「file_path_string('file_image')」を取得してimgタグに挿入。
+// 画像パスを保持するinputタグを追加
+// 「くinput type="hidden" name="confirm_image" value="file_path_string('file_image')">」
 
 
+// 2回目
+// 条件1（エラー無）
+// パターン1
+// そのまま確認画面すすむ　→　確認画面で先ほどの画面が表示する
+// file_image = null
+// confirm_image = required
 
+// パターン2,3
+// ファイル選択後、確認画面へ進む(削除ボタンはon or off)
+// file_image = required,
+// confirm_image = nullable
 
+// 条件2（エラー有）
+// 画像削除ボタンクリック(on)　→　ファイル選択せずに確認画面へ
+// file_image = null,
+// confirm_image = null
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// 結論
+// file_image = required_if:confirm_image,null
+// (訳::confirm_imageがnullの時、file_imageは必須項目requiredである。)
 
-
-
-
-
+// confirm_imageがnullの場合とは
+// 1回目はconfirm_image = null
+// 2回目以降　→　画像削除ボタンclick時 confirm_image削除
+// index.blade.php220~224行目参照。

@@ -1,10 +1,6 @@
 @extends('layouts.contact')
 @section('title','お問い合わせ')
 @section('content')
-
-@dump(old())
-{{-- @dump(session('image'))
-@dump(request()) --}}
 <form method="POST" action="{{ route('contact_confirm') }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="status" value="1">
@@ -63,7 +59,7 @@
         {{--  画像 --}}
         <div class="Form-Item">
             <p class="Form-Item-Label">
-                <span class="Form-Item-Label-Required">必須</span>証明写真
+                <span class="Form-Item-Label-Required">@if(old('file_image') == null)必須@endif</span>証明写真
             </p>
             <div>
                 <div>
@@ -74,8 +70,8 @@
                                 <p>選択した画像→戻る→選択した画像</p>
                             </div>
                         @endif
+                        <input type="hidden" name="confirm_image" value="{{ old('file_image') }}">
                     </div>
-                    <input type="hidden" name="confirm_image" value="{{ old('file_image') }}">
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
                     <button class="Form-Item-Label-Required delete_button" type="button" name="delete_figure" value="1" id="delete_figure">画像削除</button>
                 </div>
@@ -219,11 +215,8 @@
         }
     }
     $('#delete_figure').click(function () { 
-        // let div = document.createElement("div");
-        // div.append("{{ session()->forget('image') }}");
         const element = document.getElementById('show_image');
         element.remove();
-
         console.log(element);
     });
 </script>
