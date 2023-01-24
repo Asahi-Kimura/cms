@@ -41,12 +41,12 @@ class ContactsController extends Controller
             session()->forget('image');
             return redirect()->route('contact_index');
         }
-        // if($request->file_image){
+        if($request->file_image){
             
-        //     $image_name = $request->file('file_image')->getClientOriginalName();
-        //     $image = "/storage/contacts/".$image_name;
-        //     session()->put('image',$image);
-        // }
+            $image_name = $request->file('file_image')->getClientOriginalName();
+            $image = "/storage/contacts/".$image_name;
+            session()->put('image',$image);
+        }
         $attributes = $request->all();
         return view('contacts.confirm',
         [   

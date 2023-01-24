@@ -23,10 +23,8 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
-        if(request()->file_image){
-            $image_name = request()->file('file_image')->getClientOriginalName();
-            $image = "/storage/contacts/".$image_name;
-            session()->put('image',$image);
+        if(request()->confirm_image == null){
+            session()->forget('image');
         }
         if(request('id') != null){
             return [
@@ -41,7 +39,7 @@ class ContactRequest extends FormRequest
                 'inquiry_type' => 'required' ,
                 'company_name' => 'required|max:20',
                 'user_name' => 'required|max:20',
-                'tele_num'  => 'required|regex:/^[0-9-]+$/',
+                'tele_num'  => 'required|regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/',
                 'email'  => 'required|email',
                 'birthday' => 'required|before:today',
                 'sex' => 'required',
@@ -111,5 +109,5 @@ class ContactRequest extends FormRequest
 
 // confirm_imageがnullの場合とは
 // 1回目はconfirm_image = null
-// 2回目以降　→　画像削除ボタンclick時 confirm_image削除
+// 2回目以降　→　画像削除ボタンclick時 $(.confirm_image).val('')
 // index.blade.php220~224行目参照。
