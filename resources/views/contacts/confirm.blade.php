@@ -1,7 +1,6 @@
 @extends('layouts.contact')
 @section('title','確認画面')
 @section('content')
-@dump(request()->all())
 <form method="POST" action="{{ route('contact_send') }}"> 
     @csrf
     <input type="hidden" name="status" value="1">
@@ -59,7 +58,6 @@
         </div>
         <input type="submit" class="Form-Btn" id='submit' value="送信する">
         <button type="submit" class="Form-Btn" id="back" >戻る</button>
-        {{-- @dd(session('upload_file')) --}}
     </div>
 </form>
 

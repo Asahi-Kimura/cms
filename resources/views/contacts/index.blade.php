@@ -1,8 +1,6 @@
 @extends('layouts.contact')
 @section('title','お問い合わせ')
 @section('content')
-@dump(session('image'))
-@dump(old())
 <form method="POST" action="{{ route('contact_confirm') }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="status" value="1">
@@ -67,9 +65,6 @@
                 <div>
                     <div id="show_image" name='show_image'>
                         @if(session()->has('image'))
-                        {{-- @dump(request()->confirm_image) --}}
-                        {{-- @dump(session('image')) --}}
-                        @dump(old('confirm_image'))
                         <div name="reload_name" id="reload_image">
                             <img src="{{ session('image') }}" id="confirm_image" alt="証明写真">
                             <p>選択した画像→戻る→選択した画像</p>
