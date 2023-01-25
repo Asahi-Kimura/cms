@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\FileImageRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ContactRequest extends FormRequest
@@ -23,8 +22,26 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
-        if(request()->confirm_image == null){
-            session()->forget('image');
+        // input type=file入力有り
+        if(isset(request()->file_image)){
+            // file_imageはファイル形式か判定
+            if(request()->hasFile('file_image')){
+                // 正の場合→ユーザーのファイル情報を保存（文字列）
+                $image_name = request()->file('file_image')->getClientOriginalName();
+                $image = "/storage/contacts/".$image_name;
+                session()->put('image',$image);
+            } else {
+            //負の場合、既にsession('image')に保存されているため、記述不要。
+            }
+        //入力無し
+        } else {
+            // confirm_imageに入力値がある場合の削除判定
+            // value無（削除ボタンクリックおよび初期値）
+            if(request()->confirm_image == null){
+                session()->forget('image');
+            } else {
+            //value有（上記以外）
+            }
         }
         if(request('id') != null){
             return [

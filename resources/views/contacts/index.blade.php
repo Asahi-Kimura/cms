@@ -71,7 +71,7 @@
                         </div>
                         @endif
                     </div>
-                    <input type="hidden" class="confirm_image" name="confirm_image" value="{{ old('file_image') }}">
+                    <input type="hidden" class="confirm_image" name="confirm_image" value="{{ session('image') }}">
                     <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
                     <button class="Form-Item-Label-Required delete_button" type="button" name="delete_figure" value="1" id="delete_figure">画像削除</button>
                 </div>
@@ -220,5 +220,4 @@
         $('.confirm_image').val('');
     });
 </script>
-
 @endsection
