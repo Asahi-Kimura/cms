@@ -66,7 +66,7 @@
                     <div id="show_image" name='show_image'>
                         @if(session()->has('image'))
                         <div name="reload_name" id="reload_image">
-                            <img src="{{ session('image') }}" id="confirm_image" alt="証明写真">
+                            <img src="{{ asset(session('image')) }}" id="confirm_image" alt="証明写真">
                             <p>選択した画像→戻る→選択した画像</p>
                         </div>
                         @endif

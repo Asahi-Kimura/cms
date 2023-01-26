@@ -41,7 +41,6 @@ class ContactsController extends Controller
             session()->forget('image');
             return redirect()->route('contact_index');
         }
-
         $attributes = $request->all();
         return view('contacts.confirm',
         [   
@@ -62,7 +61,6 @@ class ContactsController extends Controller
             session()->forget('image');
             return redirect()->route('contact_index');
         }
-        
         $string_birthday = $request->birthday;
         $attributes = $request->all();
         $attributes = $contact->inpuiry_type_checked($attributes);

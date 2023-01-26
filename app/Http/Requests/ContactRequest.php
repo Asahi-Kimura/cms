@@ -27,8 +27,10 @@ class ContactRequest extends FormRequest
             // file_imageはファイル形式か判定
             if(request()->hasFile('file_image')){
                 // 正の場合→ユーザーのファイル情報を保存（文字列）
+                session()->forget('image');
                 $image_name = request()->file('file_image')->getClientOriginalName();
-                $image = "/storage/contacts/".$image_name;
+                request()->file('file_image')->storeAs('public/save/image', $image_name);
+                $image = 'storage/save/image/'. $image_name; 
                 session()->put('image',$image);
             } else {
             //負の場合、既にsession('image')に保存されているため、記述不要。
