@@ -76,8 +76,7 @@ class ContactController extends Controller
         
         $user = User::all();
         $conact_user_id = User::where('name',$keyword_authority)->first();
-        $status = config('const.status');
-        
+        $status = config('const.status'); 
         $query = Contact::query();
 
         if(!empty($keyword_status)){

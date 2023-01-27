@@ -29,7 +29,8 @@ class NewsController extends Controller
         return view('admin.news.edit',compact('news','user'));    
     }
 
-    public function store(NewsRequest $request,News $news){
+    public function store(NewsRequest $request,News $news)
+    {
         $attributes = $request->all();
         $attributes['start_show'] = $news->text_convert_datetime($attributes['start_show']);
         if($attributes['end_show'] != null){
@@ -84,6 +85,7 @@ class NewsController extends Controller
         $request->session()->forget(['keyword_status','keyword_title']);
         return redirect()->route('admin_news');
     }
+    
     //削除処理//
     public function delete(News $news)
     {
