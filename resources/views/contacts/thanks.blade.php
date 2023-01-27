@@ -1,11 +1,8 @@
 @extends('layouts.contact')
 @section('title','送信しました。')
 @section('content')
-@dump(session('image'))
 <div class="Form">
-
     <h1>送信完了しました</h1>
-
     <div class="Form-Item">
         <p class="Item-Input">種別:
         @foreach($attributes['inquiry_type'] as $key => $value)
@@ -21,7 +18,7 @@
     </div>
     <div class="Form-Item">
         <p class="Item-Input">証明写真: 
-            <img id="thanks_image" src="{{ session('image') }}" alt="証明写真">
+            <img id="thanks_image" src="{{ asset(session('image')) }}" alt="証明写真">
         </p>
     </div>
     <div class="Form-Item">

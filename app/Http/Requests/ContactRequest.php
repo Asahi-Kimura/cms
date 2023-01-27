@@ -23,13 +23,13 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         // input type=file入力有り
-        if(isset(request()->file_image)){
-            // file_imageはファイル形式か判定
-            if(request()->hasFile('file_image')){
+        if(isset(request()->image_path)){
+            // image_pathはファイル形式か判定
+            if(request()->hasFile('image_path')){
                 // 正の場合→ユーザーのファイル情報を保存（文字列）
                 session()->forget('image');
-                $image_name = request()->file('file_image')->getClientOriginalName();
-                request()->file('file_image')->storeAs('public/save/image', $image_name);
+                $image_name = request()->file('image_path')->getClientOriginalName();
+                request()->file('image_path')->storeAs('public/save/image', $image_name);
                 $image = 'storage/save/image/'. $image_name; 
                 session()->put('image',$image);
             } else {
@@ -65,7 +65,7 @@ class ContactRequest extends FormRequest
                 'job'=> 'required',
                 'content'  => 'required|max:255',
                 'status' => 'required',
-                'file_image' => 'required_if:confirm_image,null',
+                'image_path' => 'required_if:confirm_image,null',
                 'back' => 'nullable'
             ];
         }
@@ -74,7 +74,7 @@ class ContactRequest extends FormRequest
     public function attributes()
     {
         return [
-            'file_image' => '証明写真'
+            'image_path' => '証明写真'
         ];
     }
     public function messages()
@@ -87,44 +87,43 @@ class ContactRequest extends FormRequest
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// file_imageのバリデーションルールについて
+// image_pathのバリデーションルールについて
 
 
-// 前提　input type="file" name="file_image"のvalueは保持できない。
+// 前提　input type="file" name="image_path"のvalueは保持できない。
 // https://teratail.com/questions/115016
 
 
 // 1回目
-// file_image は必須
-// file_image = required, 
+// image_path は必須
+// image_path = required, 
 // ↓
 // 確認画面　→　もどるとアップロードした画像の表示される。
 
-// 画像を表示させるため、画像パス「file_path_string('file_image')」を取得してimgタグに挿入。
+// 画像を表示させるため、画像パス「file_path_string('image_path')」を取得してimgタグに挿入。
 // 画像パスを保持するinputタグを追加
-// 「くinput type="hidden" name="confirm_image" value="file_path_string('file_image')">」
-
+// 「くinput type="hidden" name="confirm_image" value="file_path_string('image_path')">」
 
 // 2回目
 // 条件1（エラー無）
 // パターン1
 // そのまま確認画面すすむ　→　確認画面で先ほどの画面が表示する
-// file_image = null
+// image_path = null
 // confirm_image = required
 
 // パターン2,3
 // ファイル選択後、確認画面へ進む(削除ボタンはon or off)
-// file_image = required,
+// image_path = required,
 // confirm_image = nullable
 
 // 条件2（エラー有）
 // 画像削除ボタンクリック(on)　→　ファイル選択せずに確認画面へ
-// file_image = null,
+// image_path = null,
 // confirm_image = null
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 結論
-// file_image = required_if:confirm_image,null
-// (訳::confirm_imageがnullの時、file_imageは必須項目requiredである。)
+// image_path = required_if:confirm_image,null
+// (訳::confirm_imageがnullの時、image_pathは必須項目requiredである。)
 
 // confirm_imageがnullの場合とは
 // 1回目はconfirm_image = null

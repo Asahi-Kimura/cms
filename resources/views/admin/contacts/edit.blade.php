@@ -23,7 +23,6 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">ステータス
                     </div>
-                    
                     <select name="status"class="status-select" id="inputGroupSelect01">
                         <option value="">選択してください</option>
                         @foreach ($status as $key => $value)
@@ -82,6 +81,9 @@
                         </li>
                         <li class="contact-list">
                             氏名:{{ $contact->user_name }}
+                        </li>
+                        <li class="contact-list">
+                            証明写真:<img src="{{ asset($contact->image_path) }}" alt="証明写真">
                         </li>
                         <li class="contact-list">
                             電話番号:{{ $contact->tele_num }}

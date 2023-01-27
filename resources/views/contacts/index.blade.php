@@ -72,14 +72,14 @@
                         @endif
                     </div>
                     <input type="hidden" class="confirm_image" name="confirm_image" value="{{ session('image') }}">
-                    <input type="file" name="file_image" value="" id="file_image" class="form-control" accept="image/*">
+                    <input type="file" name="image_path" value="" id="image_path" class="form-control" accept="image/*">
                     <button class="Form-Item-Label-Required delete_button" type="button" name="delete_figure" value="1" id="delete_figure">画像削除</button>
                 </div>
                 <img id="sample">
                 
                 <div class="Form-Item-Error">
-                    @if($errors->has('file_image'))
-                        <li>{{ $errors->first('file_image') }}</li>
+                    @if($errors->has('image_path'))
+                        <li>{{ $errors->first('image_path') }}</li>
                     @endif
                 </div>
             </div>
@@ -195,7 +195,7 @@
     });
 </script>
 <script>
-    $("#file_image").on('change', function (e) {
+    $("#image_path").on('change', function (e) {
         var reader = new FileReader();
         reader.onload = function(e){
             $("#sample").attr("src",e.target.result).css('width', '100px').css('height', '100px').css('margin','20px 0 0 0 ');
