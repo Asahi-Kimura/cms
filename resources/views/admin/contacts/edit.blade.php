@@ -83,7 +83,7 @@
                             氏名:{{ $contact->user_name }}
                         </li>
                         <li class="contact-list">
-                            証明写真:<img src="{{ asset($contact->image_path) }}" alt="証明写真">
+                            証明写真:<img style="width: 300px" src="{{ asset($contact->image_path) }}" alt="証明写真">
                         </li>
                         <li class="contact-list">
                             電話番号:{{ $contact->tele_num }}

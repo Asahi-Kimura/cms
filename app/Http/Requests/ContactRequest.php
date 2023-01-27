@@ -45,6 +45,7 @@ class ContactRequest extends FormRequest
             //value有（上記以外）
             }
         }
+        
         if(request('id') != null){
             return [
                 'status' => 'required',
