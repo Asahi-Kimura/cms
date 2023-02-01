@@ -76,7 +76,6 @@
                     <button class="Form-Item-Label-Required delete_button" type="button" name="delete_figure" value="1" id="delete_figure">画像削除</button>
                 </div>
                 <img id="sample">
-                
                 <div class="Form-Item-Error">
                     @if($errors->has('image_path'))
                         <li>{{ $errors->first('image_path') }}</li>
@@ -175,7 +174,6 @@
             <div>
                 <div>
                     <textarea name="content" id="content" class="Form-Item-Textarea" rows="20">{{ old('content') }}</textarea>
-                    @dump(old('content'))
                 </div>
                 <div class="Form-Item-Error">
                     @if($errors->has('content'))
@@ -189,12 +187,6 @@
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
-
-<script>
-    var contentArea = $("#content").text();
-    var result = contentArea.replace("<br />", "");
-    $("#content").text(result);
-</script>
 <script>
     $(function(){
         $('#birthday').datepicker(

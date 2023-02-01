@@ -16,7 +16,7 @@
     <input name="birthday" value ="{{ $attributes['birthday'] }}" type="hidden">
     <input name="sex" value ="{{ $attributes['sex'] }}" type="hidden">   
     <input name="job" value ="{{ $attributes['job'] }}" type="hidden">          
-    <input name="content" value ="{!! nl2br($attributes['content']) !!}" type="hidden">
+    <input name="content" value ="{{ $attributes['content'] }}" type="hidden">
     <div class="Form">
         <div class="Form-Item">
             <p class="Item-Input">種別:
@@ -53,9 +53,7 @@
         </div>
         <div class="Form-Item">
             <p class="Item-Input">お問い合わせ内容:<br>
-
                 {!! nl2br(e($attributes['content'])) !!}
-                @dump($attributes['content'])
             </p>
         </div>
         <input type="submit" class="Form-Btn" id='submit' value="送信する">
