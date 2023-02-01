@@ -174,7 +174,8 @@
             </p>
             <div>
                 <div>
-                    <textarea name="content" class="Form-Item-Textarea" rows="20">{{ old('content') }}</textarea>
+                    <textarea name="content" id="content" class="Form-Item-Textarea" rows="20">{{ old('content') }}</textarea>
+                    @dump(old('content'))
                 </div>
                 <div class="Form-Item-Error">
                     @if($errors->has('content'))
@@ -188,6 +189,12 @@
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+
+<script>
+    var contentArea = $("#content").text();
+    var result = contentArea.replace("<br />", "");
+    $("#content").text(result);
+</script>
 <script>
     $(function(){
         $('#birthday').datepicker(
@@ -218,6 +225,8 @@
         const element = document.getElementById('show_image');
         element.remove();
         $('.confirm_image').val('');
+        $('#sample').attr('src','').attr('style','');
+        $('#image_path').val('');
     });
 </script>
 @endsection

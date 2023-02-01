@@ -41,7 +41,7 @@
         <p class="Item-Input">職業: {{ $job[$attributes['job']] }}</p>
     </div>
     <div class="Form-Item">
-        <p class="Item-Input">お問い合わせ内容:<br>{!! nl2br( $attributes['content'] ) !!}</p>
+        <p class="Item-Input">お問い合わせ内容:<br>{!! nl2br( e($attributes['content']) ) !!}</p>
     </div>
     <a href="{{ route('contact_index') }}"><button type="button" class="Form-Btn">戻る</button></a>
 </div>

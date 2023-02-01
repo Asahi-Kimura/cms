@@ -53,7 +53,9 @@
         </div>
         <div class="Form-Item">
             <p class="Item-Input">お問い合わせ内容:<br>
-                {!! nl2br($attributes['content']) !!}
+
+                {!! nl2br(e($attributes['content'])) !!}
+                @dump($attributes['content'])
             </p>
         </div>
         <input type="submit" class="Form-Btn" id='submit' value="送信する">
